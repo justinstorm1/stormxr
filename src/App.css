@@ -1,0 +1,32 @@
+.App {
+  height: 200vh; 
+  
+  &.filled {
+    nav#navbar {
+      background-color: #fff;
+      box-shadow: 0 0 10px #000;
+    
+      a.navbar-brand {
+        color: #000;
+  
+        svg {
+          fill: #000;
+        }
+      }
+    
+      button.navbar-toggler {
+        i {
+          color: #000;
+        }
+      }
+    
+      ul.navbar-nav {
+        li {
+          a {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}

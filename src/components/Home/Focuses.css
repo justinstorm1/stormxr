@@ -1,0 +1,41 @@
+section#focuses {
+    padding: 50px 20px;
+    font-family: 'Panton';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    h2, h3, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        display: inline-block;
+        background: linear-gradient(to right, blue -30%, purple);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .focuses {
+        width: 100%;
+        row-gap: 30px;
+        justify-content: center;
+    }
+
+    .focus {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        i {
+            font-size: 50px;
+            display: inline-block;
+            background: linear-gradient(to right, blue -30%, purple);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+    
+}

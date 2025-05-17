@@ -1,0 +1,46 @@
+section#contact {
+    background-color: #e2e2e2;
+    padding: 50px 20px;
+    font-family: 'Panton';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+
+    .submitted-btn {
+        padding: 10px 20px;
+        background-color: #0d6efd;
+        border: none;
+        color: #fff;
+
+        &:hover {
+            background-color: #1f5cb7;
+        }
+    }
+    
+
+    form {
+        width: 100%;
+        max-width: 750px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+
+        input, textarea, button {
+            grid-column: span 2;
+            padding: 10px;
+        }
+
+        input {
+            &:nth-child(2), &:nth-child(3) {
+                grid-column: span 1;
+            }
+        }
+
+        textarea {
+            min-height: 175px;
+            max-height: 300px;
+        }
+    }
+}

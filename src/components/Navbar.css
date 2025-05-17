@@ -1,0 +1,46 @@
+nav#navbar {
+    transition: 0.3s ease;
+    background-color: transparent;
+
+    a.navbar-brand {
+        font-family: 'Panton';
+        font-weight: bold;
+        color: #fff;
+        transition: 0.3s ease;
+
+        svg {
+            fill: #fff;
+            transition: 0.3s ease;
+        }
+    }
+
+    button.navbar-toggler {
+        border: none;
+        box-shadow: none !important;
+        transition: 0.3s ease;
+
+        i {
+            color: #fff;
+        }
+    }
+
+    ul.navbar-nav {
+        li {
+            a {
+                color: rgba(255, 255, 255, 0.5);
+                font-family: 'Panton';
+                font-weight: bold;
+                transition: 0.3s ease;
+            }
+            a:hover {
+                color: var(--light);
+            }
+            a.active {
+                display: inline-block;
+                background: var(--gradient);
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+}
