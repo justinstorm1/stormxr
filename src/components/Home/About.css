@@ -1,8 +1,0 @@
-section#about {
-    font-family: 'Panton';
-    display: flex;
-    padding: 70px 20px;
-    flex-direction: column;
-    align-items: center;
-    background-color: #bababa;
-}
