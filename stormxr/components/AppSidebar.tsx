@@ -3,11 +3,20 @@
 import { ArrowRight, ChevronRight, Code, Code2, Eye, GitCommitVertical, HelpingHand, Home, Presentation, Projector, SidebarIcon, User, User2 } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarSeparator } from "./ui/sidebar";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function AppSidebar() {
+    const pathname = usePathname();
+
+    const [isNextWaveXR, setIsNextWaveXR] = useState(false);
+
+    useEffect(() => {
+        setIsNextWaveXR(pathname.includes("/nextwavexr"));
+    }, [pathname]);
 
     return (
-        <div className="block xl:hidden">
+        <div className={`block xl:hidden ${isNextWaveXR ? "hidden" : ""}`}>
             <Sidebar collapsible="icon">
                 <SidebarHeader className="border-b">
                     <SidebarMenu>
@@ -115,4 +124,8 @@ export default function AppSidebar() {
             </Sidebar>
         </div>
     );
+}
+
+function useeffect(arg0: () => void, arg1: string[]) {
+    throw new Error("Function not implemented.");
 }

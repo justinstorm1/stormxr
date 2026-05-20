@@ -29,6 +29,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "convex/auth.configts"  ],
   "exclude": ["node_modules"]
 }

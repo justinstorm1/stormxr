@@ -6,9 +6,9 @@ import { SidebarTrigger } from "./ui/sidebar";
 
 export default function Navbar() {
     return (
-        <header className='w-full absolute z-50 top-0 left-1/2 -translate-x-1/2 py-3 transition-all duration-300 px-4 lg:px-20 flex items-center'>
+        <header className='w-full absolute z-50 top-0 left-1/2 -translate-x-1/2 py-3 transition-all duration-300 px-4 xl:px-20 flex items-center'>
            
-        <SidebarTrigger className="flex xl:hidden gap-4 me-4" />
+          <SidebarTrigger className="flex xl:hidden gap-4 me-4" />
          
   
           <a href="/" className='hidden xl:flex items-center gap-2 me-10'>
