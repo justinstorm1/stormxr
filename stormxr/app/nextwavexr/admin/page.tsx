@@ -1,7 +1,7 @@
 "use client"
 
 import { useConvexAuth } from "convex/react"
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { UnauthenticatedScreen } from "./create/page";
 import { useRouter } from "next/navigation";
 

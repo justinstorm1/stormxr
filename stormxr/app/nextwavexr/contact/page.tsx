@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
-import { Plane, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { useState } from "react";
 
 export default function Page() {

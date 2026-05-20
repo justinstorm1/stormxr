@@ -1,16 +1,14 @@
 "use client"
 
 import React from "react";
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarInput, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { LayoutDashboard, LogOut, Plus, UserRoundPlus, Pencil, Send, UserRound } from "lucide-react";
-import Link from "next/link";
+import { LayoutDashboard, LogOut, Plus, Pencil, Send, UserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { Button } from "@/components//ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function AdminProviers({ children }: { children: React.ReactNode }) {

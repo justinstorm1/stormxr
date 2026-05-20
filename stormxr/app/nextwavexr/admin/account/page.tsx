@@ -9,7 +9,6 @@ import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "
 import { Eye, EyeOff, Mail, Lock, UserPlus, Users, MoreHorizontal, Trash2 } from "lucide-react";
 import { Button } from '@/components/ui/button';
 import { api } from "@/convex/_generated/api";
-import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useMutation } from "convex/react";

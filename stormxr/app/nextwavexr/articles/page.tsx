@@ -3,14 +3,11 @@
 import Navbar from '../components/Navbar';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Id } from '@/convex/_generated/dataModel';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { article } from 'motion/react-client';
+import { Card, CardFooter } from '@/components/ui/card';
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
-import { Heart, HeartX, Newspaper } from 'lucide-react';
-import { useState } from 'react';
+import { Newspaper } from 'lucide-react';
 
 export default function Page() {
 

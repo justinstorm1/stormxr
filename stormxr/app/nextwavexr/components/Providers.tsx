@@ -1,9 +1,7 @@
 "use client"
 
-import { ConvexAuthNextjsProvider } from "@convex-dev/auth/nextjs"
-import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server"
 import { ConvexAuthProvider } from "@convex-dev/auth/react"
-import { ConvexProvider, ConvexProviderWithAuth, ConvexReactClient } from "convex/react"
+import { ConvexProvider, ConvexReactClient } from "convex/react"
 import * as React from "react"
 import { TooltipProvider } from "@/components/ui/tooltip"
 

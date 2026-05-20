@@ -1,23 +1,17 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'; 
-import Navbar from "@/components/Navbar";
 import { Field, FieldContent, FieldGroup, FieldLabel } from '@/components/ui/field';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Calendar } from '@/components/ui/calendar';
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from '@/components/ui/input-group';
-import { CalendarIcon, Eye, EyeOff, Link2, Lock, Mail, Plus, RefreshCcw, RefreshCw } from 'lucide-react';
+import { Eye, EyeOff, Link2, Lock, Mail, Plus, RefreshCw } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
-import { settings } from 'node:cluster';
 import { Button } from '@/components/ui/button';
-import { Authenticated, Unauthenticated, useMutation } from 'convex/react';
+import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useAuthActions } from '@convex-dev/auth/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import AdminProviers from "../../components/AdminProviders"
-import { useParams, useSearchParams } from 'next/navigation';
 import DatePicker from '../../components/DatePicker';
 import { Textarea } from '@/components/ui/textarea';
 

@@ -1,8 +1,7 @@
 "use client"
 
 import AdminProviders from "../components/AdminProviders";
-import { Authenticated, Unauthenticated, useConvexAuth } from "convex/react";
-import { UnauthenticatedScreen } from "./create/page";
+import { Authenticated, Unauthenticated } from "convex/react";
 import Page from "./page";
 
 export default function AdminLayout({
