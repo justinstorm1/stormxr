@@ -5,7 +5,7 @@ import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server"
 import { ConvexAuthProvider } from "@convex-dev/auth/react"
 import { ConvexProvider, ConvexProviderWithAuth, ConvexReactClient } from "convex/react"
 import * as React from "react"
-import { TooltipProvider } from "./ui/tooltip"
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
 
