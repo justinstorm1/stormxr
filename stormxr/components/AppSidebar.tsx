@@ -105,22 +105,28 @@ export default function AppSidebar() {
                             </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>
-                    <SidebarSeparator />
-                    <SidebarGroup>
-                        <SidebarGroupContent>
-                            <SidebarMenuItem>
-                                <SidebarMenuButton asChild tooltip={"Contact"} className="bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold justify-center">
-                                    <a href="/contact">
-                                        <User2 />
-                                        Contact
-                                    </a>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
-                        </SidebarGroupContent>
-                    </SidebarGroup>
-                    <SidebarMenu>
-                    </SidebarMenu>
                 </SidebarContent>
+                <SidebarFooter className="border-t p-3">
+                    <a
+                        href="/contact"
+                        className="
+                            flex items-center gap-3 rounded-lg px-3 py-2.5
+                            bg-gradient-to-r from-blue-600 to-[#ff0088]
+                            text-white font-semibold text-sm
+                            transition-all duration-200 hover:opacity-90 hover:shadow-lg hover:shadow-pink-500/20
+                            group-data-[collapsible=icon]:justify-center
+                            group-data-[collapsible=icon]:px-0
+                            group-data-[collapsible=icon]:py-2.5
+                            group-data-[collapsible=icon]:rounded-lg
+                        "
+                    >
+                        <User2 className="size-4 shrink-0" />
+                        <span className="group-data-[collapsible=icon]:hidden">
+                            Contact Us
+                        </span>
+                        <ArrowRight className="ml-auto size-3.5 opacity-70 group-data-[collapsible=icon]:hidden" />
+                    </a>
+                </SidebarFooter>
             </Sidebar>
         </div>
     );
