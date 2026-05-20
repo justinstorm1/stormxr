@@ -46,16 +46,19 @@ export default function Home() {
                 <div className="flex gap-3 flex-wrap justify-center">
                     <Button
                         asChild
-                        className="font-semibold shadow-xl bg-white text-blue-900 !hover:bg-white/90 transition-all"
+                        className="overflow-hidden group relative font-semibold shadow-xl bg-white text-blue-900 hover:!bg-white hover:text-white transition-all"
                     >
-                        <Link href="/articles">Explore Articles</Link>
+                        <Link href="/nextwavexr/articles">
+                            <div className="absolute top-0 -left-1/1 bg-sky-500 h-full w-full transition-all group-hover:left-0 duration-300 ease-in-out" />
+                            <span className="relative z-10">Explore Articles</span>
+                        </Link>
                     </Button>
                     <Button
                         asChild
                         variant="outline"
                         className="border-white/50 text-white bg-white/10 hover:bg-white/20 transition-all backdrop-blur-sm"
                     >
-                        <Link href="/about">Learn More</Link>
+                        <Link href="/nextwavexr/about">Learn More</Link>
                     </Button>
                 </div>
             </div>
