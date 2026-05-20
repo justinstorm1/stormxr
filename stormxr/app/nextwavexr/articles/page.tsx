@@ -59,7 +59,7 @@ function Article({ id }: { id: Id<"articles">} ) {
     }
     
     return (
-        <Link href={`/articles/${article._id}`}>
+        <Link href={`/nextwavexr/articles/${article._id}`}>
             <Card className="gap-0 relative">
                 <img 
                     src={article.headerImage}
