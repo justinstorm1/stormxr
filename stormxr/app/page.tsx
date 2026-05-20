@@ -33,7 +33,7 @@ export default function Page() {
 
       <section 
         id="home" 
-        className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20"
+        className="relative min-h-screen w-full flex items-center justify-center overflow-hidden py-20"
       >
         {/* Subtle Background Grid - Swaps lines from dark grey to light grey depending on mode */}
         <div 
