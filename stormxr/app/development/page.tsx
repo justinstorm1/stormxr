@@ -17,7 +17,7 @@ export default function Development() {
       {/* Background Ambient Glow */}
       {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-[blue]/5 to-[#ff0088]/5 blur-[130px] rounded-full pointer-events-none" /> */}
 
-      <div className="@container/main relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="@container/main relative z-10 py-24 px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-2xl mb-16 flex flex-col items-start gap-3">
@@ -92,9 +92,11 @@ export default function Development() {
               <div className="mt-6 p-5 rounded-2xl border border-border bg-background/50 backdrop-blur-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   {/* Mock App Icon placeholder */}
-                  <div className="h-14 w-14 rounded-xl bg-gradient-to-tr from-[blue] to-[#ff0088] flex items-center justify-center text-white font-black text-xl shadow-md shadow-blue-500/10">
-                    LD
-                  </div>
+                  <img
+                    src={"/images/ListItDoItLogo.webp"}
+                    className='h-14 aspect-square'
+                    alt='List It, Do It Logo'
+                  />
                   <div>
                     <h4 className="text-sm font-bold text-foreground">List It, Do It</h4>
                     <p className="text-xs text-muted-foreground mt-0.5">Minimalist productivity & daily planner app.</p>
@@ -107,7 +109,7 @@ export default function Development() {
                   className="rounded-full border-border bg-background hover:bg-muted font-semibold text-xs flex items-center gap-1.5 w-full sm:w-auto"
                   asChild
                 >
-                  <a href="#" target="_blank" rel="noopener noreferrer">
+                  <a href="https://apps.apple.com/us/app/list-it-do-it/id6751865449" target="_blank" rel="noopener noreferrer">
                     View App <ArrowUpRight className="h-3 w-3 text-[#ff0088]" />
                   </a>
                 </Button>

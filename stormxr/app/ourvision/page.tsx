@@ -32,16 +32,15 @@ const pillars = [
 
 export default function OurVision() {
   return (
-    <section
-      id="our-vision"
+   <section 
+      id="our-vision" 
       className="relative w-full max-w-screen bg-background"
     >
       <Navbar />
 
       {/* <div className="absolute left-1/2 top-1/3 h-[620px] w-[620px] -translate-x-1/2 bg-gradient-to-br from-[blue]/5 to-[#ff0088]/5 blur-[130px] pointer-events-none" /> */}
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-20">
-        <div className="mb-16 flex max-w-3xl flex-col items-start gap-3">
+        <div className="@container/main relative z-10 py-24 px-4 sm:px-6 lg:px-8">   <div className="mb-16 flex max-w-3xl flex-col items-start gap-3">
           <div className="text-xs font-bold uppercase tracking-widest text-[blue]">
             Our Vision
           </div>
@@ -59,7 +58,7 @@ export default function OurVision() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 @lg/main:grid-cols-2 @5xl/main:grid-cols-3 gap-6">
           {pillars.map((pillar) => {
             const Icon = pillar.icon;
 
