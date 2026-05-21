@@ -173,12 +173,15 @@ export default function About() {
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4 border-t border-white/10">
             <p className="text-white/50 text-sm">Want to explore what's next in XR?</p>
-            <Button
-              asChild
-              className="font-semibold bg-white text-blue-900 hover:opacity-90 hover:bg-white transition-all shadow-xl"
-            >
-              <Link href="/articles">Read the Articles</Link>
-            </Button>
+             <Button
+                asChild
+                className="overflow-hidden group relative font-semibold shadow-xl bg-white text-blue-900 hover:!bg-white hover:text-white transition-all"
+              >
+                <Link href="/nextwavexr/articles">
+                  <div className="absolute top-0 -left-1/1 bg-sky-500 h-full w-full transition-all group-hover:left-0 duration-300 ease-in-out" />
+                  <span className="relative z-10">Read the Articles</span>
+                </Link>
+              </Button>
           </div>
 
         </div>
