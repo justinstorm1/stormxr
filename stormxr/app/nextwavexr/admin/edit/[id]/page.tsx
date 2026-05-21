@@ -60,7 +60,7 @@ export default function Page() {
         const timeout = setTimeout(async () => {
             setFetchingImage(true);
             try {
-                const res = await fetch(`/api/og-image?url=${encodeURIComponent(link)}`);
+                const res = await fetch(`../../api/og-image?url=${encodeURIComponent(link)}`);
                 const data = await res.json();
                 setHeaderImage(data.image ?? null); 
                 if (data.title) setTitle(data.title);
@@ -106,7 +106,7 @@ export default function Page() {
                 category,
                 published
             });
-            window.location.href = "/admin/dashboard";
+            window.location.href = "/nextwavexr/admin/dashboard";
         } catch (error) {
             console.error(error);
         }

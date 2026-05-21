@@ -32,7 +32,7 @@ export default function AdminProviers({ children }: { children: React.ReactNode 
 
 function AdminSidebar() {
     const pathname = usePathname();
-    const articleId = pathname.split("/admin/edit/")[1];
+    const articleId = pathname.split("/nextwavexr/admin/edit/")[1];
 
     const articles = useQuery(api.articles.getArticles);
 
@@ -141,7 +141,7 @@ function AdminSidebar() {
                             <Pencil className="size-4" />
                         </div>
 
-                        {pathname.startsWith("/admin/edit") && (
+                        {pathname.startsWith("/nextwavexr/admin/edit") && (
                             <div className="ms-auto w-2 h-2 rounded-full bg-sidebar-primary shrink-0 group-data-[collapsible=icon]:hidden" />
                         )}
                         

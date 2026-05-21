@@ -85,7 +85,7 @@ export default function Page() {
                 category,
                 published
             });
-            window.location.href = "/admin/dashboard";
+            window.location.href = "/nextwavexr/admin/dashboard";
         } catch (error) {
             console.error(error);
         }

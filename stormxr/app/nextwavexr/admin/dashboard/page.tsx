@@ -96,7 +96,7 @@ export default function Page() {
                         <CardFooter className="gap-2">
                             <Button asChild className="ms-auto" variant={'outline'}>
                                
-                                <Link href={`/admin/edit/${article._id}`}>
+                                <Link href={`/nextwavexr/admin/edit/${article._id}`}>
                                     <Pencil />
                                     Edit
                                 </Link>
