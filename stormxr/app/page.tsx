@@ -27,7 +27,7 @@ export default function Page() {
   }, []);
   
   return (
-    <div className="relativew-full min-h-dvh bg-background text-foreground transition-colors duration-300">
+    <div className="relative w-full min-h-dvh bg-background text-foreground transition-colors duration-300">
 
       <Navbar />
 

@@ -34,11 +34,11 @@ export default function OurVision() {
   return (
     <section
       id="our-vision"
-      className="relative w-full overflow-hidden bg-background lg:py-32"
+      className="relative w-full max-w-screen bg-background"
     >
       <Navbar />
 
-      <div className="absolute left-1/2 top-1/3 h-[620px] w-[620px] -translate-x-1/2 bg-gradient-to-br from-[blue]/5 to-[#ff0088]/5 blur-[130px] pointer-events-none" />
+      {/* <div className="absolute left-1/2 top-1/3 h-[620px] w-[620px] -translate-x-1/2 bg-gradient-to-br from-[blue]/5 to-[#ff0088]/5 blur-[130px] pointer-events-none" /> */}
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-20">
         <div className="mb-16 flex max-w-3xl flex-col items-start gap-3">

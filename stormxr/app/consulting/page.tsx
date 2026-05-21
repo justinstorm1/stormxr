@@ -9,7 +9,7 @@ export default function Consulting() {
   return (
     <section 
       id="consulting" 
-      className="relative w-full lg:py-32 overflow-hidden bg-background"
+      className="relative w-full max-w-screen bg-background"
     >
 
       <Navbar />
@@ -17,8 +17,8 @@ export default function Consulting() {
       {/* Background Ambient Glow */}
       <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-gradient-to-bl from-[blue]/5 to-[#ff0088]/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl py-20 mx-auto px-6 relative z-10">
-        
+      <div className="@container/main relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
         <div className="max-w-2xl mb-20 flex flex-col items-start gap-3">
           <div className="text-xs font-bold uppercase tracking-widest text-[blue]">
@@ -33,7 +33,7 @@ export default function Consulting() {
         </div>
 
         {/* Advisory Pillars - 3 Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 @lg/main:grid-cols-2 @5xl/main:grid-cols-3 gap-6">
           
           {/* Pillar 1: Concept Validation */}
           <div className="group relative rounded-2xl border border-border bg-muted/20 p-8 transition-all duration-300 hover:border-border hover:bg-muted/40">
