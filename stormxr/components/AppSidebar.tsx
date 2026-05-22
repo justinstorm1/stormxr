@@ -70,12 +70,12 @@ export default function AppSidebar() {
                                                         </a>
                                                     </SidebarMenuSubButton>
                                                     <SidebarMenuSubButton asChild>
-                                                        <a href="#">
+                                                        <a href="/vrlens">
                                                             VR Lens Podcast
                                                         </a>
                                                     </SidebarMenuSubButton>
                                                     <SidebarMenuSubButton asChild>
-                                                        <a href="#">
+                                                        <a href="/stormycsvr">
                                                             StormyCs VR
                                                         </a>
                                                     </SidebarMenuSubButton>

@@ -77,7 +77,7 @@ export default function Navbar() {
                         <ListItem
                           key={2}
                           title={"StormyCs VR"}
-                          href={"/vrlens"}
+                          href={"/stormycsvr"}
                         >
                           Casual creator and community-facing side focused on gaming, fitness, and personality-driven VR content.
                         </ListItem>

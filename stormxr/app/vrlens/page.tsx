@@ -46,7 +46,7 @@ export default function VRLens() {
         <div className="absolute top-1/3 left-10 w-[550px] h-[550px] bg-gradient-to-br from-[blue]/5 to-[#ff0088]/5 blur-[120px] rounded-full" />
       </div>
 
-      <div className="@container/main relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="@container/main relative z-10 py-24 px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="max-w-2xl mb-20 flex flex-col items-start gap-3">
