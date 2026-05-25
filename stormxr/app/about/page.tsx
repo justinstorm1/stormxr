@@ -54,9 +54,9 @@ export default function About() {
                 Our Vision
               </div>
               <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-                Building a professional ecosystem for{" "}
+                Bridging immersive technology, media, and{" "}
                 <span className="bg-gradient-to-r from-[blue] to-[#ff0088] bg-clip-text text-transparent">
-                  the future of XR
+                  real-world adoption
                 </span>
               </h1>
               <p className="mt-2 text-base leading-relaxed text-muted-foreground">
