@@ -145,7 +145,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 @3xl/main:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 mx-auto max-w-4xl">
 
           {/* Form */}
           <div className="@3xl/main:col-span-2">
