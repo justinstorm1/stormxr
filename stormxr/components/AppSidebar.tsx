@@ -1,10 +1,12 @@
 "use client"
 
-import { ArrowRight, ChevronRight, Code, Code2, Eye, GitCommitVertical, HelpingHand, Home, Presentation, Projector, SidebarIcon, User, User2 } from "lucide-react";
+import { ArrowRight, ChevronRight, Code, Code2, Eye, GitCommitVertical, HelpingHand, Home, Info, Presentation, Projector, SidebarIcon, User, User2 } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarSeparator } from "./ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarSeparator } from "./ui/sidebar";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function AppSidebar() {
     const pathname = usePathname();
@@ -48,46 +50,38 @@ export default function AppSidebar() {
                                             Home
                                         </a>
                                     </SidebarMenuButton>
-                                </SidebarMenuItem>  
-                                <Collapsible
-                                    asChild
-                                    className="group/collapsible"
-                                >
-                                    <SidebarMenuItem>
-                                        <CollapsibleTrigger asChild>
-                                            <SidebarMenuButton tooltip={"Media Projects"}>
-                                                <Presentation />
-                                                <span>Media Projects</span>
-                                                <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                                            </SidebarMenuButton>
-                                        </CollapsibleTrigger>
-                                        <CollapsibleContent>
-                                            <SidebarMenuSub>
-                                                <SidebarMenuSubItem>
-                                                    <SidebarMenuSubButton asChild>
-                                                        <a href="/nextwavexr">
-                                                            Next Wave XR
-                                                        </a>
-                                                    </SidebarMenuSubButton>
-                                                    <SidebarMenuSubButton asChild>
-                                                        <a href="/vrlens">
-                                                            VR Lens Podcast
-                                                        </a>
-                                                    </SidebarMenuSubButton>
-                                                    <SidebarMenuSubButton asChild>
-                                                        <a href="/stormycsvr">
-                                                            StormyCs VR
-                                                        </a>
-                                                    </SidebarMenuSubButton>
-                                                </SidebarMenuSubItem>
-                                            </SidebarMenuSub>
-                                        </CollapsibleContent>
-                                    </SidebarMenuItem>
-                                </Collapsible>
-                                <SidebarMenuButton asChild tooltip={"Consulting"}>
-                                    <a href="/consulting">
-                                        <HelpingHand />
-                                        Consulting
+                                </SidebarMenuItem> 
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton asChild tooltip={"Media Projects"}>
+                                        <a href="/media-projects">
+                                            <Presentation />
+                                            <span>Media Projects</span>
+                                        </a>
+                                    </SidebarMenuButton>
+                                    <SidebarMenuSub>
+                                        <SidebarMenuSubItem>
+                                            <SidebarMenuSubButton asChild>
+                                                <a href="/nextwavexr">
+                                                    Next Wave XR
+                                                </a>
+                                            </SidebarMenuSubButton>
+                                            <SidebarMenuSubButton asChild>
+                                                <a href="/vrlens">
+                                                    VR Lens Podcast
+                                                </a>
+                                            </SidebarMenuSubButton>
+                                            <SidebarMenuSubButton asChild>
+                                                <a href="/stormycsvr">
+                                                    StormyCs VR
+                                                </a>
+                                            </SidebarMenuSubButton>
+                                        </SidebarMenuSubItem>
+                                    </SidebarMenuSub>
+                                </SidebarMenuItem>
+                                <SidebarMenuButton asChild tooltip={"About"}>
+                                    <a href="/about">
+                                        <Info />
+                                        About
                                     </a>
                                 </SidebarMenuButton>
                                 <SidebarMenuButton asChild tooltip={"Development"}>
@@ -96,10 +90,10 @@ export default function AppSidebar() {
                                         Development
                                     </a>
                                 </SidebarMenuButton>
-                                <SidebarMenuButton asChild tooltip={"Our Vision"}>
-                                    <a href="/ourvision">
-                                        <Eye />
-                                        Our Vision
+                                <SidebarMenuButton asChild tooltip={"Consulting"}>
+                                    <a href="/consulting">
+                                        <HelpingHand />
+                                        Consulting
                                     </a>
                                 </SidebarMenuButton>
                             </SidebarMenu>

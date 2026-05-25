@@ -1,9 +1,40 @@
 "use client"
 
 import React from 'react';
-import { Lightbulb, Compass, HelpCircle, BarChart3, Users, Milestone } from 'lucide-react';
+import { Lightbulb, Compass, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
+import Link from 'next/link';
+
+const pillars = [
+  {
+    title: 'XR Market & Trend Analysis',
+    description:
+      'Helping brands and organizations understand where immersive technology is gaining traction, where expectations exceed reality, and what developments are worth paying attention to.',
+    icon: Lightbulb,
+    accent: 'from-[blue]/10 to-[blue]/5',
+    border: 'border-[blue]/10',
+    iconColor: 'text-[blue]',
+  },
+  {
+    title: 'Immersive Media & Experience Strategy',
+    description:
+      'Exploring how spatial computing, VR, and emerging display technologies can improve engagement, communication, entertainment, and customer experience.',
+    icon: Compass,
+    accent: 'from-[#ff0088]/10 to-[#ff0088]/5',
+    border: 'border-[#ff0088]/10',
+    iconColor: 'text-[#ff0088]',
+  },
+  {
+    title: 'Industry Communication & Positioning',
+    description:
+      'Helping businesses and creators communicate immersive technology clearly to audiences, partners, and stakeholders without relying on hype or buzzwords.',
+    icon: BarChart3,
+    accent: 'from-[#991bbf]/10 to-[#991bbf]/5',
+    border: 'border-[#991bbf]/10',
+    iconColor: 'text-[#991bbf]',
+  },
+];
 
 export default function Consulting() {
   return (
@@ -11,17 +42,18 @@ export default function Consulting() {
       id="consulting" 
       className="relative w-full max-w-screen bg-background"
     >
-
       <Navbar />
 
       {/* Background Ambient Glow */}
-      <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-gradient-to-bl from-[blue]/5 to-[#ff0088]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 right-10 w-[550px] h-[550px] bg-gradient-to-bl from-[blue]/5 to-[#ff0088]/5 blur-[120px] rounded-full" />
+      </div>
 
       <div className="@container/main relative z-10 py-24 px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="max-w-2xl mb-20 flex flex-col items-start gap-3">
-          <div className="text-xs font-bold uppercase tracking-widest text-[blue]">
+          <div className="text-xs font-bold uppercase tracking-widest text-[#ff0088]">
             Strategic Advisory
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
@@ -32,51 +64,30 @@ export default function Consulting() {
           </p>
         </div>
 
-        {/* Advisory Pillars - 3 Column Grid */}
+        {/* Advisory Pillars */}
         <div className="grid grid-cols-1 @lg/main:grid-cols-2 @5xl/main:grid-cols-3 gap-6">
-          
-          {/* Pillar 1: Concept Validation */}
-          <div className="group relative rounded-2xl border border-border bg-muted/20 p-8 transition-all duration-300 hover:border-border hover:bg-muted/40">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[blue]/10 to-[blue]/5 text-[blue] flex items-center justify-center mb-6 border border-[blue]/10">
-              <Lightbulb className="h-5 w-5" />
-            </div>
-            <h3 className="text-xl font-bold tracking-tight text-foreground mb-3">
-              Concept Validation
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Have an immersive concept but unsure if it is technically viable? We stress-test your ideas against current market hardware limits, engine performance capabilities, and deployment budget constraints before you write a single line of code.
-            </p>
-          </div>
-
-          {/* Pillar 2: Architecture & Strategy */}
-          <div className="group relative rounded-2xl border border-border bg-muted/20 p-8 transition-all duration-300 hover:border-border hover:bg-muted/40">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#ff0088]/10 to-[#ff0088]/5 text-[#ff0088] flex items-center justify-center mb-6 border border-[#ff0088]/10">
-              <Compass className="h-5 w-5" />
-            </div>
-            <h3 className="text-xl font-bold tracking-tight text-foreground mb-3">
-              Spatial Ecosystem Strategy
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Whether mapping out a WebXR storefront or planning a native visionOS deployment, we map out your technical stack infrastructure. We choose the right tech pipelines so your software remains future-proof.
-            </p>
-          </div>
-
-          {/* Pillar 3: Product Scaling */}
-          <div className="group relative rounded-2xl border border-border bg-muted/20 p-8 transition-all duration-300 hover:border-border hover:bg-muted/40">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[blue]/10 to-[#ff0088]/5 text-foreground flex items-center justify-center mb-6 border border-border">
-              <BarChart3 className="h-5 w-5" />
-            </div>
-            <h3 className="text-xl font-bold tracking-tight text-foreground mb-3">
-              Optimization Audits
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              If you have an existing application plagued by slow frame rates, layout lag, or scaling bottlenecks, our team dives directly into your rendering pipelines and code environments to pinpoint and patch operational inefficiencies.
-            </p>
-          </div>
-
+          {pillars.map((p) => {
+            const Icon = p.icon;
+            return (
+              <div
+                key={p.title}
+                className="group relative rounded-2xl border border-border bg-muted/20 p-8 transition-all duration-300 hover:bg-muted/40"
+              >
+                <div className={`h-10 w-10 rounded-xl bg-gradient-to-br ${p.accent} ${p.iconColor} flex items-center justify-center mb-6 border ${p.border}`}>
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="text-xl font-bold tracking-tight text-foreground mb-3">
+                  {p.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {p.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Bottom Unified CTA Board */}
+        {/* Bottom CTA */}
         <div className="mt-16 p-8 sm:p-10 rounded-3xl border border-border bg-gradient-to-b from-muted/40 to-muted/10 backdrop-blur-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-500/10 text-[11px] font-bold text-muted-foreground uppercase tracking-wide mb-3">
@@ -92,7 +103,7 @@ export default function Consulting() {
             className="rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold px-6 py-6 text-sm hover:opacity-90 transition-opacity w-full md:w-auto shadow-md shadow-blue-500/5"
             asChild
           >
-            <a href="#contact">Schedule Advisory Call</a>
+            <Link href="/contact">Schedule Advisory Call</Link>
           </Button>
         </div>
 

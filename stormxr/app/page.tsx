@@ -33,7 +33,7 @@ export default function Page() {
 
       <section 
         id="home" 
-        className="relative min-h-screen w-full flex items-center justify-center overflow-hidden py-20"
+        className="relative h-full w-full flex items-center justify-center overflow-hidden py-20"
       >
         {/* Subtle Background Grid - Swaps lines from dark grey to light grey depending on mode */}
         <div 
@@ -56,36 +56,37 @@ export default function Page() {
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6">
           
           {/* Subtle Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground backdrop-blur-sm">
+          {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-muted/60 text-xs font-medium text-muted-foreground backdrop-blur-sm">
             <Terminal className="h-3.5 w-3.5 text-[#ff0088]" />
             <span>Now in Public Beta</span>
-          </div>
+          </div> */}
 
           {/* Hero Heading */}
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-foreground leading-[1.15]">
-            The Next Dimension of <br />
+            Tracking The Next Wave of <br />
             <span className="bg-gradient-to-r from-[blue] via-[#d90479] to-[#ff0088] text-transparent bg-clip-text">
-              Virtual Reality
+              Immersive Technology
             </span>
           </h1>
 
           {/* Subheading */}
           <p className="max-w-xl text-base sm:text-lg text-muted-foreground font-normal leading-relaxed">
-            Build, deploy, and scale immersive extended reality applications. High-performance infrastructure tailored for modern XR workflows.
+            Exploring how immersive technology is moving beyond gaming into media, wellness, communication, and everyday life.
           </p>
-
           {/* Action Buttons */}
           <div className="mt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <Button className="px-8 py-6 rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold shadow-lg shadow-blue-500/10 hover:opacity-90 transition-opacity flex items-center gap-2 text-base">
-              Media Projects <ArrowRight className="h-4 w-4" />
+            <Button asChild className="group px-8 py-6 rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold shadow-lg shadow-blue-500/10 hover:opacity-90 transition-opacity flex items-center gap-2 text-base">
+              <Link href="/media-projects">
+                Media Projects <ArrowRight className="h-4 w-4 transition-all group-hover:translate-x-1" />
+              </Link>
             </Button>
             
-            <a 
-              href="#about" 
+            <Link
+              href="/about" 
               className="inline-flex items-center justify-center px-8 py-3 rounded-full border border-border bg-muted/20 hover:bg-muted/60 text-foreground font-semibold text-base backdrop-blur-sm transition-all"
             >
               Learn More
-            </a>
+            </Link>
           </div>
 
         </div>

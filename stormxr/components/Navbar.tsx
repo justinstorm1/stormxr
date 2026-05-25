@@ -38,9 +38,9 @@ export default function Navbar() {
     
             <a href="/" className='hidden xl:flex items-center gap-2 me-10'>
               <img 
-                src={"/images/StormXRLogo.png"}
+                src={"/images/StormXRLogoNoText.png"}
                 alt="StormXR"
-                width={40}
+                width={45}
                 className='rounded-lg'
               />
               <div className='text-xl uppercase font-extrabold'>
@@ -57,7 +57,9 @@ export default function Navbar() {
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger>Media Projects</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>
+                      <a href="/media-projects">Media Projects</a>
+                    </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                         <ListItem
@@ -85,10 +87,8 @@ export default function Navbar() {
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavigationMenuLink href='/consulting'>
-                      Consulting
+                    <NavigationMenuLink href='/about'>
+                      About
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
@@ -97,15 +97,17 @@ export default function Navbar() {
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavigationMenuLink href='/ourvision'>
-                      Our Vision
+                    <NavigationMenuLink href='/consulting'>
+                      Consulting
                     </NavigationMenuLink>
                   </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
 
-            <Button className='hidden xl:flex ms-10 px-5 py-4 rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold hover:opacity-90 transition-opacity'>
-              Contact
+            <Button asChild className='hidden xl:flex ms-10 px-5 py-4 rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold hover:opacity-90 transition-opacity'>
+              <Link href="/contact">
+                Contact
+              </Link>
             </Button>
           </div>
            

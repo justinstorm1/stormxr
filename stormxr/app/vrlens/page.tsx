@@ -5,6 +5,7 @@ import { Mic, Headphones, Radio, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const platforms = [
   {
@@ -54,9 +55,9 @@ export default function VRLens() {
             Podcast
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
-            VR Lens —{' '}
+            VR{" "}
             <span className="bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text">
-              Inside Immersive Tech
+              Lens
             </span>
           </h2>
           <p className="text-base text-muted-foreground mt-2 leading-relaxed">
@@ -119,14 +120,14 @@ export default function VRLens() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mx-auto mt-16 p-8 sm:p-10 rounded-3xl border border-border bg-gradient-to-b from-muted/40 to-muted/10 backdrop-blur-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 max-w-3xl">
+        <div className="mt-16 p-8 sm:p-10 rounded-3xl border border-border bg-gradient-to-b from-muted/40 to-muted/10 backdrop-blur-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-500/10 text-[11px] font-bold text-muted-foreground uppercase tracking-wide mb-3">
-              Stay in the loop
+              Join The Conversation
             </div>
             <h4 className="text-xl font-bold text-foreground">Want to be a guest on VR Lens?</h4>
             <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-              Building something interesting in XR, spatial computing, or immersive media? Reach out — we're always looking for practitioners with real stories to tell.
+              Building something interesting in XR, spatial computing, or immersive media? Reach out - we're always looking for practitioners with real stories to tell.
             </p>
           </div>
 
@@ -134,7 +135,7 @@ export default function VRLens() {
             className="rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold px-6 py-6 text-sm hover:opacity-90 transition-opacity w-full md:w-auto shadow-md shadow-blue-500/5"
             asChild
           >
-            <a href="#contact">Get in Touch</a>
+            <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>
 

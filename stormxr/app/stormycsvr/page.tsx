@@ -5,6 +5,7 @@ import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const platforms = [
   {
@@ -80,14 +81,14 @@ export default function StormyCsVR() {
 
         {/* Section Header */}
         <div className="max-w-2xl mb-20 flex flex-col items-start gap-3">
-          <div className="text-xs font-bold uppercase tracking-widest text-[blue]">
+          <div className="text-xs font-bold uppercase tracking-widest text-[#ff0080]">
             Creator & Community
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
-            StormyCs VR —{' '}
             <span className="bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text">
-              Follow the Journey
+              StormyCs
             </span>
+            {" "}VR
           </h2>
           <p className="text-base text-muted-foreground mt-2 leading-relaxed">
             Gaming, fitness, and personality-driven VR content across every platform. Follow along for hands-on hardware impressions, community highlights, and an unfiltered look at life inside the headset.
@@ -144,7 +145,7 @@ export default function StormyCsVR() {
             </div>
             <h4 className="text-xl font-bold text-foreground">Want to collab or connect?</h4>
             <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-              Whether you're a brand, creator, or just a VR enthusiast — reach out. Always open to new collabs, sponsorships, and community conversations.
+              Whether you're a brand, creator, or just a VR enthusiast - reach out. Always open to new collabs, sponsorships, and community conversations.
             </p>
           </div>
 
@@ -152,7 +153,7 @@ export default function StormyCsVR() {
             className="rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold px-6 py-6 text-sm hover:opacity-90 transition-opacity w-full md:w-auto shadow-md shadow-blue-500/5"
             asChild
           >
-            <a href="#contact">Get in Touch</a>
+            <Link href="/contact">Get in Touch</Link>
           </Button>
         </div>
 
