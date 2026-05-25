@@ -282,26 +282,6 @@ export default function Contact() {
             )}
           </div>
 
-          {/* Side info cards */}
-          <div className="flex flex-col gap-4">
-            <div className="rounded-2xl border border-border bg-muted/20 p-6 flex flex-col gap-3 transition-all duration-300 hover:bg-muted/40">
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[blue]/10 to-[blue]/5 text-[blue] flex items-center justify-center border border-[blue]/10">
-                <Mail className="h-5 w-5" />
-              </div>
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">Email</div>
-                <a
-                  href="mailto:craigstorm@stormxr.tech"
-                  className="text-sm font-medium text-foreground hover:text-[blue] transition-colors"
-                >
-                  craigstorm@stormxr.tech
-                </a>
-              </div>
-            </div>
-
-            
-          </div>
-
         </div>
       </div>
     </section>
