@@ -25,7 +25,8 @@ export default function Navbar() {
 
     return (
         <header 
-          className="w-full sticky z-50 top-0 left-0 transition-all duration-300">
+          className="w-full sticky z-50 top-0 left-0 transition-all duration-300"
+        >
 
           <div className={`absolute inset-x-0 top-0 flex items-center px-4 py-3 xl:px-20 transition-all duration-300 ${
             scrolled

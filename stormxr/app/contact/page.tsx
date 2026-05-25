@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import Navbar from '@/components/Navbar';
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
 
 const countryCodes = [
   { code: '+1',   country: 'US', flag: '🇺🇸', name: 'United States',   digits: 10, format: '(###) ###-####' },
@@ -66,13 +67,15 @@ function formatPhoneNumber(value: string, format: string): string {
   const digits = value.replace(/\D/g, '');
   let result = '';
   let digitIndex = 0;
+
   for (let i = 0; i < format.length && digitIndex < digits.length; i++) {
     if (format[i] === '#') {
       result += digits[digitIndex++];
     } else {
-      if (digitIndex > 0) result += format[i];
+      result += format[i]; // always include non-digit characters
     }
   }
+
   return result;
 }
 
@@ -172,112 +175,111 @@ export default function Contact() {
                 className="rounded-3xl border border-border bg-gradient-to-b from-muted/40 to-muted/10 backdrop-blur-sm p-8 sm:p-10 flex flex-col gap-6"
               >
                 {/* Name + Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="name">Name</Label>
-                    <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                      <Input id="name" placeholder="Your Name" required className="pl-9 rounded-xl" />
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="email">Email</Label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                      <Input id="email" type="email" placeholder="you@example.com" required className="pl-9 rounded-xl" />
-                    </div>
-                  </div>
-                </div>
+                <FieldGroup className="flex flex-col sm:flex-row gap-4">
+                    <Field>
+                        <FieldLabel htmlFor="name">Name</FieldLabel>
+                        <div className="relative">
+                            <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Input id="name" placeholder="Your Name" required className="pl-9" />
+                        </div>
+                    </Field>
+                    <Field>
+                        <FieldLabel htmlFor="email">Email</FieldLabel>
+                        <div className="relative">
+                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Input id="email" type="email" placeholder="you@example.com" required className="pl-9" />
+                        </div>
+                    </Field>
+                </FieldGroup>
 
-                {/* Phone + Subject */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="phone">
-                      Phone{" "}
-                      <span className="text-muted-foreground font-normal text-xs">(optional)</span>
-                    </Label>
-                    <div className="flex gap-2">
-                      {/* Country code dropdown */}
-                      <Popover open={open} onOpenChange={setOpen}>
-                        <PopoverTrigger asChild>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            className="rounded-xl px-3 gap-1.5 shrink-0 font-normal text-sm"
-                          >
-                            <span>{selectedCountry.flag}</span>
-                            <span className="text-muted-foreground">{selectedCountry.code}</span>
-                            <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-72 p-0" align="start">
-                          <Command>
-                            <CommandInput placeholder="Search country..." />
-                            <CommandList className="max-h-60">
-                              <CommandEmpty>No country found.</CommandEmpty>
-                              <CommandGroup>
-                                {countryCodes.map((c) => (
-                                  <CommandItem
-                                    key={c.country}
-                                    value={`${c.name} ${c.code} ${c.country}`}
-                                    onSelect={() => handleCountrySelect(c)}
-                                    className="flex items-center gap-2 cursor-pointer"
-                                  >
-                                    <span>{c.flag}</span>
-                                    <span className="flex-1 text-sm">{c.name}</span>
-                                    <span className="text-xs text-muted-foreground">{c.code}</span>
-                                  </CommandItem>
-                                ))}
-                              </CommandGroup>
-                            </CommandList>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
+                <FieldGroup className="flex flex-col sm:flex-row gap-4">
+                    <Field>
+                        <FieldLabel htmlFor="phone">
+                            Phone 
+                            <span className="text-muted-foreground font-normal text-xs">(optional)</span>
+                        </FieldLabel>
+                        <div className="flex flex-col gap-2">
+                            <div className="flex flex-col sm:flex-row gap-2 ">
+                            {/* Country code dropdown */}
+                            <Popover open={open} onOpenChange={setOpen}>
+                                <PopoverTrigger asChild>
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    className="rounded-xl px-3 gap-1.5 shrink-0 font-normal text-sm"
+                                >
+                                    <span>{selectedCountry.flag}</span>
+                                    <span className="text-muted-foreground">{selectedCountry.code}</span>
+                                    <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+                                </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-72 p-0" align="start">
+                                <Command>
+                                    <CommandInput placeholder="Search country..." />
+                                    <CommandList className="max-h-60">
+                                    <CommandEmpty>No country found.</CommandEmpty>
+                                    <CommandGroup>
+                                        {countryCodes.map((c) => (
+                                        <CommandItem
+                                            key={c.country}
+                                            value={`${c.name} ${c.code} ${c.country}`}
+                                            onSelect={() => handleCountrySelect(c)}
+                                            className="flex items-center gap-2 cursor-pointer"
+                                        >
+                                            <span>{c.flag}</span>
+                                            <span className="flex-1 text-sm">{c.name}</span>
+                                            <span className="text-xs text-muted-foreground">{c.code}</span>
+                                        </CommandItem>
+                                        ))}
+                                    </CommandGroup>
+                                    </CommandList>
+                                </Command>
+                                </PopoverContent>
+                            </Popover>
 
-                      {/* Phone input */}
-                      <div className="relative flex-1">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="phone"
-                          type="tel"
-                          value={phoneValue}
-                          onChange={handlePhoneChange}
-                          placeholder={selectedCountry.format.replace(/#/g, '0')}
-                          className="pl-9 rounded-xl"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <div className="relative">
-                      <FileText className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                      <Input id="subject" placeholder="Partnership, media inquiry..." required className="pl-9 rounded-xl" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Message */}
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea
-                    id="message"
-                    placeholder="Tell us what's on your mind..."
-                    required
-                    rows={6}
-                    className="rounded-xl resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="self-start w-full rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold px-8 py-6 text-sm hover:opacity-90 transition-opacity shadow-md shadow-blue-500/5"
-                >
-                  <Send className="h-4 w-4" />
-                  {loading ? 'Sending...' : 'Send Message'}
-                </Button>
+                            {/* Phone input */}
+                            <div className="relative flex-1">
+                                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Input
+                                id="phone"
+                                type="tel"
+                                value={phoneValue}
+                                onChange={handlePhoneChange}
+                                placeholder={selectedCountry.format.replace(/#/g, '0')}
+                                className="pl-9"
+                                />
+                            </div>
+                            </div>
+                        </div>
+                    </Field>
+                    <Field>
+                        <FieldLabel htmlFor="subject">Subject</FieldLabel>
+                        <div className="relative">
+                            <FileText className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Input id="subject" placeholder="Partnership, media inquiry..." required className="pl-9" />
+                        </div>
+                    </Field>
+                </FieldGroup>
+                <Field>
+                    <FieldLabel htmlFor="Message">Message</FieldLabel>
+                    <Textarea
+                        id="message"
+                        placeholder="Tell us what's on your mind..."
+                        required
+                        rows={6}
+                        className="rounded-xl resize-none"
+                    />
+                </Field>
+                <Field>
+                    <Button
+                    type="submit"
+                    disabled={loading}
+                    className="self-start w-full rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] text-white font-bold px-8 py-6 text-sm hover:opacity-90 transition-opacity shadow-md shadow-blue-500/5"
+                    >
+                    <Send className="h-4 w-4" />
+                    {loading ? 'Sending...' : 'Send Message'}
+                    </Button>
+                </Field>
               </form>
             )}
           </div>
