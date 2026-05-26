@@ -60,7 +60,7 @@ export default function About() {
                 </span>
               </h1>
               <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-                StormXR is the umbrella brand for work around immersive technology and the future of XR. It connects writing, analysis, media, partnerships, and industry experience into one platform focused on where immersive technology is headed next.
+                StormXR is the umbrella brand for our work around immersive technology and the future of XR. It connects writing, analysis, media, partnerships, and industry experience into one platform focused on where immersive technology is headed next.
               </p>
             </div>
           </div>
