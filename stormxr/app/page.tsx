@@ -8,6 +8,7 @@ import { ArrowRight, Terminal } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/footer';
 
 export default function Page() {
 
@@ -91,6 +92,8 @@ export default function Page() {
 
         </div>
       </section>
+
+      <Footer />
 
     </div>
   );

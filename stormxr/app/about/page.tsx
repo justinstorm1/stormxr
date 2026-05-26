@@ -1,5 +1,6 @@
 "use client"
 
+import Footer from "@/components/footer";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { BookOpenText, Gamepad2, Headphones, Telescope } from "lucide-react";
@@ -7,7 +8,7 @@ import Link from "next/link";
 
 const pillars = [
   {
-    title: "Next Wave XR",
+    title: "NextWave XR",
     description:
       "Editorial and analysis platform for spatial computing, immersive media, and real-world XR adoption.",
     icon: BookOpenText,
@@ -141,6 +142,8 @@ export default function About() {
           </div>
 
         </div>
+
+        <Footer />
 
     </section>
   );

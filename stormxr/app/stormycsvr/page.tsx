@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Image from 'next/image';
 import Link from 'next/link';
+import Footer from '@/components/footer';
 
 const platforms = [
   {
@@ -158,6 +159,9 @@ export default function StormyCsVR() {
         </div>
 
       </div>
+
+      <Footer />
+      
     </section>
   );
 }

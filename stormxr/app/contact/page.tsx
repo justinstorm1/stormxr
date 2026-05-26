@@ -10,6 +10,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import Navbar from '@/components/Navbar';
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
+import Footer from '@/components/footer';
 
 const countryCodes = [
   { code: '+1',   country: 'US', flag: '🇺🇸', name: 'United States',   digits: 10, format: '(###) ###-####' },
@@ -286,6 +287,8 @@ export default function Contact() {
 
         </div>
       </div>
+
+      <Footer />
     </section>
   );
 }

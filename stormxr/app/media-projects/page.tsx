@@ -5,11 +5,12 @@ import { ExternalLink, Mic, Newspaper, Gamepad2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import Footer from '@/components/footer';
 
 const projects = [
   {
     tag: 'Editorial & Analysis',
-    title: 'Next Wave XR',
+    title: 'NextWave XR',
     description:
       'The editorial and analysis platform where Craig writes about spatial computing, immersive media, and real-world XR adoption. In-depth articles, hardware breakdowns, and industry perspective for professionals and enthusiasts alike.',
     href: '/nextwavexr',
@@ -137,6 +138,9 @@ export default function MediaProjects() {
         </div>
 
       </div>
+
+      <Footer />
+
     </section>
   );
 }

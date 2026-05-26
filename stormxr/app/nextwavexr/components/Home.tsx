@@ -33,7 +33,7 @@ export default function Home() {
                         className="text-white/60 text-xs tracking-[0.25em] uppercase"
                     />
                     <SplittingText
-                        text="Next Wave XR"
+                        text="NextWave XR"
                         className="font-bold text-5xl md:text-6xl text-white leading-tight"
                     />
                 </div>

@@ -24,10 +24,10 @@ export default function Navbar({ articleLink }: { articleLink: string | undefine
         <a href="/" className="flex items-center gap-4 mx-0 md:mx-auto">
           <img
             src="/images/NextWaveXRLogo.png"
-            alt="Next Wave XR"
+            alt="NextWave XR"
             className="w-12 aspect-square rounded-md"
           />
-          <h1 className="font-bold text-2xl">Next Wave XR</h1>
+          <h1 className="font-bold text-2xl">NextWave XR</h1>
         </a>
 
         {/* Hamburger — mobile only */}

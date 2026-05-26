@@ -11,12 +11,7 @@ const focusAreas = [
   {
     icon: "⬡",
     label: "Immersive Fitness",
-    desc: "Passionate advocate for VR as a legitimate fitness platform — exploring how movement and technology intersect.",
-  },
-  {
-    icon: "⊕",
-    label: "Next Wave XR",
-    desc: "Creator of Next Wave XR — a space dedicated to exploring XR technology beyond gaming, for everyday users.",
+    desc: "Passionate advocate for VR as a legitimate fitness platform - exploring how movement and technology intersect.",
   },
 ];
 
@@ -115,9 +110,9 @@ export default function About() {
             <div className="h-px w-24 bg-white/20" />
 
             <p className="text-white/70 text-lg max-w-xl leading-relaxed">
-              VR writer, immersive fitness advocate, and the creator behind Next Wave XR. 
+              VR writer, immersive fitness advocate, and the creator behind NextWave XR. 
               Craig explores virtual reality from the perspective of everyday adults discovering 
-              what XR can be beyond gaming — and building the platforms to share that story.
+              what XR can be beyond gaming - and building the platforms to share that story.
             </p>
 
             {/* Socials */}
@@ -144,7 +139,7 @@ export default function About() {
             <h2 className="text-3xl font-bold text-white mb-3">StormXR LLC</h2>
             <p className="text-white/65 leading-relaxed max-w-xl">
               StormXR LLC is the company Craig founded to power his work in the extended reality space. 
-              It's the engine behind Next Wave XR — driving content, community, and exploration at the 
+              It's the engine behind NextWave XR - driving content, community, and exploration at the 
               intersection of immersive technology and real life.
             </p>
           </div>

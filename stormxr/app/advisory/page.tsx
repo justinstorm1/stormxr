@@ -5,12 +5,13 @@ import { Lightbulb, Compass, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import Footer from '@/components/footer';
 
 const pillars = [
   {
     title: 'XR Market & Trend Analysis',
     description:
-      'Helping brands and organizations understand where immersive technology is gaining traction, where expectations exceed reality, and what developments are worth paying attention to.',
+      'Helping brands and organizations understand where immersive technology is gaining traction, where expectations exceed reality, and which developments are worth paying attention to.',
     icon: Lightbulb,
     accent: 'from-[blue]/10 to-[blue]/5',
     border: 'border-[blue]/10',
@@ -57,10 +58,10 @@ export default function Consulting() {
             Strategic Advisory
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
-            Bridging Vision with <span className="bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text">Technical Reality</span>
+            Bridging Immersive Technology with <span className="bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text">Real-World Experience</span>
           </h2>
           <p className="text-base text-muted-foreground mt-2 leading-relaxed">
-            Navigating emerging technology landscapes is complex. We partner with forward-thinking enterprises, agencies, and creators to validate concepts, de-risk hardware deployments, and architect scalable digital roadmaps.
+            Immersive technology is evolving quickly, but separating meaningful progress from industry noise is increasingly difficult. StormXR focuses on practical analysis, emerging media, and real-world insight into where XR, spatial computing, and immersive experiences are headed next.
           </p>
         </div>
 
@@ -93,9 +94,9 @@ export default function Consulting() {
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-500/10 text-[11px] font-bold text-muted-foreground uppercase tracking-wide mb-3">
               Consulting Engagement
             </div>
-            <h4 className="text-xl font-bold text-foreground">Ready to blueprint your project?</h4>
+            <h4 className="text-xl font-bold text-foreground">Looking for perspective on immersive technology?</h4>
             <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-              Book a targeted technical discovery call. We will unpack your structural challenges, outline real answers, and see if our workflows sync with your timeline.
+              Book a focused advisory conversation around immersive media, XR strategy, communication, and emerging technology trends.
             </p>
           </div>
           
@@ -107,7 +108,10 @@ export default function Consulting() {
           </Button>
         </div>
 
+
       </div>
+      <Footer />
+      
     </section>
   );
 }

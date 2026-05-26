@@ -4,6 +4,7 @@ import React from 'react';
 import { Code2, Smartphone, ArrowUpRight, AppWindow, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/footer';
 
 export default function Development() {
   return (
@@ -25,10 +26,10 @@ export default function Development() {
             Our Craft
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
-            Engineered for the <span className="bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text">Next Generation</span>
+            Built for <span className="bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text">Modern Digital Experiences</span>
           </h2>
           <p className="text-base text-muted-foreground mt-2 leading-relaxed">
-            We build high-performance digital architectures. From bleeding-edge web platforms to native iOS ecosystems, our deployments are optimized for raw scale and fluid immersion.
+            From modern web platforms to native iOS applications, we build fast, responsive digital experiences designed for usability, performance, and clean interaction across emerging platforms.
           </p>
         </div>
 
@@ -36,7 +37,7 @@ export default function Development() {
         <div className="grid grid-cols-1 @4xl/main:grid-cols-12 gap-6 @6xl/main:gap-8 items-stretch">
           
           {/* Card 1: Web Development (Spans 5 columns on large screens) */}
-          <div className="group relative lg:col-span-5 flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-muted/30 p-8 shadow-sm transition-all duration-300 hover:border-[blue]/30 hover:bg-muted/50">
+          <div className="group relative @4xl/main:col-span-5 flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-muted/30 p-8 shadow-sm transition-all duration-300 hover:border-[blue]/30 hover:bg-muted/50">
             <div>
               <div className="h-12 w-12 rounded-2xl bg-[blue]/10 text-[blue] flex items-center justify-center mb-6 border border-[blue]/20">
                 <Code2 className="h-6 w-6" />
@@ -45,7 +46,7 @@ export default function Development() {
                 Web Development
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                We craft ultra-fast, robust web interfaces tailored for spatial rendering pipelines, decentralized platforms, and real-time data streaming dashboards. 
+                We build modern web experiences using scalable frameworks, responsive design systems, and optimized deployment workflows focused on speed and usability.
               </p>
 
               {/* Stack Features */}
@@ -65,7 +66,7 @@ export default function Development() {
           </div>
 
           {/* Card 2: iOS App Development & Featured App (Spans 7 columns on large screens) */}
-          <div className="group relative lg:col-span-7 flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-muted/30 p-8 shadow-sm transition-all duration-300 hover:border-[#ff0088]/30 hover:bg-muted/50">
+          <div className="group relative @4xl/main:col-span-7 flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-muted/30 p-8 shadow-sm transition-all duration-300 hover:border-[#ff0088]/30 hover:bg-muted/50">
             <div className="absolute top-0 right-0 h-48 w-48 bg-gradient-to-bl from-[#ff0088]/5 to-transparent rounded-full blur-3xl pointer-events-none" />
             
             <div>
@@ -85,7 +86,7 @@ export default function Development() {
                 iOS App Development
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
-                Native Apple ecosystem engineering. We leverage Swift and SwiftUI pipelines to produce lightning-fast interactive utilities that balance native hardware speed with micro-animations.
+                Native iOS applications built with Swift and SwiftUI, focused on clean design, responsive interaction, and modern Apple ecosystem performance.
               </p>
 
               {/* Featured Showcase Box */}
@@ -125,6 +126,9 @@ export default function Development() {
         </div>
 
       </div>
+
+      <Footer />
+
     </section>
   );
 }

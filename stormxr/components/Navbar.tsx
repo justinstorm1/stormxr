@@ -65,7 +65,7 @@ export default function Navbar() {
                       <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                         <ListItem
                           key={0}
-                          title={"Next Wave XR"}
+                          title={"NextWave XR"}
                           href={"/nextwavexr"}
                         >
                           Editorial and analysis platform where I write about spatial computing, immersive media, and real-world XR adoption.
@@ -98,8 +98,8 @@ export default function Navbar() {
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavigationMenuLink href='/consulting'>
-                      Consulting
+                    <NavigationMenuLink href='/advisory'>
+                      Advisory
                     </NavigationMenuLink>
                   </NavigationMenuItem>
               </NavigationMenuList>

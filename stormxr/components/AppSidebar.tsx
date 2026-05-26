@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight, ChevronRight, Code, Code2, Eye, GitCommitVertical, HelpingHand, Home, Info, Presentation, Projector, SidebarIcon, User, User2 } from "lucide-react";
+import { ArrowRight, ChevronRight, Code, Code2, Eye, GitCommitVertical, Handshake, HelpingHand, Home, Info, Presentation, Projector, SidebarIcon, User, User2 } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarSeparator } from "./ui/sidebar";
 import { usePathname } from "next/navigation";
@@ -25,7 +25,7 @@ export default function AppSidebar() {
                         <SidebarMenuButton asChild size={"lg"}>
                              <a href="/" className='flex items-center gap-2 me-10'>
                                 <img 
-                                    src={"/images/StormXRLogo.png"}
+                                    src={"/images/StormXRLogoNoText.png"}
                                     alt="StormXR"
                                     width={40}
                                     className='rounded-lg'
@@ -62,7 +62,7 @@ export default function AppSidebar() {
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
                                                 <a href="/nextwavexr">
-                                                    Next Wave XR
+                                                    NextWave XR
                                                 </a>
                                             </SidebarMenuSubButton>
                                             <SidebarMenuSubButton asChild>
@@ -90,10 +90,10 @@ export default function AppSidebar() {
                                         Development
                                     </a>
                                 </SidebarMenuButton>
-                                <SidebarMenuButton asChild tooltip={"Consulting"}>
-                                    <a href="/consulting">
-                                        <HelpingHand />
-                                        Consulting
+                                <SidebarMenuButton asChild tooltip={"Advisory"}>
+                                    <a href="/advisory">
+                                        <Handshake />
+                                        Advisory
                                     </a>
                                 </SidebarMenuButton>
                             </SidebarMenu>
