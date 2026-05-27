@@ -63,7 +63,7 @@ export default function MediaProjects() {
 
         {/* Section Header */}
         <div className="max-w-2xl mb-20 flex flex-col items-start gap-3">
-          <div className="text-xs font-bold uppercase tracking-widest text-[blue]">
+          <div className="text-xs font-bold uppercase tracking-widest text-[#ff0080]">
             Media & Content
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-foreground">
