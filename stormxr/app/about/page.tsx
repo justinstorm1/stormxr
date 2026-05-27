@@ -123,7 +123,7 @@ export default function About() {
                     Justin Storm is the developer behind StormXR. He is studying Computer Science with a concentration in Cybersecurity at NJIT, bringing a strong technical foundation to everything built under the StormXR brand.
                   </p>
                   <p className="text-base leading-relaxed text-muted-foreground">
-                    Justin builds iOS apps using Swift, cross-platform mobile apps with React Native, and web experiences with Next.js — handling the full stack from design to deployment across every platform StormXR runs on.
+                    Justin builds iOS apps using Swift, cross-platform mobile apps with React Native, and web experiences with Next.js - handling the full stack from design to deployment across every platform StormXR runs on.
                   </p>
                 </div>
                 <Button variant={"ghost"} asChild className="mt-6 px-4 py-6 w-fit">
