@@ -11,21 +11,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/footer';
 
 export default function Page() {
-
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   
   return (
     <div className="relative w-full min-h-dvh bg-background text-foreground transition-colors duration-300">
