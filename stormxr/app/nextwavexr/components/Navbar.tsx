@@ -5,6 +5,7 @@ import { ExternalLink, Home, Newspaper, BadgeQuestionMark, UserCircle2, ArrowLef
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Navbar({ articleLink }: { articleLink: string | undefined }) {
   const [open, setOpen] = useState(false);
@@ -22,10 +23,12 @@ export default function Navbar({ articleLink }: { articleLink: string | undefine
       {/* Top row: logo + hamburger on mobile */}
       <div className="flex items-center justify-between">
         <a href="/" className="flex items-center gap-4 mx-0 md:mx-auto">
-          <img
+          <Image
             src="/images/NextWaveXRLogo.png"
             alt="NextWave XR"
-            className="w-12 aspect-square rounded-md"
+            className="aspect-square rounded-md"
+            height={48}
+            width={48}
           />
           <h1 className="font-bold text-2xl">NextWave XR</h1>
         </a>

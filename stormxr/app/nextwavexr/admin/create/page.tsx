@@ -14,6 +14,7 @@ import { useAuthActions } from '@convex-dev/auth/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import DatePicker from '../../components/DatePicker';
 import { Textarea } from '@/components/ui/textarea';
+import Image from 'next/image';
 
 export default function Page() {
 
@@ -116,10 +117,12 @@ export default function Page() {
                 )}
 
                 {headerImage && !fetchingImage && (
-                    <img
+                    <Image
                         src={headerImage}
                         alt="Article header"
-                        className="w-full rounded-lg object-cover"
+                        className="rounded-lg object-cover"
+                        width={1000}
+                        height={10000}
                     />
                 )}
 

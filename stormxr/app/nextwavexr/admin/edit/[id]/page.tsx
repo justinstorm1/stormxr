@@ -17,6 +17,7 @@ import DatePicker from '../../../components/DatePicker';
 import { Id } from '@/convex/_generated/dataModel';
 import { Textarea } from '@/components/ui/textarea';
 import { useMutation, useQuery } from 'convex/react';
+import Image from 'next/image';
 
 export default function Page() {
     
@@ -137,10 +138,12 @@ export default function Page() {
                 )}
 
                 {headerImage && !fetchingImage && (
-                    <img
+                    <Image
                         src={headerImage}
                         alt="Article header"
                         className="w-full rounded-lg object-cover"
+                        width={1000}
+                        height={1000}
                     />
                 )}
 

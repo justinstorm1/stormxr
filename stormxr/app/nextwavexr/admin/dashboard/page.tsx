@@ -8,6 +8,7 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
 import { Pencil, Trash2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Page() {
@@ -54,9 +55,11 @@ export default function Page() {
                     <Card key={index} className="@container/card">
                         <CardContent className="flex flex-col gap-3">
                             <div className="flex gap-3">
-                                <img 
+                                <Image
                                     src={article.headerImage}
-                                    className="h-12 rounded-md"
+                                    width={100}
+                                    height={100}
+                                    className="rounded-md"
                                     alt={article.title}
                                 />
                                 <div className="flex flex-col gap-1">

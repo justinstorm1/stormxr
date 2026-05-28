@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { BookOpenText, Gamepad2, Headphones, Telescope } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const pillars = [
@@ -93,10 +94,11 @@ export default function About() {
                 </div>
                 <Button variant={"ghost"} asChild className="mt-6 px-4 py-6 w-fit">
                   <Link href="https://www.linkedin.com/in/craig-storm/" target="_blank" className="text-[#0077b5]">
-                    <img 
+                    <Image 
                       src="/images/LinkedInLogo.png"
                       alt="LinkedIn Logo"
                       width={30}
+                      height={30}
                       className="rounded-sm"
                     />
                   </Link>
@@ -128,10 +130,11 @@ export default function About() {
                 </div>
                 <Button variant={"ghost"} asChild className="mt-6 px-4 py-6 w-fit">
                   <Link href="https://www.linkedin.com/in/justin-storm-0208783b7/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-[#ff0088]">
-                    <img 
+                    <Image 
                       src="/images/LinkedInLogo.png"
                       alt="LinkedIn Logo"
                       width={30}
+                      height={30}
                       className="rounded-sm"
                     />
                   </Link>

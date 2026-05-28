@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Navbar from "../components/Navbar";
+import Image from "next/image";
 
 const focusAreas = [
   {
@@ -47,10 +48,11 @@ const socials = [
     label: "UploadVR", 
     href: "https://www.uploadvr.com/writer/craigstorm/", 
     symbol: (
-      <img 
+      <Image 
         src={"/images/UploadVRLogo.png"}
         alt="UploadVR Logo"
-        className="w-5 h-5"
+        width={20}
+        height={20}
       />
     )
   },

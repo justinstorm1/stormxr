@@ -8,6 +8,7 @@ import { Id } from '@/convex/_generated/dataModel';
 import { Card, CardFooter } from '@/components/ui/card';
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
 import { Newspaper } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Page() {
 
@@ -54,17 +55,20 @@ function Article({ id }: { id: Id<"articles">} ) {
 
     if (!article) {
         return (
-            <p>Loadimg...</p>
+            <p>Loading...</p>
         )
     }
     
     return (
         <Link href={`/nextwavexr/articles/${article._id}`}>
             <Card className="gap-0 relative">
-                <img 
+                <Image 
                     src={article.headerImage}
-                    alt='...'
+                    alt={`Header image for article ${article.title}`}
+                    width={1000}
+                    height={1000}
                     className="p-0 m-0"
+
                 />
                 <CardFooter className='flex flex-col items-start'>
                     <p>{article.category}</p>

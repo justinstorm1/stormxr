@@ -5,6 +5,7 @@ import { Code2, Smartphone, ArrowUpRight, AppWindow, CheckCircle2 } from 'lucide
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/footer';
+import Image from 'next/image';
 
 export default function Development() {
   return (
@@ -93,10 +94,12 @@ export default function Development() {
               <div className="mt-6 p-5 rounded-2xl border border-border bg-background/50 backdrop-blur-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   {/* Mock App Icon placeholder */}
-                  <img
+                  <Image
                     src={"/images/ListItDoItLogo.webp"}
-                    className='h-14 aspect-square'
+                    className='aspect-square'
                     alt='List It, Do It Logo'
+                    height={56}
+                    width={56}
                   />
                   <div>
                     <h4 className="text-sm font-bold text-foreground">List It, Do It</h4>
