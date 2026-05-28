@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 export default function AppSidebar() {
     const pathname = usePathname();
@@ -24,10 +25,11 @@ export default function AppSidebar() {
                     <SidebarMenu>
                         <SidebarMenuButton asChild size={"lg"}>
                              <a href="/" className='flex items-center gap-2 me-10'>
-                                <img 
+                                <Image 
                                     src={"/images/StormXRLogoNoText.png"}
                                     alt="StormXR"
                                     width={40}
+                                    height={40}
                                     className='rounded-lg'
                                 />
                                 <div className='text-xl uppercase font-extrabold'>

@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu";
 import { SidebarTrigger } from "./ui/sidebar";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -38,10 +39,11 @@ export default function Navbar() {
           
     
             <a href="/" className='hidden xl:flex items-center gap-2 me-10'>
-              <img 
+              <Image 
                 src={"/images/StormXRLogoNoText.png"}
                 alt="StormXR"
                 width={45}
+                height={45}
                 className='rounded-lg'
               />
               <div className='text-xl uppercase font-extrabold'>
