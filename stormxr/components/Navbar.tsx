@@ -5,10 +5,12 @@ import { Button } from "./ui/button";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu";
 import { SidebarTrigger } from "./ui/sidebar";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const { theme, setTheme } = useTheme();
 
     useEffect(() => {
       const handleScroll = () => {
@@ -39,11 +41,10 @@ export default function Navbar() {
           
     
             <a href="/" className='hidden xl:flex items-center gap-2 me-10'>
-              <Image 
+              <img 
                 src={"/images/StormXRLogoNoText.png"}
                 alt="StormXR"
                 width={45}
-                height={45}
                 className='rounded-lg'
               />
               <div className='text-xl uppercase font-extrabold'>
@@ -111,6 +112,19 @@ export default function Navbar() {
               <Link href="/contact">
                 Contact
               </Link>
+            </Button>
+
+            <Button 
+              className="absolute right-6 rounded-lg" 
+              variant={'ghost'} 
+              size={'icon'}
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            >
+              {theme === "light" ? (
+                <Sun />
+              ) : (
+                <Moon />
+              )}
             </Button>
           </div>
            
