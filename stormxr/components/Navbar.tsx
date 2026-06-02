@@ -121,9 +121,9 @@ export default function Navbar() {
               onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             >
               {theme === "light" ? (
-                <Sun />
-              ) : (
                 <Moon />
+              ) : (
+                <Sun />
               )}
             </Button>
           </div>
