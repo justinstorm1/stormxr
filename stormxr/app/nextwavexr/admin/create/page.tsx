@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import { Field, FieldContent, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from '@/components/ui/input-group';
 import { Eye, EyeOff, Link2, Lock, Mail, Plus, RefreshCw } from 'lucide-react';
@@ -15,8 +15,32 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import DatePicker from '../../components/DatePicker';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ArticleEditor } from '../../components/editor/ArticleEditor';
+import { toast } from 'sonner';
 
 export default function Page() {
+    const [mode, setMode] = useState<'import' | 'write'>('import');
+
+    return (
+        <div className="min-h-dvh flex flex-col p-5">
+            <Tabs value={mode} onValueChange={(v) => setMode(v as 'import' | 'write')} className="mx-auto w-full max-w-5xl">
+                <TabsList className="mx-auto">
+                    <TabsTrigger value="import">Import from UploadVR</TabsTrigger>
+                    <TabsTrigger value="write">Write Article</TabsTrigger>
+                </TabsList>
+                <TabsContent value="import">
+                    <ImportLinkForm />
+                </TabsContent>
+                <TabsContent value="write">
+                    <ArticleEditor mode="create" />
+                </TabsContent>
+            </Tabs>
+        </div>
+    )
+}
+
+function ImportLinkForm() {
 
     const [title, setTitle] = useState("");
     const [date, setDate] = useState(new Date());
@@ -86,25 +110,21 @@ export default function Page() {
                 category,
                 published
             });
+            toast.success("Article added");
             window.location.href = "/nextwavexr/admin/dashboard";
         } catch (error) {
             console.error(error);
+            toast.error("Failed to add article");
         }
     }
 
     return (
-        <div className="min-h-dvh flex flex-col">
-            {/* <Navbar articleLink={undefined} /> */}
+        <div className="mx-auto flex max-w-xl flex-col gap-6 pt-6">
 
-            <div className="p-5 w-full">
-
-                
-                <div className="mx-auto max-w-xl flex flex-col gap-6">
-
-                <Button 
-                    className='ms-auto' 
-                    size={'lg'} 
-                    variant={'ghost'} 
+                <Button
+                    className='ms-auto'
+                    size={'lg'}
+                    variant={'ghost'}
                     onClick={resetAll}
                     disabled={resetDisabled}
                 >
@@ -194,9 +214,6 @@ export default function Page() {
                         Add
                     </Button>
 
-                </div>
-
-            </div>
         </div>
     )
 }

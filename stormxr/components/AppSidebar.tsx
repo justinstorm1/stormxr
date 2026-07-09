@@ -1,22 +1,18 @@
 "use client"
 
-import { ArrowRight, ChevronRight, Code, Code2, Eye, GitCommitVertical, Handshake, HelpingHand, Home, Info, Presentation, Projector, SidebarIcon, User, User2 } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarSeparator } from "./ui/sidebar";
+import { Code2, Handshake, Home, Info, Presentation, User2, ArrowRight } from "lucide-react";
+import {
+    Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent,
+    SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem,
+    SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem
+} from "./ui/sidebar";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Button } from "./ui/button";
 import Image from "next/image";
 
 export default function AppSidebar() {
     const pathname = usePathname();
-
-    const [isNextWaveXR, setIsNextWaveXR] = useState(false);
-
-    useEffect(() => {
-        setIsNextWaveXR(pathname.includes("/nextwavexr"));
-    }, [pathname]);
+    const isNextWaveXR = pathname.includes("/nextwavexr");
 
     return (
         <div className={`block xl:hidden ${isNextWaveXR ? "hidden" : ""}`}>
@@ -24,8 +20,8 @@ export default function AppSidebar() {
                 <SidebarHeader className="border-b">
                     <SidebarMenu>
                         <SidebarMenuButton asChild size={"lg"}>
-                             <a href="/" className='flex items-center gap-2 me-10'>
-                                <Image 
+                            <Link href="/" className='flex items-center gap-2 me-10'>
+                                <Image
                                     src={"/images/StormXRLogoNoText.png"}
                                     alt="StormXR"
                                     width={40}
@@ -36,7 +32,7 @@ export default function AppSidebar() {
                                     <span className='bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text'>Storm</span>
                                     <span className="text-foreground">XR</span>
                                 </div>
-                            </a>
+                            </Link>
                         </SidebarMenuButton>
                     </SidebarMenu>
                 </SidebarHeader>
@@ -46,64 +42,68 @@ export default function AppSidebar() {
                         <SidebarGroupContent>
                             <SidebarMenu>
                                 <SidebarMenuItem>
-                                    <SidebarMenuButton asChild tooltip={"Home"}>
-                                        <a href="/">
+                                    <SidebarMenuButton asChild tooltip={"Home"} data-tooltip-delay={0}>
+                                        <Link href="/">
                                             <Home />
                                             Home
-                                        </a>
+                                        </Link>
                                     </SidebarMenuButton>
-                                </SidebarMenuItem> 
+                                </SidebarMenuItem>
                                 <SidebarMenuItem>
-                                    <SidebarMenuButton asChild tooltip={"Media Projects"}>
-                                        <a href="/media-projects">
+                                    <SidebarMenuButton asChild tooltip={"Media Projects"} data-tooltip-delay={0}>
+                                        <Link href="/media-projects">
                                             <Presentation />
                                             <span>Media Projects</span>
-                                        </a>
+                                        </Link>
                                     </SidebarMenuButton>
                                     <SidebarMenuSub>
                                         <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <a href="/nextwavexr">
-                                                    NextWave XR
-                                                </a>
+                                                <a href="/nextwavexr">NextWave XR</a>
                                             </SidebarMenuSubButton>
+                                        </SidebarMenuSubItem>
+                                        <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <a href="/vrlens">
-                                                    VR Lens Podcast
-                                                </a>
+                                                <Link href="/vrlens">VR Lens Podcast</Link>
                                             </SidebarMenuSubButton>
+                                        </SidebarMenuSubItem>
+                                        <SidebarMenuSubItem>
                                             <SidebarMenuSubButton asChild>
-                                                <a href="/stormycsvr">
-                                                    StormyCs VR
-                                                </a>
+                                                <Link href="/stormycsvr">StormyCs VR</Link>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     </SidebarMenuSub>
                                 </SidebarMenuItem>
-                                <SidebarMenuButton asChild tooltip={"About"}>
-                                    <a href="/about">
-                                        <Info />
-                                        About
-                                    </a>
-                                </SidebarMenuButton>
-                                <SidebarMenuButton asChild tooltip={"Development"}>
-                                    <a href="/development">
-                                        <Code2 />
-                                        Development
-                                    </a>
-                                </SidebarMenuButton>
-                                <SidebarMenuButton asChild tooltip={"Advisory"}>
-                                    <a href="/advisory">
-                                        <Handshake />
-                                        Advisory
-                                    </a>
-                                </SidebarMenuButton>
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton asChild tooltip={"About"} data-tooltip-delay={0}>
+                                        <Link href="/about">
+                                            <Info />
+                                            About
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton asChild tooltip={"Development"} data-tooltip-delay={0}>
+                                        <Link href="/development">
+                                            <Code2 />
+                                            Development
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton asChild tooltip={"Advisory"} data-tooltip-delay={0}>
+                                        <Link href="/advisory">
+                                            <Handshake />
+                                            Advisory
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
                             </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>
                 </SidebarContent>
                 <SidebarFooter className="border-t p-3">
-                    <a
+                    <Link
                         href="/contact"
                         className="
                             flex items-center gap-3 rounded-lg px-3 py-2.5
@@ -121,13 +121,9 @@ export default function AppSidebar() {
                             Contact Us
                         </span>
                         <ArrowRight className="ml-auto size-3.5 opacity-70 group-data-[collapsible=icon]:hidden" />
-                    </a>
+                    </Link>
                 </SidebarFooter>
             </Sidebar>
         </div>
     );
-}
-
-function useeffect(arg0: () => void, arg1: string[]) {
-    throw new Error("Function not implemented.");
 }

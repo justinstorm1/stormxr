@@ -5,6 +5,7 @@ import AppSidebar from "./AppSidebar";
 import { SidebarInput, SidebarInset, SidebarProvider } from "./ui/sidebar";
 import { TooltipProvider } from "./ui/tooltip";
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
+import { Toaster } from "./ui/sonner";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!)
 
@@ -22,6 +23,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                 </SidebarInset>
             </SidebarProvider>
         </TooltipProvider>
+        <Toaster />
       </ConvexAuthProvider>
     </ConvexProvider>
   );

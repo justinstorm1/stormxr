@@ -22,7 +22,7 @@ export default function Navbar({ articleLink }: { articleLink: string | undefine
 
       {/* Top row: logo + hamburger on mobile */}
       <div className="flex items-center justify-between">
-        <a href="/" className="flex items-center gap-4 mx-0 md:mx-auto">
+        <a href="/nextwavexr" className="flex items-center gap-4 mx-0 md:mx-auto">
           <Image
             src="/images/NextWaveXRLogo.png"
             alt="NextWave XR"

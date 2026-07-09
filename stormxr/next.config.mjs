@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "storage.ghost.io",
       },
+      {
+        protocol: "https",
+        hostname: "*.convex.cloud",
+      },
     ],
   },
 };

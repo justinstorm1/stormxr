@@ -1,15 +1,17 @@
 "use client"
 
 import SlidingNumber from "../../components/SlidingNumber";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogMedia, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { DeleteArticleDialog } from "../../components/DeleteArticleDialog";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function Page() {
 
@@ -26,8 +28,10 @@ export default function Page() {
     const handleDeleteArticle = async (articleId: Id<"articles">) => {
         try {
             await deleteArticle({ articleId });
+            toast.success("Article deleted");
         } catch (error) {
             console.error(error);
+            toast.error("Failed to delete article");
         }
     }
 
@@ -51,17 +55,27 @@ export default function Page() {
 
             <div className="grid grid-cols-1 gap-4 @3xl/main:grid-cols-2">
 
-                {articles?.map((article, index) => (
+                {articles?.map((article, index) => {
+                    const status = article.status ?? (article.published ? "published" : "draft");
+                    const source = article.source ?? "link";
+
+                    return (
                     <Card key={index} className="@container/card">
                         <CardContent className="flex flex-col gap-3">
                             <div className="flex gap-3">
-                                <Image
-                                    src={article.headerImage}
-                                    width={100}
-                                    height={100}
-                                    className="rounded-md"
-                                    alt={article.title}
-                                />
+                                {article.headerImage ? (
+                                    <Image
+                                        src={article.headerImage}
+                                        width={100}
+                                        height={100}
+                                        className="rounded-md object-cover"
+                                        alt={article.title}
+                                    />
+                                ) : (
+                                    <div className="flex size-[100px] shrink-0 items-center justify-center rounded-md bg-muted text-xs text-muted-foreground">
+                                        No image
+                                    </div>
+                                )}
                                 <div className="flex flex-col gap-1">
                                     <span className="font-semibold line-clamp-2">{article.title}</span>
                                 </div>
@@ -78,59 +92,31 @@ export default function Page() {
                                     })
                                 }</span>
                             </div>
-                            {article.published ? (
-                                <div className="flex items-center gap-2">
-                                    <div className="relative flex items-center justify-center w-3 h-3">
-                                        <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
-                                        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                                    </div>
-                                    <span>Published</span>
-                                </div>
-                            ) : (
-                                <div className="flex items-center gap-2">
-                                    <div className="relative flex items-center justify-center w-3 h-3">
-                                        <span className="absolute inline-flex h-full w-full rounded-full bg-gray-300 opacity-50 animate-pulse"></span>
-                                        <span className="relative inline-flex rounded-full h-3 w-3 bg-gray-400"></span>
-                                    </div>
-                                    <span>Unpublished</span>
-                                </div>
-                            )}
+                            <div className="flex flex-wrap items-center gap-1.5">
+                                <Badge variant={status === "published" ? "default" : status === "scheduled" ? "outline" : "secondary"} className="capitalize">
+                                    {status}
+                                </Badge>
+                                <Badge variant="outline" className="capitalize">
+                                    {source === "native" ? "Written" : "UploadVR"}
+                                </Badge>
+                            </div>
                         </CardContent>
                         <CardFooter className="gap-2">
                             <Button asChild className="ms-auto" variant={'outline'}>
-                               
+
                                 <Link href={`/nextwavexr/admin/edit/${article._id}`}>
                                     <Pencil />
                                     Edit
                                 </Link>
                             </Button>
-                            <AlertDialog>
-                                <AlertDialogTrigger asChild>
-                                    <Button variant={'destructive'}>
-                                        <Trash2 />
-                                        Delete
-                                    </Button>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent size="sm">
-                                    <AlertDialogHeader>
-                                        <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
-                                                <Trash2 />
-                                        </AlertDialogMedia>
-                                        <AlertDialogTitle>Delete Article?</AlertDialogTitle>
-                                        <AlertDialogDescription>Are you sure you want to delete the "{article.title}" article?</AlertDialogDescription>
-                                    </AlertDialogHeader>
-                                    <AlertDialogFooter>
-                                        <AlertDialogCancel variant={'outline'}>Cancel</AlertDialogCancel>
-                                        <AlertDialogAction 
-                                            variant={'destructive'}
-                                            onClick={() => handleDeleteArticle(article._id)}
-                                        >Delete</AlertDialogAction>
-                                    </AlertDialogFooter>
-                                </AlertDialogContent>
-                            </AlertDialog>
+                            <DeleteArticleDialog
+                                title={article.title}
+                                onConfirm={() => handleDeleteArticle(article._id)}
+                            />
                         </CardFooter>
                     </Card>
-                ))}
+                    );
+                })}
 
             </div>
 

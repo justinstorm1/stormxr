@@ -18,13 +18,15 @@ import { Id } from '@/convex/_generated/dataModel';
 import { Textarea } from '@/components/ui/textarea';
 import { useMutation, useQuery } from 'convex/react';
 import Image from 'next/image';
+import { ArticleEditor } from '../../../components/editor/ArticleEditor';
+import { toast } from 'sonner';
 
 export default function Page() {
-    
+
     const params = useParams();
     const articleId = params.id as Id<"articles">;
     const article = useQuery(api.articles.getArticle, articleId ? { articleId } : "skip");
-    
+
     const [title, setTitle] = useState("");
     const [date, setDate] = useState(new Date());
     const [author, setAuthor] = useState("");
@@ -107,10 +109,24 @@ export default function Page() {
                 category,
                 published
             });
+            toast.success("Article updated");
             window.location.href = "/nextwavexr/admin/dashboard";
         } catch (error) {
             console.error(error);
+            toast.error("Failed to update article");
         }
+    }
+
+    if (article === undefined) {
+        return <div className="m-5 h-48 animate-pulse rounded-lg bg-muted" />
+    }
+
+    if (article?.source === "native") {
+        return (
+            <div className="min-h-dvh p-5">
+                <ArticleEditor mode="edit" initialArticle={article} />
+            </div>
+        )
     }
 
     return (
@@ -119,7 +135,7 @@ export default function Page() {
 
             <div className="p-5 w-full">
 
-                
+
                 <div className="mx-auto max-w-xl flex flex-col gap-6">
 
                 <Button 

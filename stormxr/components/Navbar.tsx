@@ -40,7 +40,7 @@ export default function Navbar() {
             <SidebarTrigger className="flex xl:hidden gap-4 me-4" />
           
     
-            <a href="/" className='hidden xl:flex items-center gap-2 me-10'>
+            <Link href="/" className='hidden xl:flex items-center gap-2 me-10'>
               <img 
                 src={"/images/StormXRLogoNoText.png"}
                 alt="StormXR"
@@ -51,18 +51,18 @@ export default function Navbar() {
                 <span className='bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text'>Storm</span>
                 <span className="text-foreground">XR</span>
               </div>
-            </a>
+            </Link>
 
             <NavigationMenu className='ms-auto hidden xl:flex'>
               <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuLink href='/'>
-                      Home
+                    <NavigationMenuLink asChild>
+                      <Link href='/'>Home</Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>
-                      <a href="/media-projects">Media Projects</a>
+                      <Link href="/media-projects">Media Projects</Link>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -91,18 +91,18 @@ export default function Navbar() {
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavigationMenuLink href='/about'>
-                      About
+                    <NavigationMenuLink href='/about' asChild>
+                      <Link href='/about'>About</Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavigationMenuLink href='/development'>
-                      Development
+                    <NavigationMenuLink asChild>
+                      <Link href='/development'>Development</Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavigationMenuLink href='/advisory'>
-                      Advisory
+                    <NavigationMenuLink asChild>
+                      <Link href='/advisory'>Advisory</Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
               </NavigationMenuList>

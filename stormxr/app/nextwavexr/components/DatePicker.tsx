@@ -8,9 +8,13 @@ import { Calendar } from "@/components/ui/calendar"
 export default function DatePicker({
   value,
   onChange,
+  label = "Date Published",
+  id = "date",
 }: {
   value: Date | undefined
   onChange: (date: Date | undefined) => void
+  label?: string
+  id?: string
 }) {
   const [open, setOpen] = React.useState(false)
   const [month, setMonth] = React.useState<Date | undefined>(value)
@@ -23,10 +27,10 @@ export default function DatePicker({
 
   return (
     <Field>
-      <FieldLabel htmlFor="date">Date Published</FieldLabel>
+      <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <InputGroup>
         <InputGroupInput
-          id="date"
+          id={id}
           value={inputValue}
           placeholder="June 01, 2025"
           onChange={(e) => {
