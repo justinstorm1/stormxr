@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 type PrivacyPolicy = {
   appName: string;
@@ -14,9 +14,21 @@ type PrivacyPolicy = {
   }[];
 };
 
-const metadata: Metadata = {
-  title: "List It, Do It Privacy Policy"
-}
+export const metadata: Metadata = {
+  title: "Privacy Policy | List It, Do It",
+  description:
+    "Privacy Policy for the List It, Do It application by StormXR, LLC.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "Privacy Policy | List It, Do It",
+    description:
+      "Privacy Policy for the List It, Do It application by StormXR, LLC.",
+    type: "website",
+  },
+};
 
 const privacyPolicy: PrivacyPolicy = {
   appName: "List It, Do It",
