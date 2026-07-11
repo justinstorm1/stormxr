@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { Separator } from '@/components/ui/separator';
-import { SidebarTrigger } from '@/components/ui/sidebar';
 import { ArrowRight, Terminal } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -19,7 +18,7 @@ export default function Page() {
 
       <section 
         id="home" 
-        className="relative h-full w-full flex items-center justify-center overflow-hidden py-20"
+        className="relative h-dvh w-full flex items-center justify-center overflow-hidden py-20"
       >
         {/* Subtle Background Grid - Swaps lines from dark grey to light grey depending on mode */}
         <div 

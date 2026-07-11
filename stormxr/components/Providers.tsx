@@ -1,8 +1,6 @@
 "use client"
 
 import { ConvexProvider, ConvexReactClient } from "convex/react";
-import AppSidebar from "./AppSidebar";
-import { SidebarInput, SidebarInset, SidebarProvider } from "./ui/sidebar";
 import { TooltipProvider } from "./ui/tooltip";
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import { Toaster } from "./ui/sonner";
@@ -16,12 +14,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           client={convex}
       >
         <TooltipProvider>
-            <SidebarProvider>
-                <AppSidebar />
-                <SidebarInset>
-                    {children}
-                </SidebarInset>
-            </SidebarProvider>
+            {children}
         </TooltipProvider>
         <Toaster />
       </ConvexAuthProvider>
