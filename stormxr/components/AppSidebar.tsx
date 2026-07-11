@@ -12,10 +12,10 @@ import Image from "next/image";
 
 export default function AppSidebar() {
     const pathname = usePathname();
-    const isNextWaveXR = pathname.includes("/nextwavexr");
+    const sidebarHidden = pathname.includes("/nextwavexr") || pathname.includes("/privacy-policy");
 
     return (
-        <div className={`block xl:hidden ${isNextWaveXR ? "hidden" : ""}`}>
+        <div className={`block xl:hidden ${sidebarHidden ? "hidden" : ""}`}>
             <Sidebar collapsible="icon">
                 <SidebarHeader className="border-b">
                     <SidebarMenu>
