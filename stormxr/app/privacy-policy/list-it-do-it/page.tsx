@@ -13,7 +13,7 @@ type PrivacyPolicy = {
 };
 
 const privacyPolicy: PrivacyPolicy = {
-  appName: "Whack-A-PC",
+  appName: "List It, Do It",
   companyName: "StormXR, LLC",
   website: "https://www.stormxr.tech",
   contactEmail: "craigstorm@stormxr.tech",
@@ -23,15 +23,15 @@ const privacyPolicy: PrivacyPolicy = {
     {
       title: "Introduction",
       paragraphs: [
-        "StormXR, LLC ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how Whack-A-PC collects, uses, and protects information when you use our application.",
-        "By using Whack-A-PC, you agree to the practices described in this Privacy Policy.",
+        "StormXR, LLC ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how List It, Do It collects, uses, and protects information when you use our application.",
+        "By using List It, Do It, you agree to the practices described in this Privacy Policy.",
       ],
     },
 
     {
       title: "Information We Collect",
       paragraphs: [
-        "Whack-A-PC is designed to collect as little personal information as possible.",
+        "List It, Do It is designed to collect as little personal information as possible.",
       ],
       bullets: [
         "We do not collect your name.",
@@ -53,7 +53,7 @@ const privacyPolicy: PrivacyPolicy = {
     {
       title: "iCloud Synchronization",
       paragraphs: [
-        "Whack-A-PC uses Apple's CloudKit to synchronize your app data across your Apple devices.",
+        "List It, Do It uses Apple's CloudKit to synchronize your app data across your Apple devices.",
         "Your synchronized data is stored in your personal iCloud account and managed by Apple. StormXR, LLC does not access, sell, or otherwise use this data except as necessary to provide synchronization functionality.",
         "Use of iCloud services is subject to Apple's Privacy Policy.",
       ],
@@ -62,7 +62,7 @@ const privacyPolicy: PrivacyPolicy = {
     {
       title: "Photo Library Access",
       paragraphs: [
-        "Whack-A-PC may request permission to access your Photo Library.",
+        "List It, Do It may request permission to access your Photo Library.",
         "This permission is used only when you choose to select or import an image within the app.",
         "Photos are never accessed without your permission, and StormXR, LLC does not collect or store your photo library.",
       ],
@@ -71,7 +71,7 @@ const privacyPolicy: PrivacyPolicy = {
     {
       title: "Notifications",
       paragraphs: [
-        "If you choose to enable notifications, Whack-A-PC may send notifications related to the app.",
+        "If you choose to enable notifications, List It, Do It may send notifications related to the app.",
         "You can disable notifications at any time through your device settings.",
       ],
     },
@@ -88,7 +88,7 @@ const privacyPolicy: PrivacyPolicy = {
     {
       title: "International Users",
       paragraphs: [
-        "Whack-A-PC is available worldwide.",
+        "List It, Do It is available worldwide.",
         "By using the app, you understand that your information may be processed in accordance with the laws of the United States.",
       ],
     },
@@ -103,7 +103,7 @@ const privacyPolicy: PrivacyPolicy = {
     {
       title: "Children's Privacy",
       paragraphs: [
-        "Whack-A-PC is not specifically directed toward children and does not knowingly collect personal information from children.",
+        "List It, Do It is not specifically directed toward children and does not knowingly collect personal information from children.",
       ],
     },
 
