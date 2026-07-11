@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 type PrivacyPolicy = {
   appName: string;
   companyName: string;
@@ -11,6 +13,10 @@ type PrivacyPolicy = {
     bullets?: string[];
   }[];
 };
+
+const metadata: Metadata = {
+  title: "List It, Do It Privacy Policy"
+}
 
 const privacyPolicy: PrivacyPolicy = {
   appName: "List It, Do It",
