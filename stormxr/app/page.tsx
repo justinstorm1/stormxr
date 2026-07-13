@@ -1,10 +1,7 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
-import { NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
-import { Separator } from '@/components/ui/separator';
-import { ArrowRight, Terminal } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/footer';
@@ -12,7 +9,7 @@ import Footer from '@/components/footer';
 export default function Page() {
   
   return (
-    <div className="relative w-full min-h-dvh bg-background text-foreground transition-colors duration-300">
+    <div className="relative w-full min-h-screen bg-background text-foreground transition-colors duration-300">
 
       <Navbar />
 

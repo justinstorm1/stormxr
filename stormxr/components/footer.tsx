@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
     return (
         <footer className="bg-background border-t border-border py-12">
@@ -7,6 +9,11 @@ export default function Footer() {
                 </p>
                 <p className="text-center text-xs text-muted-foreground">
                     Designed and developed by Justin Storm
+                </p>
+                <p className="mt-3 text-center text-xs text-muted-foreground">
+                    <Link href="/privacy-policy" className="underline underline-offset-4 hover:text-foreground">
+                        Privacy Policy
+                    </Link>
                 </p>
             </div>
         </footer>

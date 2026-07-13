@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu";
-import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Code2, Handshake, Home, Info, Menu, Moon, Presentation, Sun } from "lucide-react";
+import { Code2, Handshake, Home, Info, Menu, Moon, Presentation, Sun, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const mediaProjects = [
@@ -57,83 +56,23 @@ export default function Navbar() {
           className="w-full fixed z-50 top-0 left-0 transition-all duration-300"
         >
 
-          <div className={`flex items-center px-4 py-3 xl:px-20 transition-all duration-300 ${
-            scrolled
+          <div className={cn(
+            "flex items-center px-4 py-3 xl:px-20 transition-all duration-300",
+            (scrolled || menuOpen)
               ? "backdrop-blur-sm bg-background/70 border-b border-border/50 shadow-sm"
               : ""
-          }`}>
+          )}>
 
-            <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
-              <SheetTrigger asChild>
-                <Button
-                  variant={"ghost"}
-                  size={"icon"}
-                  className="flex xl:hidden me-2 rounded-lg"
-                  aria-label="Open menu"
-                >
-                  <Menu />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-72 p-0 sm:max-w-72">
-                <SheetHeader className="border-b">
-                  <SheetTitle className="sr-only">Site navigation</SheetTitle>
-                  <Link href="/" className="flex items-center gap-2">
-                    <img
-                      src={"/images/StormXRLogoNoText.png"}
-                      alt="StormXR"
-                      width={36}
-                      className="rounded-lg"
-                    />
-                    <div className="text-lg uppercase font-extrabold">
-                      <span className="bg-gradient-to-r from-[blue] to-[#ff0088] text-transparent bg-clip-text">Storm</span>
-                      <span className="text-foreground">XR</span>
-                    </div>
-                  </Link>
-                </SheetHeader>
-
-                <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-3 py-2">
-                  <SheetClose asChild>
-                    <Link href="/" className={mobileLinkClass}>
-                      <Home className="size-4" />
-                      Home
-                    </Link>
-                  </SheetClose>
-
-                  <div className="mt-2 flex flex-col gap-1">
-                    <p className="flex items-center gap-2 px-3 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                      <Presentation className="size-3.5" />
-                      Media Projects
-                    </p>
-                    {mediaProjects.map((item) => (
-                      <SheetClose asChild key={item.href}>
-                        <Link href={item.href} className={cn(mobileLinkClass, "ms-4")}>
-                          {item.title}
-                        </Link>
-                      </SheetClose>
-                    ))}
-                  </div>
-
-                  {secondaryLinks.map(({ title, href, icon: Icon }) => (
-                    <SheetClose asChild key={href}>
-                      <Link href={href} className={mobileLinkClass}>
-                        <Icon className="size-4" />
-                        {title}
-                      </Link>
-                    </SheetClose>
-                  ))}
-                </nav>
-
-                <SheetFooter className="border-t">
-                  <SheetClose asChild>
-                    <Button asChild className="w-full rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] font-bold text-white hover:opacity-90">
-                      <Link href="/contact">
-                        Contact
-                      </Link>
-                    </Button>
-                  </SheetClose>
-                </SheetFooter>
-              </SheetContent>
-            </Sheet>
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+              className="flex xl:hidden me-2 rounded-lg"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((prev) => !prev)}
+            >
+              {menuOpen ? <X /> : <Menu />}
+            </Button>
 
             <Link href="/" className='flex items-center gap-2 xl:me-10'>
               <img
@@ -211,6 +150,54 @@ export default function Navbar() {
               )}
             </Button>
           </div>
+
+          {menuOpen && (
+            <nav className="flex flex-col gap-1 border-b border-border bg-background px-4 py-3 shadow-sm xl:hidden">
+              <Link
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                className={mobileLinkClass}
+              >
+                <Home className="size-4" />
+                Home
+              </Link>
+
+              <div className="mt-1 flex flex-col gap-1">
+                <p className="flex items-center gap-2 px-3 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                  <Presentation className="size-3.5" />
+                  Media Projects
+                </p>
+                {mediaProjects.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={cn(mobileLinkClass, "ms-4")}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </div>
+
+              {secondaryLinks.map(({ title, href, icon: Icon }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className={mobileLinkClass}
+                >
+                  <Icon className="size-4" />
+                  {title}
+                </Link>
+              ))}
+
+              <Button asChild className="mt-2 w-full rounded-full bg-gradient-to-r from-[blue] to-[#ff0088] font-bold text-white hover:opacity-90">
+                <Link href="/contact" onClick={() => setMenuOpen(false)}>
+                  Contact
+                </Link>
+              </Button>
+            </nav>
+          )}
 
       </header>
     )
