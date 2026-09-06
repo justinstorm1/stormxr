@@ -20,7 +20,7 @@ export const privacyPolicyItems = {
     appNames: {
         listItDoIt: "List It, Do It",
         whackAPC: "Whack-A-PC",
-        seekBound: "SeekBound-"
+        seekBound: "SeekBound"
     },
     companyNames: {
         stormXR: "StormXR, LLC"
