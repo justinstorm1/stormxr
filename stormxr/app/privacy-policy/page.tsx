@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 const policies = [
   { name: privacyPolicyItems.appNames.listItDoIt, href: "/privacy-policy/list-it-do-it" },
   { name: privacyPolicyItems.appNames.whackAPC, href: "/privacy-policy/whack-a-pc" },
+  { name: privacyPolicyItems.appNames.seekBound, href: "/privacy-policy/seek-bound" },
 ];
 
 export default function Page() {

@@ -19,7 +19,8 @@ export type PrivacyPolicy = {
 export const privacyPolicyItems = {
     appNames: {
         listItDoIt: "List It, Do It",
-        whackAPC: "Whack-A-PC"
+        whackAPC: "Whack-A-PC",
+        seekBound: "SeekBound"
     },
     companyNames: {
         stormXR: "StormXR, LLC"
@@ -208,6 +209,153 @@ export const privacyPolicies: Record<string, PrivacyPolicy> = {
                 `Email: ${privacyPolicyItems.contactEmails.craigstormStormXR}`,
             ],
         },
+    ],
+  },
+  "SeekBound": {
+    appName: privacyPolicyItems.appNames.seekBound,
+    companyName: privacyPolicyItems.companyNames.stormXR,
+    website: privacyPolicyItems.websites.stormXR,
+    contactEmail: privacyPolicyItems.contactEmails.craigstormStormXR,
+    effectiveDate: "September 6, 2026",
+
+    sections: [
+      {
+        title: "Introduction",
+        paragraphs: [
+          `${privacyPolicyItems.companyNames.stormXR} ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how ${privacyPolicyItems.appNames.seekBound} collects, uses, shares, and protects information when you use our application on iOS and Android.`,
+          `${privacyPolicyItems.appNames.seekBound} is a hide-and-seek style game you play with friends. To make the game work, the app shares certain information, such as your location during a game, with the other players in your game session.`,
+          `By using ${privacyPolicyItems.appNames.seekBound}, you agree to the practices described in this Privacy Policy.`,
+        ],
+      },
+      {
+        title: "Information We Collect",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.seekBound} collects only the information needed to create your account and run a game with your friends.`,
+        ],
+        bullets: [
+          "Account information: when you sign in with Apple or Google, we receive a unique account identifier and your display name. Depending on your settings with Apple or Google, we may also receive your email address.",
+          "Location information: while you have the app open and are participating in a game, we collect your device's location so it can be shared with the other players in your game session.",
+          "Photos and camera content: when you choose to take a photo or select one from your photo library within the app, that photo is uploaded to our servers and shared with the players in your game.",
+          "Gameplay data: information about your games, such as game sessions you create or join, your role in a game, scores, and results.",
+          "Friend connections: the friends you add and the game invitations you send or accept.",
+        ],
+      },
+      {
+        title: "How We Use Information",
+        paragraphs: [
+          "We use the information we collect to:",
+        ],
+        bullets: [
+          "Create and maintain your account.",
+          "Run live games, including showing your location and shared photos to the other players in your game session.",
+          "Let you find friends, send and accept game invitations, and play together.",
+          "Maintain the security and integrity of the service and troubleshoot problems.",
+        ],
+      },
+      {
+        title: "Location Information",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.seekBound} collects your location only while the app is in use and you are participating in a game. The app does not track your location in the background.`,
+          "During an active game, your location is stored on our servers and shared in real time with the other players in that game session. This is a core part of how the hide-and-seek gameplay works.",
+          "You can stop sharing your location at any time by leaving a game, closing the app, or disabling location permission for the app in your device settings. Disabling location will prevent you from playing.",
+        ],
+      },
+      {
+        title: "Photos and Camera Access",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.seekBound} may request permission to access your camera and photo library.`,
+          "These permissions are used only when you choose to take or select a photo within the app. Photos you add are uploaded to our servers and shared with the other players in your game session.",
+          `${privacyPolicyItems.companyNames.stormXR} does not access your camera or photo library without your action, and does not scan or catalog your photo library.`,
+        ],
+      },
+      {
+        title: "Sign-In Providers",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.seekBound} uses Sign in with Apple and Google Sign-In for authentication. We do not collect or store your password.`,
+          "When you sign in, the provider shares a unique identifier and your display name with us, and may share your email address depending on your choices. Your use of these sign-in services is subject to Apple's and Google's respective privacy policies.",
+        ],
+      },
+      {
+        title: "Sharing With Other Players",
+        paragraphs: [
+          "When you join or create a game, the following information is visible to the other players in that game session: your display name, your location while the game is active, any photos you share in the game, and your gameplay status and results.",
+          "Only join games with people you trust. Information shared during a game may be seen, and potentially saved or captured, by the other players in that game.",
+        ],
+      },
+      {
+        title: "Service Providers",
+        paragraphs: [
+          "We use a small number of third-party providers to operate the app:",
+        ],
+        bullets: [
+          "Convex: provides our backend database and real-time synchronization infrastructure. Account, location, photo, and gameplay data are stored and processed through Convex on our behalf.",
+          "Apple and Google: provide authentication (Sign in with Apple, Google Sign-In) and app distribution through the App Store and Google Play.",
+        ],
+      },
+      {
+        title: "Data Sharing",
+        paragraphs: [
+          `${privacyPolicyItems.companyNames.stormXR} does not sell your personal information.`,
+          `${privacyPolicyItems.companyNames.stormXR} does not share your personal information with advertisers or marketing companies.`,
+          "We share information only with the other players in your game sessions (as described above) and with the service providers that help us operate the app.",
+        ],
+      },
+      {
+        title: "Data Retention",
+        paragraphs: [
+          "We keep your account information for as long as your account is active.",
+          "Location data is retained only as needed to operate active and recent games and is not kept as a long-term location history.",
+          "Photos you share in a game are retained while that game is active and for a limited period afterward, then deleted.",
+          "You can delete your account at any time from within the app or by contacting us. When you delete your account, we delete your account information, shared photos, and associated gameplay data, except where we are required to retain certain information by law.",
+        ],
+      },
+      {
+        title: "Your Choices",
+        paragraphs: [
+          "You can control your information in the following ways:",
+        ],
+        bullets: [
+          "Manage location and camera permissions at any time in your device settings.",
+          "Remove friends and decline or leave games at any time.",
+          "Delete your account, which removes your associated data as described in Data Retention.",
+          "Contact us to request access to or deletion of your personal information.",
+        ],
+      },
+      {
+        title: "International Users",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.seekBound} is available worldwide.`,
+          "By using the app, you understand that your information may be processed in the United States and other countries where we or our service providers operate, which may have different data protection laws than your country.",
+        ],
+      },
+      {
+        title: "Security",
+        paragraphs: [
+          "We take reasonable measures to protect information handled by the application, including encryption of data in transit. However, no method of electronic storage or transmission is completely secure.",
+        ],
+      },
+      {
+        title: "Children's Privacy",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.seekBound} is not directed to children under 13, and we do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will delete it.`,
+        ],
+      },
+      {
+        title: "Changes to This Privacy Policy",
+        paragraphs: [
+          "We may update this Privacy Policy from time to time.",
+          "Changes become effective when the updated Privacy Policy is published.",
+          "The Effective Date at the top of this policy indicates the latest revision.",
+        ],
+      },
+      {
+        title: "Contact Us",
+        paragraphs: [
+          `Company: ${privacyPolicyItems.companyNames.stormXR}`,
+          `Website: ${privacyPolicyItems.websites.stormXR}`,
+          `Email: ${privacyPolicyItems.contactEmails.craigstormStormXR}`,
+        ],
+      },
     ],
   }
 };
