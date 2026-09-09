@@ -20,7 +20,8 @@ export const privacyPolicyItems = {
     appNames: {
         listItDoIt: "List It, Do It",
         whackAPC: "Whack-A-PC",
-        seekBound: "SeekBound"
+        seekBound: "SeekBound",
+        punchableFace: "Punchable Face"
     },
     companyNames: {
         stormXR: "StormXR, LLC"
@@ -357,7 +358,117 @@ export const privacyPolicies: Record<string, PrivacyPolicy> = {
         ],
       },
     ],
-  }
+  },
+  "Punchable Face": {
+    appName: privacyPolicyItems.appNames.punchableFace,
+    companyName: privacyPolicyItems.companyNames.stormXR,
+    website: privacyPolicyItems.websites.stormXR,
+    contactEmail: privacyPolicyItems.contactEmails.craigstormStormXR,
+    effectiveDate: "September 9, 2026",
+
+    sections: [
+      {
+        title: "Introduction",
+        paragraphs: [
+          `${privacyPolicyItems.companyNames.stormXR} ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how ${privacyPolicyItems.appNames.punchableFace} handles information when you use our virtual reality game on the Meta Quest platform.`,
+          `${privacyPolicyItems.appNames.punchableFace} is a single-player VR game. It is designed to run entirely on your device and does not collect, transmit, or store personal information on our servers.`,
+          `By using ${privacyPolicyItems.appNames.punchableFace}, you agree to the practices described in this Privacy Policy.`,
+        ],
+      },
+      {
+        title: "Information We Collect",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.punchableFace} is designed to collect as little information as possible. We do not operate accounts, servers, or analytics for the game.`,
+        ],
+        bullets: [
+          "We do not collect your name.",
+          "We do not collect your email address.",
+          "We do not collect your Meta account information.",
+          "We do not collect your phone number.",
+          "We do not collect your date of birth.",
+          "We do not collect your address.",
+          "We do not collect payment information.",
+          "We do not collect device identifiers.",
+          "We do not collect IP addresses.",
+          "We do not collect analytics or usage data.",
+          "We do not collect crash reports or diagnostic information.",
+          "We do not collect advertising identifiers.",
+          "We do not collect location information.",
+          "We do not collect voice or microphone data.",
+        ],
+      },
+      {
+        title: "Motion and Hardware Data",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.punchableFace} uses headset and controller position, orientation, and hand-tracking data provided by the Meta Quest system in order to render the game and respond to your movements.`,
+          "This motion data is processed on your device in real time to run the game. It is not recorded, stored, or transmitted to us or any third party.",
+        ],
+      },
+      {
+        title: "Camera and Passthrough",
+        paragraphs: [
+          "Any passthrough or camera-based features on the Meta Quest headset are handled by the Meta Quest operating system. Raw camera images from the headset are not made available to the game, and we do not access, store, or transmit them.",
+        ],
+      },
+      {
+        title: "Local Game Data",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.punchableFace} may store game progress and settings, such as high scores and preferences, locally on your device.`,
+          "This data stays on your device and is removed if you uninstall the game. We do not have access to it.",
+        ],
+      },
+      {
+        title: "Platform Services",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.punchableFace} is distributed through the Meta Quest Store. Meta may collect information when you purchase, download, or run the game in accordance with Meta's own policies.`,
+          "Your use of the Meta Quest hardware and store is subject to Meta's Privacy Policy and Terms of Service. We do not control and are not responsible for Meta's data practices.",
+        ],
+      },
+      {
+        title: "Data Sharing",
+        paragraphs: [
+          `${privacyPolicyItems.companyNames.stormXR} does not sell your personal information.`,
+          `${privacyPolicyItems.companyNames.stormXR} does not share personal information with advertisers or marketing companies.`,
+          "Because the game does not collect personal information, we have no personal information to share.",
+        ],
+      },
+      {
+        title: "International Users",
+        paragraphs: [
+          `${privacyPolicyItems.appNames.punchableFace} is available worldwide.`,
+          "Because the game does not collect or transmit personal information, no cross-border transfer of your personal information by us takes place.",
+        ],
+      },
+      {
+        title: "Security",
+        paragraphs: [
+          "We take reasonable measures to protect information handled by the game. Because the game runs locally and does not transmit personal information, the primary safeguards for your data are those provided by your device and the Meta Quest platform.",
+        ],
+      },
+      {
+        title: "Children's Privacy",
+        paragraphs: [
+          `The Meta Quest platform requires users to be at least 13 years old to have an account. ${privacyPolicyItems.appNames.punchableFace} is not directed to children under 13, and we do not knowingly collect personal information from children.`,
+        ],
+      },
+      {
+        title: "Changes to This Privacy Policy",
+        paragraphs: [
+          "We may update this Privacy Policy from time to time.",
+          "Changes become effective when the updated Privacy Policy is published.",
+          "The Effective Date at the top of this policy indicates the latest revision.",
+        ],
+      },
+      {
+        title: "Contact Us",
+        paragraphs: [
+          `Company: ${privacyPolicyItems.companyNames.stormXR}`,
+          `Website: ${privacyPolicyItems.websites.stormXR}`,
+          `Email: ${privacyPolicyItems.contactEmails.craigstormStormXR}`,
+        ],
+      },
+    ],
+  },
 };
 
 type PrivacyPolicyPageProps = {
