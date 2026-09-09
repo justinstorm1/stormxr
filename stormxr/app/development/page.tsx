@@ -197,7 +197,7 @@ export default function Development() {
             <div>
               <div className="flex items-start justify-between">
                 <div className="h-12 w-12 rounded-2xl bg-[blue]/10 text-[blue] flex items-center justify-center mb-6 border border-[blue]/20">
-                  <Glasses className="h-6 w-6" />
+                  <span className="text-3xl -translate-y-1">ᯅ</span>
                 </div>
 
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/10 text-[10px] font-bold text-amber-500 uppercase tracking-wider">
