@@ -3,7 +3,7 @@
 import Footer from "@/components/footer";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { BookOpenText, Gamepad2, Headphones, Telescope } from "lucide-react";
+import { ArrowUpRight, BookOpenText, Gamepad2, Headphones, Newspaper, Telescope } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -66,6 +66,27 @@ export default function About() {
               </p>
             </div>
           </div>
+
+          {/* ── Press Releases link ── */}
+          <Link
+            href="/press"
+            className="group relative flex items-center justify-between gap-4 rounded-2xl border border-border bg-muted/20 px-6 py-5 transition-all duration-300 hover:border-border hover:bg-muted/40"
+          >
+            <div className="flex items-center gap-4">
+              <div className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-[blue]/10 to-[blue]/5 text-[blue] flex items-center justify-center border border-[blue]/10">
+                <Newspaper className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                  In The News
+                </div>
+                <div className="text-base font-bold text-foreground">
+                  Read our press releases
+                </div>
+              </div>
+            </div>
+            <ArrowUpRight className="h-5 w-5 text-muted-foreground shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+          </Link>
 
           {/* ── Our Story + Developer (side by side) ── */}
           <div className="grid grid-cols-1 @2xl/main:grid-cols-2 gap-6">
