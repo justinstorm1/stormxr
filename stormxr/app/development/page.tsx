@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { Code2, Smartphone, ArrowUpRight, Glasses, CheckCircle2 } from 'lucide-react';
+import { Code2, Smartphone, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/footer';
@@ -9,6 +9,7 @@ import Image from 'next/image';
 
 const WHACK_A_PC_APP_STORE = "https://apps.apple.com/us/app/whack-a-pc/id6775351437";
 const WHACK_A_PC_GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=com.justinstorm1.whackapcpaid";
+const PUNCHABLE_FACE_META_QUEST = "https://www.meta.com/experiences/punchable-face/1482909477009074/";
 
 type AppLink = { label: string; href: string };
 
@@ -46,7 +47,9 @@ const vrApps: ShowcaseApp[] = [
     logo: "/images/PunchableFaceLogo.png",
     description:
       "Pick an annoying face, put on your gloves, and start swinging. A simple VR stress toy with satisfying impacts, haptics, scoring, and two ridiculous characters to pummel.",
-    inDevelopment: true,
+    links: [
+      { label: "Meta Quest", href: PUNCHABLE_FACE_META_QUEST },
+    ],
   },
 ];
 
@@ -200,9 +203,9 @@ export default function Development() {
                   <span className="text-3xl -translate-y-1">ᯅ</span>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/10 text-[10px] font-bold text-amber-500 uppercase tracking-wider">
-                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-                  In Development
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 dark:bg-emerald-500/5 text-[10px] font-bold text-emerald-500 uppercase tracking-wider">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Live on Meta Quest
                 </div>
               </div>
 
