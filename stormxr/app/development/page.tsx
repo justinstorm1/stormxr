@@ -39,6 +39,12 @@ const mobileApps: ShowcaseApp[] = [
       { label: "Google Play", href: WHACK_A_PC_GOOGLE_PLAY },
     ],
   },
+  {
+    name: "SeekBound",
+    logo: "/images/SeekBoundLogo.png",
+    description: "Hide-and-seek style game for iOS & Android — track down friends in real time and outlast the seekers.",
+    inDevelopment: true,
+  },
 ];
 
 const vrApps: ShowcaseApp[] = [
@@ -188,7 +194,7 @@ export default function Development() {
             </div>
 
             <div className="mt-8 pt-6 border-t border-border/50 flex items-center justify-between text-xs font-mono text-muted-foreground">
-              <span>🛠️ Swift / SwiftUI & Cross-Platform</span>
+              <span>🛠️ Swift & React Native</span>
               <span className="text-[#ff0088] font-bold opacity-0 group-hover:opacity-100 transition-opacity">Built for mobile &rarr;</span>
             </div>
           </div>

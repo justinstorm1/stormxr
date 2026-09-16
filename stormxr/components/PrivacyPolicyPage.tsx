@@ -1,9 +1,11 @@
 import { ArrowLeft } from "lucide-react";
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export type PrivacyPolicy = {
   appName: string;
+  logo: string;
   companyName: string;
   website: string;
   contactEmail: string;
@@ -37,6 +39,7 @@ export const privacyPolicyItems = {
 export const privacyPolicies: Record<string, PrivacyPolicy> = {
   "List It, Do It": {
     appName: privacyPolicyItems.appNames.listItDoIt,
+    logo: "/images/ListItDoItLogo.webp",
     companyName: privacyPolicyItems.companyNames.stormXR,
     website: privacyPolicyItems.websites.stormXR,
     contactEmail: privacyPolicyItems.contactEmails.craigstormStormXR,
@@ -141,6 +144,7 @@ export const privacyPolicies: Record<string, PrivacyPolicy> = {
   },
   "Whack-A-PC": {
     appName: privacyPolicyItems.appNames.whackAPC,
+    logo: "/images/WhackAPCLogo.png",
     companyName: privacyPolicyItems.companyNames.stormXR,
     website: privacyPolicyItems.websites.stormXR,
     contactEmail: privacyPolicyItems.contactEmails.craigstormStormXR,
@@ -214,10 +218,11 @@ export const privacyPolicies: Record<string, PrivacyPolicy> = {
   },
   "SeekBound": {
     appName: privacyPolicyItems.appNames.seekBound,
+    logo: "/images/SeekBoundLogo.png",
     companyName: privacyPolicyItems.companyNames.stormXR,
     website: privacyPolicyItems.websites.stormXR,
     contactEmail: privacyPolicyItems.contactEmails.craigstormStormXR,
-    effectiveDate: "September 6, 2026",
+    effectiveDate: "September 16, 2026",
 
     sections: [
       {
@@ -235,7 +240,7 @@ export const privacyPolicies: Record<string, PrivacyPolicy> = {
         ],
         bullets: [
           "Account information: when you sign in with Apple or Google, we receive a unique account identifier and your display name. Depending on your settings with Apple or Google, we may also receive your email address.",
-          "Location information: while you have the app open and are participating in a game, we collect your device's location so it can be shared with the other players in your game session.",
+          "Location information: while you have the app open and are participating in a game, we collect your device's location so it can be shared with the other players in your game session. If you choose to grant \"Always\" (background) location permission, the app can also collect your location while it is not in the foreground, for as long as you are participating in an active game.",
           "Photos and camera content: when you choose to take a photo or select one from your photo library within the app, that photo is uploaded to our servers and shared with the players in your game.",
           "Gameplay data: information about your games, such as game sessions you create or join, your role in a game, scores, and results.",
           "Friend connections: the friends you add and the game invitations you send or accept.",
@@ -256,9 +261,10 @@ export const privacyPolicies: Record<string, PrivacyPolicy> = {
       {
         title: "Location Information",
         paragraphs: [
-          `${privacyPolicyItems.appNames.seekBound} collects your location only while the app is in use and you are participating in a game. The app does not track your location in the background.`,
+          `By default, ${privacyPolicyItems.appNames.seekBound} collects your location only while the app is open and in the foreground and you are participating in a game.`,
+          "You may optionally enable background location by granting \"Always\" location permission on your device. If you choose to do this, the app can also collect your location while it is running in the background, but only while you are actively participating in a game. This is not required to play, and exists to keep gameplay working smoothly if you switch apps or lock your device mid-game.",
           "During an active game, your location is stored on our servers and shared in real time with the other players in that game session. This is a core part of how the hide-and-seek gameplay works.",
-          "You can stop sharing your location at any time by leaving a game, closing the app, or disabling location permission for the app in your device settings. Disabling location will prevent you from playing.",
+          "You can stop sharing your location at any time by leaving a game, closing the app, or changing the app's location permission (including switching from \"Always\" back to \"While Using\" or \"Never\") in your device settings. Disabling location will prevent you from playing.",
         ],
       },
       {
@@ -316,7 +322,7 @@ export const privacyPolicies: Record<string, PrivacyPolicy> = {
           "You can control your information in the following ways:",
         ],
         bullets: [
-          "Manage location and camera permissions at any time in your device settings.",
+          "Manage location and camera permissions at any time in your device settings, including choosing between \"Always\" (background), \"While Using,\" or \"Never\" for location.",
           "Remove friends and decline or leave games at any time.",
           "Delete your account, which removes your associated data as described in Data Retention.",
           "Contact us to request access to or deletion of your personal information.",
@@ -361,6 +367,7 @@ export const privacyPolicies: Record<string, PrivacyPolicy> = {
   },
   "Punchable Face": {
     appName: privacyPolicyItems.appNames.punchableFace,
+    logo: "/images/PunchableFaceLogo.png",
     companyName: privacyPolicyItems.companyNames.stormXR,
     website: privacyPolicyItems.websites.stormXR,
     contactEmail: privacyPolicyItems.contactEmails.craigstormStormXR,
@@ -491,16 +498,25 @@ export default function PrivacyPolicyPage({
             </Link>
         </nav>
         <main className="mx-auto max-w-4xl space-y-10 px-6 py-12">
-        <header className="space-y-2">
-            <h1 className="text-4xl font-bold">Privacy Policy</h1>
+        <header className="flex items-start gap-4">
+            <Image
+                src={policy.logo}
+                alt={`${policy.appName} Logo`}
+                width={56}
+                height={56}
+                className="size-14 shrink-0 rounded-xl object-cover"
+            />
+            <div className="space-y-2">
+                <h1 className="text-4xl font-bold">Privacy Policy</h1>
 
-            <p className="text-muted-foreground">
-            <strong>{policy.appName}</strong>
-            </p>
+                <p className="text-muted-foreground">
+                <strong>{policy.appName}</strong>
+                </p>
 
-            <p className="text-sm text-muted-foreground">
-            Effective Date: {policy.effectiveDate}
-            </p>
+                <p className="text-sm text-muted-foreground">
+                Effective Date: {policy.effectiveDate}
+                </p>
+            </div>
         </header>
 
         {policy.sections.map((section) => (
