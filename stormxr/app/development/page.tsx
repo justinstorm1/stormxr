@@ -9,6 +9,7 @@ import Image from 'next/image';
 
 const WHACK_A_PC_APP_STORE = "https://apps.apple.com/us/app/whack-a-pc/id6775351437";
 const WHACK_A_PC_GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=com.justinstorm1.whackapcpaid";
+const SEEKBOUND_GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=com.justinstorm1.hideandseek";
 const PUNCHABLE_FACE_META_QUEST = "https://www.meta.com/experiences/punchable-face/1482909477009074/";
 
 type AppLink = { label: string; href: string };
@@ -18,6 +19,9 @@ type ShowcaseApp = {
   logo: string;
   description: string;
   links?: AppLink[];
+  // Shown alongside any live links, e.g. "iOS: In Review".
+  pending?: string;
+  // No links live yet at all.
   inDevelopment?: boolean;
 };
 
@@ -43,7 +47,10 @@ const mobileApps: ShowcaseApp[] = [
     name: "SeekBound",
     logo: "/images/SeekBoundLogo.png",
     description: "Hide-and-seek style game for iOS & Android — track down friends in real time and outlast the seekers.",
-    inDevelopment: true,
+    links: [
+      { label: "Google Play", href: SEEKBOUND_GOOGLE_PLAY },
+    ],
+    pending: "iOS: In Review",
   },
 ];
 
@@ -76,28 +83,37 @@ function ShowcaseBox({ app, accent }: { app: ShowcaseApp; accent: string }) {
         </div>
       </div>
 
-      {app.inDevelopment ? (
-        <span className="inline-flex shrink-0 items-center gap-1.5 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/10 text-[10px] font-bold text-amber-500 uppercase tracking-wider">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-          In Development
-        </span>
-      ) : (
-        <div className="flex flex-wrap gap-2 w-full sm:w-auto">
-          {app.links?.map((link) => (
-            <Button
-              key={link.label}
-              variant="outline"
-              size="sm"
-              className="rounded-full border-border bg-background hover:bg-muted font-semibold text-xs flex items-center gap-1.5"
-              asChild
-            >
-              <a href={link.href} target="_blank" rel="noopener noreferrer">
-                {link.label} <ArrowUpRight className="h-3 w-3" style={{ color: accent }} />
-              </a>
-            </Button>
-          ))}
-        </div>
-      )}
+      <div className="flex flex-col items-start sm:items-end gap-2 w-full sm:w-auto">
+        {app.inDevelopment ? (
+          <span className="inline-flex shrink-0 items-center gap-1.5 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/10 text-[10px] font-bold text-amber-500 uppercase tracking-wider">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
+            In Development
+          </span>
+        ) : (
+          <div className="flex flex-wrap gap-2 w-full sm:w-auto sm:justify-end">
+            {app.links?.map((link) => (
+              <Button
+                key={link.label}
+                variant="outline"
+                size="sm"
+                className="rounded-full border-border bg-background hover:bg-muted font-semibold text-xs flex items-center gap-1.5"
+                asChild
+              >
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label} <ArrowUpRight className="h-3 w-3" style={{ color: accent }} />
+                </a>
+              </Button>
+            ))}
+          </div>
+        )}
+
+        {app.pending && (
+          <span className="inline-flex shrink-0 items-center gap-1.5 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/10 text-[10px] font-bold text-amber-500 uppercase tracking-wider">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
+            {app.pending}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
