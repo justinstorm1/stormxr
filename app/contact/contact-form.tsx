@@ -48,24 +48,22 @@ function Field({
   )
 }
 
-type Grecaptcha = {
-  ready: (cb: () => void) => void
-  render: (
-    el: HTMLElement,
-    opts: {
-      sitekey: string
-      theme?: "dark" | "light"
-      callback?: (token: string) => void
-      "expired-callback"?: () => void
-      "error-callback"?: () => void
-    }
-  ) => number
-  reset: (id?: number) => void
-}
-
 declare global {
   interface Window {
-    grecaptcha?: Grecaptcha
+    grecaptcha?: {
+      ready: (cb: () => void) => void
+      render: (
+        el: HTMLElement,
+        opts: {
+          sitekey: string
+          theme?: "dark" | "light"
+          callback?: (token: string) => void
+          "expired-callback"?: () => void
+          "error-callback"?: () => void
+        }
+      ) => number
+      reset: (id?: number) => void
+    }
   }
 }
 
@@ -86,8 +84,8 @@ function Recaptcha({
 
   useEffect(() => {
     const g = window.grecaptcha
-    if (!loaded || !g || !ref.current) return
     const el = ref.current
+    if (!loaded || !g || !el) return
     g.ready(() => {
       if (widgetId.current !== null || !el.isConnected) return
       widgetId.current = g.render(el, {
@@ -100,7 +98,7 @@ function Recaptcha({
     })
   }, [loaded, siteKey, onChange])
 
-  // Tokens are single-use, so a fresh challenge is needed after every attempt.
+  // Tokens are single-use, so a fresh check is needed after every attempt.
   useEffect(() => {
     if (widgetId.current === null) return
     window.grecaptcha?.reset(widgetId.current)
@@ -132,9 +130,7 @@ export function ContactForm({
 
   const [state, action, pending] = useActionState<ContactState, FormData>(
     sendContact,
-    {
-      status: "idle",
-    }
+    { status: "idle" }
   )
 
   const [verified, setVerified] = useState(false)

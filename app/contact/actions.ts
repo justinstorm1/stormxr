@@ -46,6 +46,7 @@ async function verifyRecaptcha(token: string) {
   if (!res?.ok) return false
 
   const data = (await res.json()) as { success: boolean }
+  if (!data.success) console.warn("[contact] reCAPTCHA rejected:", data)
   return data.success
 }
 
