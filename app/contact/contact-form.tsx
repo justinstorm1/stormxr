@@ -2,7 +2,8 @@
 
 import { ArrowRight, CircleAlert, CircleCheck, Loader } from "lucide-react"
 import { useSearchParams } from "next/navigation"
-import { useActionState } from "react"
+import Script from "next/script"
+import { useActionState, useEffect, useRef, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { contactTopics } from "@/lib/site"
@@ -47,7 +48,82 @@ function Field({
   )
 }
 
-export function ContactForm() {
+type Grecaptcha = {
+  ready: (cb: () => void) => void
+  render: (
+    el: HTMLElement,
+    opts: {
+      sitekey: string
+      theme?: "dark" | "light"
+      callback?: (token: string) => void
+      "expired-callback"?: () => void
+      "error-callback"?: () => void
+    }
+  ) => number
+  reset: (id?: number) => void
+}
+
+declare global {
+  interface Window {
+    grecaptcha?: Grecaptcha
+  }
+}
+
+function Recaptcha({
+  siteKey,
+  resetKey,
+  onChange,
+}: {
+  siteKey: string
+  resetKey: unknown
+  onChange: (verified: boolean) => void
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const widgetId = useRef<number | null>(null)
+  const [loaded, setLoaded] = useState(
+    () => typeof window !== "undefined" && !!window.grecaptcha?.render
+  )
+
+  useEffect(() => {
+    const g = window.grecaptcha
+    if (!loaded || !g || !ref.current) return
+    const el = ref.current
+    g.ready(() => {
+      if (widgetId.current !== null || !el.isConnected) return
+      widgetId.current = g.render(el, {
+        sitekey: siteKey,
+        theme: "dark",
+        callback: () => onChange(true),
+        "expired-callback": () => onChange(false),
+        "error-callback": () => onChange(false),
+      })
+    })
+  }, [loaded, siteKey, onChange])
+
+  // Tokens are single-use, so a fresh challenge is needed after every attempt.
+  useEffect(() => {
+    if (widgetId.current === null) return
+    window.grecaptcha?.reset(widgetId.current)
+    onChange(false)
+  }, [resetKey, onChange])
+
+  return (
+    <>
+      <Script
+        src="https://www.google.com/recaptcha/api.js?render=explicit"
+        strategy="afterInteractive"
+        onReady={() => setLoaded(true)}
+      />
+      <div ref={ref} className="min-h-[78px]" />
+    </>
+  )
+}
+
+export function ContactForm({
+  recaptchaSiteKey,
+}: {
+  recaptchaSiteKey: string
+}) {
   const searchParams = useSearchParams()
   const requestedTopic = searchParams.get("topic")
   const defaultTopic = contactTopics.some((t) => t.value === requestedTopic)
@@ -60,6 +136,8 @@ export function ContactForm() {
       status: "idle",
     }
   )
+
+  const [verified, setVerified] = useState(false)
 
   if (state.status === "success") {
     return (
@@ -169,10 +247,16 @@ export function ContactForm() {
         </label>
       </div>
 
+      <Recaptcha
+        siteKey={recaptchaSiteKey}
+        resetKey={state}
+        onChange={setVerified}
+      />
+
       <Button
         type="submit"
         size="xl"
-        disabled={pending}
+        disabled={pending || !verified}
         className="w-full sm:w-auto"
       >
         {pending ? (

@@ -42,7 +42,9 @@ export default function ContactPage() {
             className="bg-brand absolute inset-x-10 top-0 h-px opacity-80"
           />
           <Suspense>
-            <ContactForm />
+            <ContactForm
+              recaptchaSiteKey={process.env.CAPTCHA_SITE_KEY ?? ""}
+            />
           </Suspense>
         </div>
         <aside className="space-y-10 lg:pt-4">
