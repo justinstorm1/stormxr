@@ -8,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button"
 import type { ArticleSummary } from "@/lib/articles"
 import { cn } from "@/lib/utils"
 
-const PAGE_SIZE = 9
+const PAGE_SIZE = 18
 
 /** Featured latest article, category filter chips, and a paged grid. */
 export function ArticlesBrowser({ articles }: { articles: ArticleSummary[] }) {
