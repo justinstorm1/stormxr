@@ -59,10 +59,16 @@ export function SiteHeader() {
             : "bg-transparent"
         )}
       >
-        <Logo />
+        <Logo className="shrink-0" />
 
-        <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-0.5 rounded-full p-1 ring-1 ring-line">
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul
+            className={cn(
+              "flex items-center gap-0.5 rounded-full p-1 ring-1 transition-[box-shadow] duration-300",
+              // The bar gets its own border once scrolled; don't stack two.
+              scrolled ? "ring-transparent" : "ring-line"
+            )}
+          >
             {nav.map((item, i) => {
               const active = isActive(pathname, item.href)
               return (
@@ -71,7 +77,7 @@ export function SiteHeader() {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "group relative flex items-center gap-2 rounded-full px-3.5 py-2 text-sm transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring lg:px-4",
+                      "group relative flex items-center gap-2 rounded-full px-3.5 py-2 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring xl:px-4",
                       active
                         ? "bg-white/8 text-foreground shadow-[inset_0_1px_0_0_oklch(1_0_0/8%)]"
                         : "text-muted-foreground hover:bg-white/4 hover:text-foreground"
@@ -99,7 +105,7 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <Link
             href="/contact"
             className={cn(
@@ -112,7 +118,7 @@ export function SiteHeader() {
           </Link>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-full text-foreground ring-1 ring-line outline-none hover:bg-white/8 focus-visible:ring-3 focus-visible:ring-ring md:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-full text-foreground ring-1 ring-line outline-none hover:bg-white/8 focus-visible:ring-3 focus-visible:ring-ring lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -126,7 +132,7 @@ export function SiteHeader() {
       <div
         id="mobile-nav"
         hidden={!open}
-        className="glass mx-auto mt-2 max-h-[calc(100svh-6rem)] max-w-7xl overflow-y-auto bg-background/90 p-2 md:hidden"
+        className="glass mx-auto mt-2 max-h-[calc(100svh-6rem)] max-w-7xl overflow-y-auto bg-background/90 p-2 lg:hidden"
       >
         <nav aria-label="Mobile">
           <ul className="space-y-1">
