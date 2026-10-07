@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
 import { sendContact, type ContactState } from "./actions"
 
 const inputClass =
-  "w-full rounded-xl border border-input bg-white/3 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 transition outline-none focus:border-primary/60 focus:bg-white/5 focus:ring-3 focus:ring-ring/30 aria-invalid:border-destructive/70 sm:text-sm"
+  "w-full rounded-xl border border-input bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 transition outline-none focus:border-signal focus:ring-3 focus:ring-ring/25 aria-invalid:border-destructive/70 sm:text-sm"
 
 function Field({
   label,
@@ -30,7 +30,7 @@ function Field({
     <div>
       <label
         htmlFor={htmlFor}
-        className="mb-2 flex justify-between text-sm font-medium"
+        className="label mb-2.5 flex justify-between text-muted-foreground"
       >
         {label}
         {optional && (
@@ -64,10 +64,10 @@ export function ContactForm() {
   if (state.status === "success") {
     return (
       <div role="status" className="flex flex-col items-start gap-4 py-10">
-        <span className="flex size-12 items-center justify-center rounded-full bg-primary/15 ring-1 ring-primary/40">
-          <CircleCheck className="size-6 text-primary" />
+        <span className="icon-tile size-12">
+          <CircleCheck className="size-6 text-signal" />
         </span>
-        <h2 className="text-2xl font-medium">Message sent</h2>
+        <h2 className="display text-4xl">Message sent</h2>
         <p className="text-muted-foreground">
           Thanks for reaching out — we&apos;ll get back to you soon.
         </p>

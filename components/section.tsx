@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 import { buttonVariants } from "@/components/ui/button"
+import { Wave } from "@/components/wave"
 import { cn } from "@/lib/utils"
 
 export function Container({
@@ -10,7 +11,7 @@ export function Container({
 }: React.ComponentProps<"div">) {
   return (
     <div
-      className={cn("mx-auto w-full max-w-6xl px-4 sm:px-6", className)}
+      className={cn("mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8", className)}
       {...props}
     />
   )
@@ -26,17 +27,38 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "inline-flex items-center gap-2 font-mono text-xs tracking-[0.18em] text-primary uppercase",
+        "label inline-flex items-center gap-2.5 text-signal",
         className
       )}
     >
-      <span className="h-px w-6 bg-primary/60" aria-hidden />
+      <span className="bg-brand size-1.5 rounded-full" aria-hidden />
       {children}
     </p>
   )
 }
 
-/** Large section heading. Wrap words in <em> to get the italic gradient accent. */
+/** Numbered pill that opens a section: `(01 · What we do) ———`. */
+export function SectionRule({
+  index,
+  label,
+  className,
+}: {
+  index: string
+  label: string
+  className?: string
+}) {
+  return (
+    <div className={cn("flex items-center gap-4", className)}>
+      <span className="label inline-flex items-center gap-2.5 rounded-full px-3.5 py-1.5 text-muted-foreground ring-1 ring-line">
+        <span className="text-gradient">{index}</span>
+        {label}
+      </span>
+      <span aria-hidden className="h-px flex-1 bg-line" />
+    </div>
+  )
+}
+
+/** Large section heading. Wrap words in <em> to highlight them with the brand gradient. */
 export function SectionHeading({
   eyebrow,
   title,
@@ -55,26 +77,25 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "max-w-2xl",
+        "max-w-3xl",
         align === "center" &&
           "mx-auto text-center [&_p:first-child]:justify-center",
         className
       )}
     >
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      {eyebrow && <Eyebrow className="mb-5">{eyebrow}</Eyebrow>}
       <Tag
         className={cn(
-          "mt-4 font-medium tracking-tight [&_em]:font-serif [&_em]:font-normal [&_em]:tracking-normal",
-          "em-storm [&_em]:pr-1",
+          "display",
           Tag === "h1"
-            ? "text-4xl leading-[1.05] sm:text-6xl"
-            : "text-3xl leading-[1.1] sm:text-[2.6rem]"
+            ? "text-5xl sm:text-7xl lg:text-[5.5rem]"
+            : "text-4xl sm:text-5xl lg:text-[3.6rem]"
         )}
       >
         {title}
       </Tag>
       {description && (
-        <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           {description}
         </p>
       )}
@@ -82,7 +103,7 @@ export function SectionHeading({
   )
 }
 
-/** Top-of-page header for interior pages, with an ambient glow. */
+/** Top-of-page header for interior pages. */
 export function PageHero({
   eyebrow,
   title,
@@ -95,26 +116,37 @@ export function PageHero({
   children?: React.ReactNode
 }) {
   return (
-    <section className="relative isolate overflow-hidden pt-36 pb-16 sm:pt-44 sm:pb-20">
+    <section className="relative isolate overflow-hidden pt-36 pb-16 sm:pt-44 sm:pb-24">
       <div aria-hidden className="absolute inset-0 -z-10">
-        <div className="bg-grid absolute inset-0 mask-[radial-gradient(ellipse_at_top,black_20%,transparent_70%)] opacity-50" />
-        <div className="animate-drift absolute -top-40 left-1/2 h-112 w-176 -translate-x-1/2 rounded-full bg-primary/15 blur-[120px]" />
-        <div className="animate-drift-slow absolute -top-20 right-[-10%] h-80 w-120 rounded-full bg-violet/15 blur-[120px]" />
+        <div className="bg-dots absolute inset-0 mask-[radial-gradient(ellipse_at_top_right,black_10%,transparent_65%)] opacity-70" />
+        <div className="absolute -top-48 right-[-5%] h-120 w-160 rounded-full bg-primary/25 blur-[140px]" />
+        <div className="absolute -top-24 right-[30%] h-80 w-120 rounded-full bg-violet/15 blur-[140px]" />
+        <Wave
+          amplitude={40}
+          className="absolute inset-x-0 bottom-0 h-24 w-full opacity-70"
+        />
       </div>
       <Container>
-        <SectionHeading
-          as="h1"
-          eyebrow={eyebrow}
-          title={title}
-          description={description}
-          className="max-w-3xl"
-        />
-        {children && <div className="mt-8">{children}</div>}
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h1 className="display mt-6 max-w-5xl text-5xl sm:text-7xl lg:text-[6rem]">
+          {title}
+        </h1>
+        {(description || children) && (
+          <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-16">
+            {description && (
+              <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                {description}
+              </p>
+            )}
+            {children && <div className="lg:justify-self-end">{children}</div>}
+          </div>
+        )}
       </Container>
     </section>
   )
 }
 
+/** Rounded gradient call-to-action card that closes most pages. */
 export function CtaBand({
   eyebrow = "Work with us",
   title,
@@ -130,27 +162,38 @@ export function CtaBand({
 }) {
   return (
     <Container className="mt-24 sm:mt-32">
-      <div className="reveal relative isolate overflow-hidden rounded-[2rem] border border-white/10 bg-card px-6 py-14 sm:px-14 sm:py-20">
+      <section className="reveal relative isolate overflow-hidden rounded-[2rem] bg-primary text-primary-foreground shadow-[0_40px_120px_-50px_var(--violet)] sm:rounded-[2.5rem]">
         <div aria-hidden className="absolute inset-0 -z-10">
-          <div className="absolute -bottom-32 -left-20 h-80 w-120 rounded-full bg-primary/20 blur-[100px]" />
-          <div className="absolute -top-32 right-0 h-80 w-120 rounded-full bg-violet/20 blur-[100px]" />
-          <div className="bg-grid absolute inset-0 mask-[linear-gradient(to_bottom,black,transparent)] opacity-30" />
+          <div className="absolute inset-0 bg-linear-to-br from-primary via-[oklch(0.5_0.22_280)] to-violet" />
+          <div className="absolute -top-40 -left-20 h-120 w-120 rounded-full bg-[oklch(0.62_0.2_255)] opacity-70 blur-[120px]" />
+          <div className="absolute -right-24 -bottom-48 h-120 w-120 rounded-full bg-pink opacity-45 blur-[130px]" />
+          <div className="bg-dots absolute inset-0 mask-[linear-gradient(to_left,black,transparent_70%)] opacity-25" />
+          <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0_1px_0_0_oklch(1_0_0/30%),inset_0_0_0_1px_oklch(1_0_0/12%)]" />
         </div>
-        <div className="flex flex-col items-start gap-8 md:flex-row md:items-end md:justify-between">
-          <SectionHeading
-            eyebrow={eyebrow}
-            title={title}
-            description={description}
-          />
-          <Link
-            href={href}
-            className={cn(buttonVariants({ size: "xl" }), "shrink-0")}
-          >
-            {cta}
-            <ArrowRight data-icon="inline-end" />
-          </Link>
+        <div className="px-6 py-14 sm:px-12 sm:py-20 lg:px-16">
+          <p className="label inline-flex items-center gap-2.5 text-white/80">
+            <span className="size-1.5 rounded-full bg-white" aria-hidden />
+            {eyebrow}
+          </p>
+          <div className="mt-6 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:gap-16">
+            <h2 className="display text-5xl sm:text-6xl lg:text-7xl [&_em]:bg-none [&_em]:text-white/65">
+              {title}
+            </h2>
+            <div className="space-y-8">
+              <p className="max-w-md text-lg leading-relaxed text-white/90">
+                {description}
+              </p>
+              <Link
+                href={href}
+                className={buttonVariants({ size: "xl", variant: "inverse" })}
+              >
+                {cta}
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </Container>
   )
 }

@@ -7,13 +7,14 @@ import {
   PageHero,
   SectionHeading,
 } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Advisory",
   description:
     "Strategic advisory bridging immersive technology with real-world experience — XR market analysis, immersive media strategy, and industry communication.",
-  alternates: { canonical: "/advisory" },
-}
+  path: "/advisory",
+})
 
 const offerings = [
   {
@@ -56,16 +57,14 @@ export default function AdvisoryPage() {
       <Container>
         <ol className="grid gap-4 lg:grid-cols-3">
           {offerings.map((o, i) => (
-            <li key={o.title} className="glass-card reveal flex flex-col p-8">
+            <li key={o.title} className="glass reveal flex flex-col p-8 sm:p-9">
               <div className="flex items-center justify-between">
-                <span className="flex size-11 items-center justify-center rounded-xl bg-primary/15 ring-1 ring-primary/30">
-                  <o.icon className="size-5 text-primary" />
+                <span className="icon-tile size-12">
+                  <o.icon className="size-5 text-signal" />
                 </span>
-                <span className="font-mono text-xs text-muted-foreground">
-                  0{i + 1}
-                </span>
+                <span className="label text-muted-foreground">0{i + 1}</span>
               </div>
-              <h2 className="mt-6 text-xl font-medium">{o.title}</h2>
+              <h2 className="display mt-8 text-2xl">{o.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {o.body}
               </p>
@@ -86,10 +85,10 @@ export default function AdvisoryPage() {
             }
             description="Advice shaped by XR writing for a major industry publication and by hands-on experience deploying digital communication technology in operational environments."
           />
-          <ul className="reveal divide-y divide-white/8 self-end border-y border-white/8">
+          <ul className="glass reveal divide-y divide-line self-end px-6 sm:px-8">
             {audiences.map((a) => (
               <li key={a} className="flex items-start gap-4 py-5 text-base">
-                <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-primary" />
+                <span className="bg-brand mt-2 size-2 shrink-0 rounded-full" />
                 {a}
               </li>
             ))}

@@ -2,12 +2,13 @@ import type { Metadata } from "next"
 
 import { PressList } from "@/components/press-list"
 import { Container, CtaBand, PageHero } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Press Releases",
   description: "Official announcements from StormXR, syndicated via PRLog.",
-  alternates: { canonical: "/press" },
-}
+  path: "/press",
+})
 
 export default function PressPage() {
   return (

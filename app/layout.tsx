@@ -1,22 +1,21 @@
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
+import { Archivo, Geist_Mono } from "next/font/google"
 
 import "./globals.css"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
+import { baseOpenGraph } from "@/lib/metadata"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
-const fontSans = Geist({ subsets: ["latin"], variable: "--font-sans" })
+// Archivo's width axis powers the wide `.display` headline style.
+const fontSans = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-sans",
+})
 
 const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
-
-const fontDisplay = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-display",
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -26,18 +25,17 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
-  openGraph: {
-    type: "website",
-    siteName: site.name,
-    url: site.url,
-    locale: "en_US",
+  openGraph: baseOpenGraph,
+  twitter: {
+    card: "summary_large_image",
+    site: "@StormyCsVR",
+    creator: "@StormyCsVR",
   },
-  twitter: { card: "summary_large_image", site: "@StormyCsVR" },
-  icons: { apple: "/images/StormXRLogoNoText.png" },
+  // Icons come from app/favicon.ico, app/icon.png, and app/apple-icon.png.
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0b0f1c",
+  themeColor: "#080a14",
   colorScheme: "dark",
 }
 
@@ -66,12 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        "dark antialiased",
-        fontSans.variable,
-        fontMono.variable,
-        fontDisplay.variable
-      )}
+      className={cn("dark antialiased", fontSans.variable, fontMono.variable)}
     >
       <body className="flex min-h-svh flex-col overflow-x-clip">
         <a
@@ -81,7 +74,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <SiteHeader />
-        <main id="main" className="flex-1">
+        <main id="main" className="flex-1 pb-16 sm:pb-24">
           {children}
         </main>
         <SiteFooter />

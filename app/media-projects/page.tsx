@@ -2,14 +2,15 @@ import type { Metadata } from "next"
 
 import { PlatformCard } from "@/components/platform-card"
 import { Container, CtaBand, PageHero } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 import { platforms } from "@/lib/site"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Media Projects",
   description:
     "NextWave XR, the VR Lens Podcast, and StormyCs VR — StormXR's editorial, audio, and creator channels covering immersive technology and spatial computing.",
-  alternates: { canonical: "/media-projects" },
-}
+  path: "/media-projects",
+})
 
 export default function MediaProjectsPage() {
   return (
@@ -24,9 +25,9 @@ export default function MediaProjectsPage() {
         description="StormXR's media presence spans editorial, audio, and social — all rooted in the same passion for immersive technology and spatial computing."
       />
       <Container>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="space-y-4 border-b border-line">
           {platforms.map((p, i) => (
-            <div key={p.slug} className="reveal flex">
+            <div key={p.slug} className="reveal">
               <PlatformCard platform={p} index={i} expanded />
             </div>
           ))}

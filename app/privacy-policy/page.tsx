@@ -4,15 +4,16 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Container, PageHero } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 import { privacyPolicies } from "@/lib/privacy-policies"
 import { apps } from "@/lib/site"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy Policies",
   description:
     "Privacy policies for apps and experiences published by StormXR, LLC.",
-  alternates: { canonical: "/privacy-policy" },
-}
+  path: "/privacy-policy",
+})
 
 export default function PrivacyIndexPage() {
   return (
@@ -34,7 +35,7 @@ export default function PrivacyIndexPage() {
               <li key={p.slug}>
                 <Link
                   href={`/privacy-policy/${p.slug}`}
-                  className="glass-card group flex items-center gap-4 p-5 outline-none focus-visible:ring-3 focus-visible:ring-ring"
+                  className="glass group flex items-center gap-4 p-5 outline-none"
                 >
                   {app && (
                     <Image
@@ -42,7 +43,7 @@ export default function PrivacyIndexPage() {
                       alt=""
                       width={48}
                       height={48}
-                      className="size-12 rounded-xl ring-1 ring-white/10"
+                      className="size-12 rounded-xl ring-1 ring-line"
                     />
                   )}
                   <span className="flex-1">
@@ -51,7 +52,7 @@ export default function PrivacyIndexPage() {
                       Effective {p.effectiveDate}
                     </span>
                   </span>
-                  <ArrowRight className="size-4 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-primary" />
+                  <ArrowRight className="size-4 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-signal" />
                 </Link>
               </li>
             )

@@ -9,14 +9,15 @@ import {
   PageHero,
   SectionHeading,
 } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 import { people } from "@/lib/site"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
     "StormXR is the umbrella brand connecting XR writing, analysis, media, partnerships, and industry experience — founded by Craig Storm, built by Justin Storm.",
-  alternates: { canonical: "/about" },
-}
+  path: "/about",
+})
 
 const principles = [
   {
@@ -52,19 +53,19 @@ export default function AboutPage() {
       >
         <Link
           href="/press"
-          className="group inline-flex items-center gap-2 text-sm font-medium text-primary"
+          className="group inline-flex items-center gap-2 text-sm font-medium"
         >
           In the news — read our press releases
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          <ArrowRight className="size-4 text-signal transition-transform group-hover:translate-x-0.5" />
         </Link>
       </PageHero>
 
       <Container>
-        <ul className="grid gap-px overflow-hidden rounded-3xl border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {principles.map((p, i) => (
-            <li key={p.title} className="reveal bg-background p-7">
-              <span className="font-mono text-xs text-primary">0{i + 1}</span>
-              <h2 className="mt-4 text-lg font-medium">{p.title}</h2>
+            <li key={p.title} className="glass reveal p-7 sm:p-8">
+              <span className="label text-gradient">0{i + 1}</span>
+              <h2 className="display mt-12 text-2xl">{p.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {p.body}
               </p>
@@ -82,19 +83,19 @@ export default function AboutPage() {
               className="reveal grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20"
             >
               <div className={i % 2 ? "lg:order-2" : undefined}>
-                <div className="relative aspect-4/5 max-w-sm overflow-hidden rounded-[2rem] border border-white/10 bg-card">
+                <div className="glass relative aspect-4/5 max-w-sm overflow-hidden rounded-[2.25rem]">
                   <div aria-hidden className="absolute inset-0">
-                    <div className="absolute -top-10 -left-10 h-60 w-60 rounded-full bg-primary/25 blur-[80px]" />
-                    <div className="absolute right-0 -bottom-10 h-60 w-60 rounded-full bg-violet/25 blur-[80px]" />
-                    <div className="bg-grid absolute inset-0 opacity-40" />
+                    <div className="bg-dots absolute inset-0 opacity-50" />
+                    <div className="absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-violet/30 blur-[90px]" />
+                    <div className="absolute -top-10 -right-10 h-72 w-72 rounded-full bg-primary/35 blur-[90px]" />
                   </div>
                   <div className="relative flex h-full flex-col justify-between p-8">
-                    <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                    <span className="label w-fit rounded-full bg-background/50 px-3 py-1.5 text-signal ring-1 ring-line backdrop-blur">
                       {person.role}
                     </span>
                     <span
                       aria-hidden
-                      className="text-storm font-serif text-[7rem] leading-none"
+                      className="display text-[9rem] leading-[0.8] text-transparent [-webkit-text-stroke:1px_color-mix(in_oklch,var(--signal)_60%,transparent)]"
                     >
                       {person.initials}
                     </span>
@@ -112,7 +113,7 @@ export default function AboutPage() {
                     </>
                   }
                 />
-                <h3 className="mt-6 text-xl font-medium">{person.name}</h3>
+                <h3 className="label mt-8 text-foreground">{person.name}</h3>
                 <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
                   {person.bio.map((p) => (
                     <p key={p.slice(0, 20)}>{p}</p>
@@ -122,9 +123,10 @@ export default function AboutPage() {
                   href={person.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                  className="mt-8 inline-flex w-fit items-center gap-1.5 text-sm font-medium hover:text-signal"
                 >
-                  Connect on LinkedIn <ArrowUpRight className="size-4" />
+                  Connect on LinkedIn{" "}
+                  <ArrowUpRight className="size-4 text-signal" />
                 </a>
               </div>
             </article>
@@ -133,9 +135,9 @@ export default function AboutPage() {
       </section>
 
       <Container>
-        <div className="reveal grid gap-6 rounded-3xl border border-white/8 p-8 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-10 sm:p-10">
+        <div className="glass reveal grid gap-6 p-8 sm:grid-cols-[12rem_1fr] sm:items-baseline sm:gap-10 sm:p-12">
           <Eyebrow>Company</Eyebrow>
-          <p className="text-lg leading-relaxed text-foreground/90">
+          <p className="display max-w-4xl text-2xl leading-snug font-normal sm:text-3xl">
             StormXR, LLC is the company Craig founded to power his work in the
             extended reality space — the engine behind NextWave XR, the VR Lens
             Podcast, StormyCs VR, and every app we ship.

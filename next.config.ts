@@ -1,6 +1,14 @@
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      // UploadVR (Ghost) article header images.
+      { protocol: "https", hostname: "storage.ghost.io" },
+      // Images uploaded to Convex file storage.
+      { protocol: "https", hostname: "*.convex.cloud" },
+    ],
+  },
   // The old NextWave XR sub-site pages were folded into /nextwavexr and /contact.
   async redirects() {
     return [

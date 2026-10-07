@@ -3,14 +3,15 @@ import type { Metadata } from "next"
 import Image from "next/image"
 
 import { Container, CtaBand, PageHero } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 import { podcastLinks } from "@/lib/site"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "VR Lens Podcast",
   description:
     "Interviews, analysis, and unfiltered conversation about virtual reality, spatial computing, and the people building the next dimension of media.",
-  alternates: { canonical: "/vrlens" },
-}
+  path: "/vrlens",
+})
 
 const listen = [
   {
@@ -49,9 +50,9 @@ export default function VRLensPage() {
           {themes.map((t) => (
             <li
               key={t.label}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-3.5 py-1.5 text-sm text-muted-foreground"
+              className="inline-flex items-center gap-2 rounded-full bg-white/4 px-3.5 py-2 text-sm text-muted-foreground ring-1 ring-line"
             >
-              <t.icon className="size-4 text-primary" />
+              <t.icon className="size-4 text-signal" />
               {t.label}
             </li>
           ))}
@@ -59,29 +60,29 @@ export default function VRLensPage() {
       </PageHero>
 
       <Container>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {listen.map((l) => (
             <a
               key={l.name}
               href={l.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card reveal group flex flex-col p-8 outline-none focus-visible:ring-3 focus-visible:ring-ring"
+              className="glass reveal group flex flex-col p-8 outline-none sm:p-10"
             >
               <Image
                 src={l.icon}
                 alt=""
                 width={56}
                 height={56}
-                className="size-14 rounded-2xl object-contain"
+                className="size-16 rounded-2xl object-contain shadow-lg shadow-black/40"
               />
-              <h2 className="mt-6 text-2xl font-medium">{l.name}</h2>
+              <h2 className="display mt-10 text-4xl">{l.name}</h2>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {l.body}
               </p>
-              <span className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+              <span className="mt-10 inline-flex items-center gap-1.5 text-sm font-medium">
                 Listen now
-                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="size-4 text-signal transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
             </a>
           ))}

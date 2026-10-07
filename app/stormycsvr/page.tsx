@@ -3,14 +3,15 @@ import type { Metadata } from "next"
 import Image from "next/image"
 
 import { Container, CtaBand, PageHero } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 import { stormycsSocials } from "@/lib/site"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "StormyCs VR",
   description:
     "Gaming, fitness, and personality-driven VR content from StormyCs VR across YouTube, TikTok, Instagram, X, Threads, and Bluesky.",
-  alternates: { canonical: "/stormycsvr" },
-}
+  path: "/stormycsvr",
+})
 
 export default function StormyCsVRPage() {
   return (
@@ -27,14 +28,14 @@ export default function StormyCsVRPage() {
       <Container>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stormycsSocials.map((s) => (
-            <li key={s.name} className="reveal">
+            <li key={s.name} className="reveal flex">
               <a
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass-card group flex items-center gap-5 p-6 outline-none focus-visible:ring-3 focus-visible:ring-ring"
+                className="glass group flex w-full items-center gap-5 p-5 outline-none sm:p-6"
               >
-                <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-white/10">
+                <span className="icon-tile size-14 shrink-0">
                   <Image
                     src={s.icon}
                     alt=""
@@ -44,12 +45,12 @@ export default function StormyCsVRPage() {
                   />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block font-medium">{s.name}</span>
+                  <span className="display block text-xl">{s.name}</span>
                   <span className="block truncate text-sm text-muted-foreground">
                     {s.handle}
                   </span>
                 </span>
-                <span className="flex size-9 items-center justify-center rounded-full ring-1 ring-white/10 transition group-hover:bg-primary group-hover:text-primary-foreground">
+                <span className="flex size-10 items-center justify-center rounded-full bg-white/4 ring-1 ring-line-strong transition group-hover:bg-primary group-hover:ring-primary">
                   <ArrowUpRight className="size-4" />
                   <span className="sr-only">Follow on {s.name}</span>
                 </span>

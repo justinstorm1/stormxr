@@ -10,6 +10,7 @@ const icons = {
   stormycsvr: Users,
 }
 
+/** A wide glass row for one media platform. Stack them with a gap. */
 export function PlatformCard({
   platform,
   index,
@@ -24,31 +25,33 @@ export function PlatformCard({
     <Link
       href={`/${platform.slug}`}
       className={cn(
-        "glass-card group flex flex-col p-7 outline-none focus-visible:ring-3 focus-visible:ring-ring",
-        expanded && "sm:p-9"
+        "glass group grid gap-5 overflow-hidden p-6 outline-none sm:grid-cols-[auto_1fr] sm:gap-8 sm:p-8 md:grid-cols-[auto_1.1fr_1fr_auto] md:items-center",
+        expanded && "md:p-10"
       )}
     >
-      <div className="flex items-center justify-between">
-        <span className="flex size-12 items-center justify-center rounded-2xl bg-linear-to-br from-primary/25 to-violet/25 ring-1 ring-white/10">
-          <Icon className="size-5 text-primary" />
-        </span>
-        <span className="font-mono text-xs text-muted-foreground">
-          0{index + 1}
-        </span>
+      <span className="icon-tile size-16 rounded-[1.1rem] transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3">
+        <Icon className="size-6" />
+      </span>
+      <div>
+        <p className="label flex items-center gap-2 text-muted-foreground">
+          <span className="text-gradient">0{index + 1}</span>
+          {platform.kind}
+        </p>
+        <h3 className="display mt-2 text-3xl sm:text-[2.6rem]">
+          {platform.name}
+        </h3>
       </div>
-      <p className="mt-8 font-mono text-[0.7rem] tracking-[0.16em] text-muted-foreground uppercase">
-        {platform.kind}
-      </p>
-      <h3 className="mt-2 text-2xl font-medium tracking-tight">
-        {platform.name}
-      </h3>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+      <p className="max-w-md text-sm leading-relaxed text-muted-foreground sm:col-start-2 md:col-start-auto">
         {platform.summary}
         {expanded && <> {platform.detail}</>}
+        <span className="mt-4 flex items-center gap-1.5 font-medium text-signal md:hidden">
+          {platform.cta}
+          <ArrowUpRight className="size-4" />
+        </span>
       </p>
-      <span className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
-        {platform.cta}
-        <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      <span className="hidden size-14 items-center justify-center rounded-full bg-white/4 ring-1 ring-line-strong transition group-hover:bg-primary group-hover:ring-primary md:flex">
+        <ArrowUpRight className="size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <span className="sr-only">{platform.cta}</span>
       </span>
     </Link>
   )

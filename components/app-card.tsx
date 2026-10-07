@@ -13,25 +13,37 @@ function platformLabel(app: App) {
 export function AppCard({ app, className }: { app: App; className?: string }) {
   return (
     <article
-      className={cn("glass-card is-interactive flex flex-col p-6", className)}
+      className={cn(
+        "glass is-interactive group flex flex-col overflow-hidden p-6 sm:p-7",
+        className
+      )}
     >
-      <div className="flex items-start justify-between gap-4">
+      {/* The icon's own colors bleed softly into the card. */}
+      <Image
+        src={app.icon}
+        alt=""
+        aria-hidden
+        width={72}
+        height={72}
+        className="pointer-events-none absolute -top-10 -right-10 size-44 opacity-25 blur-3xl transition-opacity duration-500 group-hover:opacity-45"
+      />
+      <div className="relative flex items-start justify-between gap-4">
         <Image
           src={app.icon}
           alt={`${app.name} app icon`}
-          width={64}
-          height={64}
-          className="size-16 rounded-2xl object-cover shadow-lg ring-1 shadow-black/40 ring-white/10"
+          width={72}
+          height={72}
+          className="size-18 rounded-[1.25rem] object-cover shadow-xl ring-1 shadow-black/50 ring-white/15 transition-transform duration-300 group-hover:-translate-y-1 group-hover:-rotate-3"
         />
-        <span className="rounded-full border border-white/10 px-2.5 py-1 font-mono text-[0.68rem] tracking-wider text-muted-foreground uppercase">
+        <span className="label rounded-full bg-white/5 px-2.5 py-1 text-[0.62rem] text-muted-foreground ring-1 ring-line">
           {platformLabel(app)}
         </span>
       </div>
-      <h3 className="mt-5 text-lg font-medium">{app.name}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+      <h3 className="display relative mt-8 text-2xl">{app.name}</h3>
+      <p className="relative mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
         {app.description}
       </p>
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="relative mt-7 flex flex-wrap gap-2">
         {app.links.map((link) =>
           link.href ? (
             <a
@@ -39,7 +51,7 @@ export function AppCard({ app, className }: { app: App; className?: string }) {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white/6 px-3 py-1.5 text-xs font-medium ring-1 ring-white/10 transition hover:bg-primary hover:text-primary-foreground hover:ring-primary"
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/6 px-3.5 py-2 text-xs font-medium ring-1 ring-line-strong transition hover:bg-primary hover:ring-primary"
             >
               {link.store}
               <ArrowUpRight className="size-3.5" />
@@ -47,7 +59,7 @@ export function AppCard({ app, className }: { app: App; className?: string }) {
           ) : (
             <span
               key={link.store}
-              className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-white/15 px-3 py-1.5 text-xs text-muted-foreground"
+              className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-line-strong px-3.5 py-2 text-xs text-muted-foreground"
             >
               <Clock className="size-3.5" />
               {link.store}: {link.note}

@@ -4,16 +4,17 @@ import Link from "next/link"
 import { Suspense } from "react"
 
 import { Container, PageHero } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 import { site } from "@/lib/site"
 
 import { ContactForm } from "./contact-form"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
     "Have a project, a partnership opportunity, or just want to talk XR? Get in touch with StormXR.",
-  alternates: { canonical: "/contact" },
-}
+  path: "/contact",
+})
 
 const shortcuts = [
   { href: "/contact?topic=media", label: "Media partnerships & sponsorships" },
@@ -35,38 +36,38 @@ export default function ContactPage() {
         description="Whether you have a project in mind, a partnership opportunity, or just want to talk XR — fill out the form and we'll get back to you."
       />
       <Container className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
-        <div className="glass-card relative p-6 sm:p-10">
+        <div className="glass relative p-6 sm:p-10">
+          <span
+            aria-hidden
+            className="bg-brand absolute inset-x-10 top-0 h-px opacity-80"
+          />
           <Suspense>
             <ContactForm />
           </Suspense>
         </div>
         <aside className="space-y-10 lg:pt-4">
           <div>
-            <h2 className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
-              Email us directly
-            </h2>
+            <h2 className="label text-muted-foreground">Email us directly</h2>
             <a
               href={`mailto:${site.email}`}
-              className="mt-3 inline-flex items-center gap-2 text-lg font-medium hover:text-primary"
+              className="display mt-4 inline-flex items-center gap-2 text-xl break-all hover:text-signal sm:text-2xl"
             >
-              <Mail className="size-5 text-primary" />
+              <Mail className="size-5 text-signal" />
               {site.email}
             </a>
           </div>
           <div>
-            <h2 className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
-              Common requests
-            </h2>
-            <ul className="mt-3 divide-y divide-white/8 border-y border-white/8">
+            <h2 className="label text-muted-foreground">Common requests</h2>
+            <ul className="glass mt-4 divide-y divide-line px-5">
               {shortcuts.map((s) => (
                 <li key={s.href}>
                   <Link
                     href={s.href}
                     scroll={false}
-                    className="group flex items-center justify-between py-3.5 text-sm text-foreground/85 hover:text-primary"
+                    className="group flex items-center justify-between py-3.5 text-sm text-foreground/85 hover:text-signal"
                   >
                     {s.label}
-                    <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-primary" />
+                    <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-signal" />
                   </Link>
                 </li>
               ))}

@@ -9,22 +9,22 @@ export function Logo({ className }: { className?: string }) {
       href="/"
       aria-label="StormXR home"
       className={cn(
-        "group inline-flex items-center gap-2.5 rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring",
+        "group inline-flex items-center gap-2.5 rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-ring",
         className
       )}
     >
-      <span className="relative size-8 overflow-hidden rounded-lg ring-1 ring-white/10 transition group-hover:ring-primary/50">
+      <span className="relative size-8 overflow-hidden rounded-[10px] ring-1 ring-line-strong transition group-hover:ring-signal">
         <Image
           src="/images/StormXRLogoNoText.png"
           alt=""
           fill
           sizes="32px"
-          className="object-cover"
+          className="scale-125 object-cover"
           priority
         />
       </span>
-      <span className="text-[1.05rem] font-semibold tracking-tight">
-        Storm<span className="text-primary">XR</span>
+      <span className="display text-lg tracking-tight">
+        Storm<span className="text-signal">XR</span>
       </span>
     </Link>
   )

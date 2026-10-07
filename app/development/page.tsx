@@ -8,14 +8,15 @@ import {
   PageHero,
   SectionHeading,
 } from "@/components/section"
+import { pageMetadata } from "@/lib/metadata"
 import { apps } from "@/lib/site"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Development",
   description:
     "StormXR builds fast, responsive digital experiences — modern web platforms with Next.js, native iOS and Android apps, and Meta Quest VR experiences.",
-  alternates: { canonical: "/development" },
-}
+  path: "/development",
+})
 
 const disciplines = [
   {
@@ -66,12 +67,12 @@ export default function DevelopmentPage() {
           {disciplines.map((d) => (
             <article
               key={d.title}
-              className="glass-card reveal flex flex-col p-8"
+              className="glass reveal flex flex-col p-8 sm:p-9"
             >
-              <span className="flex size-11 items-center justify-center rounded-xl bg-primary/15 ring-1 ring-primary/30">
-                <d.icon className="size-5 text-primary" />
+              <span className="icon-tile size-12">
+                <d.icon className="size-5 text-signal" />
               </span>
-              <h2 className="mt-6 text-xl font-medium">{d.title}</h2>
+              <h2 className="display mt-8 text-2xl">{d.title}</h2>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {d.body}
               </p>
@@ -79,7 +80,7 @@ export default function DevelopmentPage() {
                 {d.stack.map((s) => (
                   <li
                     key={s}
-                    className="rounded-full bg-white/5 px-2.5 py-1 font-mono text-[0.7rem] text-foreground/80 ring-1 ring-white/10"
+                    className="rounded-full bg-white/4 px-3 py-1 font-mono text-[0.7rem] text-foreground/80 ring-1 ring-line"
                   >
                     {s}
                   </li>

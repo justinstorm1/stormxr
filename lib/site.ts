@@ -193,6 +193,10 @@ export const apps: App[] = [
   },
 ]
 
+/**
+ * Fallback only: the site scrapes PRLog for press releases (lib/press.ts).
+ * This list is used if PRLog is unreachable.
+ */
 export const press = [
   {
     date: "2026-09-10",

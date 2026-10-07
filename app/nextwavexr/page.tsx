@@ -7,17 +7,24 @@ import {
   CtaBand,
   PageHero,
   SectionHeading,
+  SectionRule,
 } from "@/components/section"
+import { ArticlesBrowser } from "@/components/articles/articles-browser"
 import { buttonVariants } from "@/components/ui/button"
+import { getPublishedArticles } from "@/lib/convex-server"
+import { pageMetadata } from "@/lib/metadata"
 import { people, stormycsSocials, uploadVrUrl } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "NextWave XR",
   description:
     "NextWave XR is Craig Storm's editorial and analysis platform covering spatial computing, immersive media, VR fitness, and real-world XR adoption.",
-  alternates: { canonical: "/nextwavexr" },
-}
+  path: "/nextwavexr",
+})
+
+// Articles come from Convex; refresh the prerendered page every minute.
+export const revalidate = 60
 
 const focus = [
   {
@@ -37,7 +44,8 @@ const craigSocials = stormycsSocials.filter((s) =>
   ["X / Twitter", "Bluesky", "Threads"].includes(s.name)
 )
 
-export default function NextWaveXRPage() {
+export default async function NextWaveXRPage() {
+  const articles = await getPublishedArticles()
   return (
     <>
       <PageHero
@@ -70,14 +78,33 @@ export default function NextWaveXRPage() {
         </div>
       </PageHero>
 
-      <Container>
+      <section>
+        <Container>
+          <SectionRule index="01" label="Latest writing" />
+          <SectionHeading
+            className="mt-10"
+            title={
+              <>
+                The <em>articles</em>
+              </>
+            }
+            description="Analysis, features, and news from NextWave XR — plus Craig's reporting for UploadVR."
+          />
+          <div className="mt-12">
+            <ArticlesBrowser articles={articles} />
+          </div>
+        </Container>
+      </section>
+
+      <Container className="mt-24 sm:mt-32">
+        <SectionRule index="02" label="Focus" className="mb-10" />
         <div className="grid gap-4 md:grid-cols-2">
           {focus.map((f) => (
-            <article key={f.title} className="glass-card reveal p-8">
-              <span className="flex size-11 items-center justify-center rounded-xl bg-primary/15 ring-1 ring-primary/30">
-                <f.icon className="size-5 text-primary" />
+            <article key={f.title} className="glass reveal p-8 sm:p-9">
+              <span className="icon-tile size-12">
+                <f.icon className="size-5 text-signal" />
               </span>
-              <h2 className="mt-6 text-xl font-medium">{f.title}</h2>
+              <h2 className="display mt-8 text-2xl">{f.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {f.body}
               </p>
@@ -99,14 +126,14 @@ export default function NextWaveXRPage() {
               description="Craig Storm is a VR writer, immersive fitness advocate, and the creator behind NextWave XR. He explores virtual reality from the perspective of everyday adults discovering what XR can be beyond gaming — and builds the platforms to share that story."
             />
           </div>
-          <div className="reveal glass-card self-start p-7">
+          <div className="reveal glass self-start p-7">
             <div className="flex items-center gap-4">
               <Image
                 src="/images/NextWaveXRLogo.png"
                 alt="NextWave XR logo"
                 width={56}
                 height={56}
-                className="size-14 rounded-xl ring-1 ring-white/10"
+                className="size-14 rounded-2xl ring-1 ring-line"
               />
               <div>
                 <p className="font-medium">Follow the writing</p>
@@ -115,7 +142,7 @@ export default function NextWaveXRPage() {
                 </p>
               </div>
             </div>
-            <ul className="mt-6 divide-y divide-white/8">
+            <ul className="mt-6 divide-y divide-line">
               {[
                 { name: "UploadVR", handle: "craigstorm", href: uploadVrUrl },
                 ...craigSocials,
@@ -133,7 +160,7 @@ export default function NextWaveXRPage() {
                     className="group flex items-center justify-between py-3 text-sm"
                   >
                     <span>{s.name}</span>
-                    <span className="flex items-center gap-1.5 text-muted-foreground group-hover:text-primary">
+                    <span className="flex items-center gap-1.5 text-muted-foreground group-hover:text-signal">
                       {s.handle}
                       <ArrowUpRight className={cn("size-3.5")} />
                     </span>
