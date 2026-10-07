@@ -2,7 +2,14 @@
 
 import { useAuthActions } from "@convex-dev/auth/react"
 import { useConvexAuth } from "convex/react"
-import { ExternalLink, LayoutGrid, Loader, LogOut, Plus } from "lucide-react"
+import {
+  ExternalLink,
+  LayoutGrid,
+  Loader,
+  LogOut,
+  Plus,
+  Users,
+} from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import * as React from "react"
@@ -16,6 +23,7 @@ export const DASHBOARD_PATH = "/nextwavexr/admin/dashboard"
 const links = [
   { href: DASHBOARD_PATH, label: "Dashboard", icon: LayoutGrid },
   { href: "/nextwavexr/admin/create", label: "New article", icon: Plus },
+  { href: "/nextwavexr/admin/accounts", label: "Accounts", icon: Users },
 ]
 
 /** Guards every admin page except login and renders the admin nav. */
@@ -45,9 +53,9 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="pt-28 sm:pt-32">
       <Container>
         <div className="glass flex flex-col gap-3 p-2 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="label text-gradient px-3">NextWave admin</span>
-            <nav aria-label="Admin" className="flex gap-1">
+            <nav aria-label="Admin" className="flex flex-wrap gap-1">
               {links.map((l) => {
                 const active = pathname.startsWith(l.href)
                 return (
