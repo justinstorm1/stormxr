@@ -6,26 +6,32 @@ import { unstable_cache } from "next/cache"
 import { api } from "@/convex/_generated/api"
 import type { ArticleSummary } from "@/lib/articles"
 
-// Convex's fetchQuery opts out of Next's fetch cache, so cache the results
-// explicitly. Pages stay statically rendered and refresh every minute.
 const REVALIDATE_SECONDS = 60
 
 const cachedPublishedArticles = unstable_cache(
-  () => fetchQuery(api.articles.listPublishedArticles, {}),
+  async () => {
+    const articles = await fetchQuery(api.articles.listPublishedArticles, {})
+    return articles.filter((article) => article.published === true)
+  },
   ["published-articles"],
   { revalidate: REVALIDATE_SECONDS, tags: ["articles"] }
 )
 
 const cachedPublishedArticle = unstable_cache(
-  (idOrSlug: string) =>
-    fetchQuery(api.articles.getPublishedArticle, { idOrSlug }),
+  async (idOrSlug: string) => {
+    const article = await fetchQuery(api.articles.getPublishedArticle, {
+      idOrSlug,
+    })
+
+    return article?.published === true ? article : null
+  },
   ["published-article"],
   { revalidate: REVALIDATE_SECONDS, tags: ["articles"] }
 )
 
 /**
- * Published articles for server-rendered pages. Never throws: if Convex is
- * unreachable the page renders without articles and ISR retries later.
+ * Published articles for server-rendered pages.
+ * Only articles with published === true are returned.
  */
 export async function getPublishedArticles(): Promise<ArticleSummary[]> {
   try {
