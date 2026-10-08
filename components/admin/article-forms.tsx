@@ -4,6 +4,7 @@ import type { JSONContent } from "@tiptap/react"
 import { useMutation, useQuery } from "convex/react"
 import {
   ExternalLink,
+  Eye,
   ImagePlus,
   Loader,
   Save,
@@ -14,6 +15,7 @@ import { useRouter } from "next/navigation"
 import * as React from "react"
 
 import { DASHBOARD_PATH } from "@/components/admin/admin-shell"
+import { writePreviewDraft } from "@/components/admin/article-preview"
 import { RichTextEditor } from "@/components/admin/editor/rich-text-editor"
 import {
   Field,
@@ -209,6 +211,38 @@ export function WriteArticleForm({ article }: { article?: Doc<"articles"> }) {
     status === "scheduled" && !scheduledFor && "a publish time",
   ].filter(Boolean)
 
+  const tagList = tags
+    .split(",")
+    .map((t) => t.trim())
+    .filter(Boolean)
+
+  // Once a preview tab is open, keep it in sync with every edit.
+  const [previewing, setPreviewing] = React.useState(false)
+  const previewDraft = React.useMemo(
+    () => ({
+      title: title.trim() || "Untitled article",
+      category: category.trim() || "Uncategorized",
+      author: author.trim(),
+      date: fromDateInput(date),
+      excerpt: excerpt.trim() || undefined,
+      headerImage: headerImage.trim() || undefined,
+      content: content ?? { type: "doc", content: [] },
+      tags: tagList,
+    }),
+    // tagList is derived from tags.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [title, category, author, date, excerpt, headerImage, content, tags]
+  )
+  React.useEffect(() => {
+    if (previewing) writePreviewDraft(previewDraft)
+  }, [previewing, previewDraft])
+
+  function openPreview() {
+    writePreviewDraft(previewDraft)
+    setPreviewing(true)
+    window.open("/nextwavexr/preview", "nextwavexr-preview")
+  }
+
   async function save() {
     if (missing.length || slugError) return
     setSaving(true)
@@ -220,10 +254,7 @@ export function WriteArticleForm({ article }: { article?: Doc<"articles"> }) {
       content: content ?? { type: "doc", content: [] },
       excerpt: excerpt.trim() || undefined,
       category: category.trim(),
-      tags: tags
-        .split(",")
-        .map((t) => t.trim())
-        .filter(Boolean),
+      tags: tagList,
       featured,
       status,
       scheduledFor:
@@ -325,6 +356,16 @@ export function WriteArticleForm({ article }: { article?: Doc<"articles"> }) {
             Add {missing.join(", ")} to save.
           </p>
         )}
+        <Button
+          type="button"
+          variant="outline"
+          size="xl"
+          className="w-full"
+          onClick={openPreview}
+        >
+          <Eye data-icon="inline-start" />
+          Preview
+        </Button>
 
         <hr className="border-line" />
 

@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next"
-import { Archivo, Geist_Mono } from "next/font/google"
+import {
+  Archivo,
+  Geist_Mono,
+  Roboto_Slab,
+  Source_Serif_4,
+} from "next/font/google"
 
 import "./globals.css"
 import { SiteFooter } from "@/components/site-footer"
@@ -16,6 +21,19 @@ const fontSans = Archivo({
 })
 
 const fontMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" })
+
+// Optional article body fonts (see `articleFonts`); only articles use them,
+// so they aren't preloaded on every page.
+const fontSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  preload: false,
+})
+const fontSlab = Roboto_Slab({
+  subsets: ["latin"],
+  variable: "--font-slab",
+  preload: false,
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -64,7 +82,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("dark antialiased", fontSans.variable, fontMono.variable)}
+      className={cn(
+        "dark antialiased",
+        fontSans.variable,
+        fontMono.variable,
+        fontSerif.variable,
+        fontSlab.variable
+      )}
     >
       <body className="flex min-h-svh flex-col overflow-x-clip">
         <a

@@ -28,6 +28,22 @@ export function formatArticleDate(ms: number) {
 }
 
 /** Slugs that would collide with real routes under /nextwavexr. */
+/**
+ * Fonts writers can apply to article text. `value` is stored on TipTap's
+ * `textStyle` mark as `fontFamily`; the public renderer only honours these.
+ */
+export const articleFonts = [
+  { label: "Default", value: "" },
+  { label: "Serif", value: "var(--font-serif)" },
+  { label: "Slab", value: "var(--font-slab)" },
+  { label: "Mono", value: "var(--font-mono)" },
+] as const
+
+export const isArticleFont = (value: unknown): value is string =>
+  typeof value === "string" &&
+  value !== "" &&
+  articleFonts.some((f) => f.value === value)
+
 export const reservedSlugs = ["admin", "articles"]
 
 export function slugify(s: string) {

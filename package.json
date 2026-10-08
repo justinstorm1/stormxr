@@ -15,6 +15,7 @@
     "@base-ui/react": "^1.8.0",
     "@convex-dev/auth": "^0.0.96",
     "@tiptap/extension-text-align": "^3.31.4",
+    "@tiptap/extension-text-style": "^3.31.4",
     "@tiptap/extensions": "^3.31.4",
     "@tiptap/pm": "^3.31.4",
     "@tiptap/react": "^3.31.4",

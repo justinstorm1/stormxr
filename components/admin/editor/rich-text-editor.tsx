@@ -1,6 +1,7 @@
 "use client"
 
 import TextAlign from "@tiptap/extension-text-align"
+import { FontFamily, TextStyle } from "@tiptap/extension-text-style"
 import { Placeholder } from "@tiptap/extensions"
 import {
   EditorContent,
@@ -35,6 +36,7 @@ import {
 import * as React from "react"
 
 import { useUpload } from "@/components/admin/use-upload"
+import { articleFonts } from "@/lib/articles"
 import { cn } from "@/lib/utils"
 
 import { ResizableImage, toEmbedUrl, VideoEmbed } from "./nodes"
@@ -57,12 +59,17 @@ export function RichTextEditor({
         link: { openOnClick: false, autolink: true, defaultProtocol: "https" },
       }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
+      TextStyle,
+      FontFamily,
       Placeholder.configure({ placeholder: "Start writing your article…" }),
       ResizableImage,
       VideoEmbed,
     ],
     content: content ?? undefined,
     editorProps: {
+      // Keep the caret clear of the fixed site header and sticky toolbar.
+      scrollMargin: { top: 180, bottom: 40, left: 0, right: 0 },
+      scrollThreshold: { top: 180, bottom: 40, left: 0, right: 0 },
       attributes: {
         class:
           "prose-article min-h-[28rem] px-5 py-6 outline-none sm:px-8 sm:py-8",
@@ -72,7 +79,7 @@ export function RichTextEditor({
   })
 
   return (
-    <div className="glass overflow-hidden">
+    <div className="glass overflow-clip">
       {editor ? (
         <Toolbar editor={editor} onError={onError} />
       ) : (
@@ -99,6 +106,8 @@ function Toolbar({
       bold: e.isActive("bold"),
       italic: e.isActive("italic"),
       underline: e.isActive("underline"),
+      font:
+        (e.getAttributes("textStyle").fontFamily as string | undefined) ?? "",
       strike: e.isActive("strike"),
       h2: e.isActive("heading", { level: 2 }),
       h3: e.isActive("heading", { level: 3 }),
@@ -178,8 +187,33 @@ function Toolbar({
     <div
       role="toolbar"
       aria-label="Formatting"
-      className="sticky top-20 z-10 flex flex-wrap items-center gap-0.5 border-b border-line bg-card/90 p-2 backdrop-blur"
+      className="sticky top-[5.25rem] z-20 flex flex-wrap items-center gap-0.5 rounded-t-2xl border-b border-line bg-card p-2 shadow-[0_12px_24px_-16px_oklch(0_0_0/70%)]"
     >
+      <select
+        aria-label="Font"
+        title="Font"
+        value={
+          articleFonts.some((f) => f.value === state.font) ? state.font : ""
+        }
+        onChange={(e) => {
+          const chain = editor.chain().focus()
+          if (e.target.value) chain.setFontFamily(e.target.value).run()
+          else chain.unsetFontFamily().run()
+        }}
+        className="h-9 rounded-lg bg-transparent px-2 text-sm text-muted-foreground ring-1 ring-line outline-none hover:text-foreground focus-visible:ring-ring"
+      >
+        {articleFonts.map((f) => (
+          <option
+            key={f.label}
+            value={f.value}
+            style={{ fontFamily: f.value || undefined }}
+            className="bg-card"
+          >
+            {f.label}
+          </option>
+        ))}
+      </select>
+      {sep}
       <Tool
         label="Bold"
         active={state.bold}

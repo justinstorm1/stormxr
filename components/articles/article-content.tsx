@@ -1,5 +1,6 @@
 import { Fragment } from "react"
 
+import { isArticleFont } from "@/lib/articles"
 import { cn } from "@/lib/utils"
 
 /** A ProseMirror/TipTap JSON node, as stored in `articles.content`. */
@@ -63,6 +64,13 @@ function Text({ node }: { node: RichNode }) {
       case "code":
         out = <code>{out}</code>
         break
+      case "textStyle": {
+        const fontFamily = mark.attrs?.fontFamily
+        if (isArticleFont(fontFamily)) {
+          out = <span style={{ fontFamily }}>{out}</span>
+        }
+        break
+      }
       case "link": {
         const href = safeHref(mark.attrs?.href)
         const external = href?.startsWith("http")
