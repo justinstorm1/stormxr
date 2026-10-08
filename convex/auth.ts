@@ -4,6 +4,11 @@ import { convexAuth } from "@convex-dev/auth/server"
 import { ConvexError } from "convex/values"
 
 import type { MutationCtx } from "./_generated/server"
+import {
+  signInEmailHtml,
+  signInEmailSubject,
+  signInEmailText,
+} from "./signInEmail"
 
 export const MAGIC_LINK_PROVIDER = "magic-link"
 
@@ -25,13 +30,12 @@ const MagicLink = Email({
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "NextWave XR Admin <noreply@stormxr.tech>",
+        from: "NextWave XR Admin <admin@stormxr.tech>",
+        reply_to: "craigstorm@stormxr.tech",
         to: email,
-        subject: "Your NextWave XR admin sign-in link",
-        text: `Sign in to NextWave XR Admin:\n\n${url}\n\nThis link expires in ${minutes} minutes and can only be used once. If you didn't request it, you can ignore this email.`,
-        html: `<p>Click the link below to sign in to NextWave XR Admin.</p>
-<p><a href="${url}">Sign in to NextWave XR Admin</a></p>
-<p>This link expires in ${minutes} minutes and can only be used once. If you didn't request it, you can ignore this email.</p>`,
+        subject: signInEmailSubject,
+        text: signInEmailText(url, minutes),
+        html: signInEmailHtml(url, minutes),
       }),
     })
     if (!res.ok) {

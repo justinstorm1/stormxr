@@ -109,7 +109,7 @@ export async function sendContact(
   const resend = new Resend(process.env.RESEND_API_KEY)
   const { error } = await resend.emails
     .send({
-      from: "StormXR Contact <noreply@stormxr.tech>",
+      from: "StormXR Contact <contact@stormxr.tech>",
       to: CONTACT_RECIPIENTS,
       replyTo: values.email,
       subject: contactEmailSubject(emailData),
