@@ -8,9 +8,10 @@ import {
 } from "@convex-dev/auth/server"
 import { ConvexError, v } from "convex/values"
 
-import { internal } from "./_generated/api"
+import { api, internal } from "./_generated/api"
 import type { ActionCtx } from "./_generated/server"
 import { action, internalQuery, mutation, query } from "./_generated/server"
+import { MAGIC_LINK_PROVIDER } from "./auth"
 import { requireAuth } from "./authHelpers"
 
 // Every account is an admin, so any signed-in user may manage accounts.
@@ -77,6 +78,46 @@ export const accountEmail = internalQuery({
       )
       .unique()
     return account?.providerAccountId ?? null
+  },
+})
+
+export const hasAccountWithEmail = internalQuery({
+  args: { email: v.string() },
+  handler: async (ctx, { email }) => {
+    const account = await ctx.db
+      .query("authAccounts")
+      .withIndex("providerAndAccountId", (q) =>
+        q.eq("provider", PROVIDER).eq("providerAccountId", email)
+      )
+      .unique()
+    return account !== null
+  },
+})
+
+/**
+ * "Forgot your password": email a one-time sign-in link, but only if an
+ * account with that email exists. Returns the same result either way so the
+ * form can't be used to discover which emails have accounts.
+ */
+export const sendSignInLink = action({
+  args: { email: v.string(), redirectTo: v.string() },
+  handler: async (ctx, args) => {
+    const email = args.email.trim()
+    if (!EMAIL_RE.test(email)) {
+      throw new ConvexError("Enter a valid email address.")
+    }
+    if (!args.redirectTo.startsWith("/")) {
+      throw new ConvexError("Invalid redirect.")
+    }
+    const exists = await ctx.runQuery(internal.accounts.hasAccountWithEmail, {
+      email,
+    })
+    if (!exists) return
+
+    await ctx.runAction(api.auth.signIn, {
+      provider: MAGIC_LINK_PROVIDER,
+      params: { email, redirectTo: args.redirectTo },
+    })
   },
 })
 
