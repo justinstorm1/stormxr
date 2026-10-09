@@ -165,8 +165,13 @@ export function CtaBand({
       <section className="reveal relative isolate overflow-hidden rounded-[2rem] bg-primary text-primary-foreground shadow-[0_40px_120px_-50px_var(--violet)] sm:rounded-[2.5rem]">
         <div aria-hidden className="absolute inset-0 -z-10">
           <div className="absolute inset-0 bg-linear-to-br from-primary via-[oklch(0.5_0.22_280)] to-violet" />
-          <div className="absolute -top-40 -left-20 h-120 w-120 rounded-full bg-[oklch(0.62_0.2_255)] opacity-70 blur-[120px]" />
-          <div className="absolute -right-24 -bottom-48 h-120 w-120 rounded-full bg-pink opacity-45 blur-[130px]" />
+          {/*
+            Soft glows as radial gradients, not blurred circles: hovering the
+            button repaints the area behind it, and a re-rasterized large blur
+            doesn't quite match the original, leaving a visible patch.
+          */}
+          <div className="absolute -top-70 -left-50 size-180 bg-[radial-gradient(closest-side,oklch(0.62_0.2_255/70%)_30%,transparent)]" />
+          <div className="absolute -right-56 -bottom-80 size-190 bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--pink)_45%,transparent)_30%,transparent)]" />
           <div className="bg-dots absolute inset-0 mask-[linear-gradient(to_left,black,transparent_70%)] opacity-25" />
           <div className="absolute inset-0 rounded-[inherit] shadow-[inset_0_1px_0_0_oklch(1_0_0/30%),inset_0_0_0_1px_oklch(1_0_0/12%)]" />
         </div>
