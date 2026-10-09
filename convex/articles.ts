@@ -1,6 +1,7 @@
 import { v } from "convex/values"
 import { internalMutation, mutation, query } from "./_generated/server"
 import type { Doc } from "./_generated/dataModel"
+import { logActivity } from "./activity"
 import { requireAuth } from "./authHelpers"
 
 export const getArticles = query({
@@ -73,7 +74,7 @@ export const addArticle = mutation({
     ctx,
     { headerImage, title, author, link, published, date, category }
   ) => {
-    await requireAuth(ctx)
+    const userId = await requireAuth(ctx)
     const newArticle = await ctx.db.insert("articles", {
       headerImage,
       title,
@@ -85,6 +86,13 @@ export const addArticle = mutation({
       source: "link",
       status: published ? "published" : "draft",
       updatedAt: Date.now(),
+    })
+    await logActivity(ctx, {
+      action: "article.create",
+      actorId: userId,
+      targetId: newArticle,
+      targetTitle: title,
+      detail: "UploadVR link",
     })
     return newArticle
   },
@@ -105,7 +113,7 @@ export const editArticle = mutation({
     ctx,
     { articleId, headerImage, title, author, link, published, date, category }
   ) => {
-    await requireAuth(ctx)
+    const userId = await requireAuth(ctx)
     const article = await ctx.db.get(articleId)
     if (!article) return
 
@@ -121,6 +129,13 @@ export const editArticle = mutation({
       status: published ? "published" : "draft",
       updatedAt: Date.now(),
     })
+    await logActivity(ctx, {
+      action: statusChangeAction(article, published ? "published" : "draft"),
+      actorId: userId,
+      targetId: articleId,
+      targetTitle: title,
+      detail: "UploadVR link",
+    })
     return { success: true }
   },
 })
@@ -130,7 +145,8 @@ export const deleteArticle = mutation({
     articleId: v.id("articles"),
   },
   handler: async (ctx, { articleId }) => {
-    await requireAuth(ctx)
+    const userId = await requireAuth(ctx)
+    const article = await ctx.db.get(articleId)
 
     const relatedMedia = await ctx.db
       .query("media")
@@ -142,6 +158,12 @@ export const deleteArticle = mutation({
     }
 
     await ctx.db.delete(articleId)
+    await logActivity(ctx, {
+      action: "article.delete",
+      actorId: userId,
+      targetId: articleId,
+      targetTitle: article?.title,
+    })
     return { success: true }
   },
 })
@@ -205,6 +227,13 @@ export const createArticle = mutation({
       source: "native",
       authorId: userId,
     })
+    await logActivity(ctx, {
+      action: "article.create",
+      actorId: userId,
+      targetId: articleId,
+      targetTitle: args.title,
+      detail: args.status === "draft" ? undefined : `Created as ${args.status}`,
+    })
     return articleId
   },
 })
@@ -212,7 +241,7 @@ export const createArticle = mutation({
 export const updateArticle = mutation({
   args: { articleId: v.id("articles"), ...nativeArticleFields },
   handler: async (ctx, args) => {
-    await requireAuth(ctx)
+    const userId = await requireAuth(ctx)
     const article = await ctx.db.get(args.articleId)
     if (!article) throw new Error("Article not found")
 
@@ -244,6 +273,13 @@ export const updateArticle = mutation({
       date: args.date ?? article.date,
       updatedAt: Date.now(),
     })
+    await logActivity(ctx, {
+      action: statusChangeAction(article, args.status),
+      actorId: userId,
+      targetId: args.articleId,
+      targetTitle: args.title,
+      scheduledFor: args.status === "scheduled" ? args.scheduledFor : undefined,
+    })
     return { success: true }
   },
 })
@@ -263,7 +299,7 @@ export const autosaveArticle = mutation({
 export const publishArticle = mutation({
   args: { articleId: v.id("articles") },
   handler: async (ctx, { articleId }) => {
-    await requireAuth(ctx)
+    const userId = await requireAuth(ctx)
     const article = await ctx.db.get(articleId)
     if (!article) throw new Error("Article not found")
 
@@ -273,6 +309,12 @@ export const publishArticle = mutation({
       scheduledFor: undefined,
       updatedAt: Date.now(),
     })
+    await logActivity(ctx, {
+      action: "article.publish",
+      actorId: userId,
+      targetId: articleId,
+      targetTitle: article.title,
+    })
     return { success: true }
   },
 })
@@ -280,7 +322,7 @@ export const publishArticle = mutation({
 export const unpublishArticle = mutation({
   args: { articleId: v.id("articles") },
   handler: async (ctx, { articleId }) => {
-    await requireAuth(ctx)
+    const userId = await requireAuth(ctx)
     const article = await ctx.db.get(articleId)
     if (!article) throw new Error("Article not found")
 
@@ -288,6 +330,12 @@ export const unpublishArticle = mutation({
       status: "draft",
       published: false,
       updatedAt: Date.now(),
+    })
+    await logActivity(ctx, {
+      action: "article.unpublish",
+      actorId: userId,
+      targetId: articleId,
+      targetTitle: article.title,
     })
     return { success: true }
   },
@@ -310,10 +358,30 @@ export const publishScheduledArticles = internalMutation({
           published: true,
           updatedAt: now,
         })
+        await logActivity(ctx, {
+          action: "article.autopublish",
+          targetId: article._id,
+          targetTitle: article.title,
+        })
       }
     }
   },
 })
+
+/** Names an edit by the status change it made, if any. */
+function statusChangeAction(
+  before: Doc<"articles">,
+  status: "draft" | "scheduled" | "published"
+) {
+  if (status === statusOf(before)) return "article.update"
+  if (status === "published") return "article.publish"
+  if (status === "scheduled") return "article.schedule"
+  return "article.unpublish"
+}
+
+function statusOf(article: Doc<"articles">) {
+  return article.status ?? (article.published ? "published" : "draft")
+}
 
 // --- Public, read-only queries for the marketing site ---
 

@@ -1,7 +1,9 @@
 "use server"
 
+import { fetchMutation } from "convex/nextjs"
 import { Resend } from "resend"
 
+import { api } from "@/convex/_generated/api"
 import { contactTopics, site } from "@/lib/site"
 
 import {
@@ -50,6 +52,29 @@ async function verifyRecaptcha(token: string) {
   return data.success
 }
 
+/** Keeps a copy in the admin's Messages inbox. Returns whether it saved. */
+async function saveMessage(values: Record<string, string>, topic: string) {
+  const secret = process.env.CONTACT_FORM_SECRET
+  if (!secret) {
+    console.error("[contact] CONTACT_FORM_SECRET not set; message not saved")
+    return false
+  }
+  return fetchMutation(api.messages.submit, {
+    secret,
+    name: values.name,
+    email: values.email,
+    phoneNumber: values.phone || undefined,
+    subject: topic,
+    content: values.message,
+  }).then(
+    () => true,
+    (e: unknown) => {
+      console.error("[contact] Couldn't save message:", e)
+      return false
+    }
+  )
+}
+
 export async function sendContact(
   _prev: ContactState,
   formData: FormData
@@ -90,7 +115,10 @@ export async function sendContact(
     contactTopics.find((t) => t.value === values.topic)?.label ??
     "General inquiry"
 
+  const saved = await saveMessage(values, topicLabel)
+
   if (!process.env.RESEND_API_KEY) {
+    if (saved) return { status: "success" }
     if (process.env.NODE_ENV !== "production") {
       console.info(
         "[contact] RESEND_API_KEY not set; message not sent:",
@@ -120,6 +148,8 @@ export async function sendContact(
 
   if (error) {
     console.error("[contact] Resend error:", error)
+    // The admin inbox still has it, so the visitor doesn't need to resend.
+    if (saved) return { status: "success" }
     return {
       status: "error",
       values,

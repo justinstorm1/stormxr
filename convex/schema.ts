@@ -50,6 +50,17 @@ export default defineSchema({
   })
     .index("by_articleId", ["articleId"])
     .index("by_uploadedBy", ["uploadedBy"]),
+  // Audit trail of admin changes, newest read first. The actor's email is
+  // copied in so entries stay readable after an account is deleted.
+  activity: defineTable({
+    action: v.string(),
+    actorId: v.optional(v.id("users")),
+    actorEmail: v.optional(v.string()),
+    targetId: v.optional(v.string()),
+    targetTitle: v.optional(v.string()),
+    detail: v.optional(v.string()),
+    scheduledFor: v.optional(v.number()),
+  }),
   messages: defineTable({
     name: v.string(),
     email: v.string(),

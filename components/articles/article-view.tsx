@@ -2,9 +2,16 @@ import { ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
+import { ArticleCard } from "@/components/articles/article-card"
 import { ArticleContent } from "@/components/articles/article-content"
-import { Container, CtaBand, Eyebrow } from "@/components/section"
-import { formatArticleDate } from "@/lib/articles"
+import { ShareButtons } from "@/components/articles/share-buttons"
+import { Container, CtaBand, Eyebrow, SectionRule } from "@/components/section"
+import {
+  categoryHref,
+  formatArticleDate,
+  tagHref,
+  type ArticleSummary,
+} from "@/lib/articles"
 
 export type ArticleViewData = {
   title: string
@@ -19,9 +26,19 @@ export type ArticleViewData = {
 
 /**
  * A written article as readers see it. Shared by the public article page and
- * the admin preview so the two never drift apart.
+ * the admin preview so the two never drift apart. The preview leaves out
+ * sharing and related articles, which only make sense for a live article.
  */
-export function ArticleView({ article }: { article: ArticleViewData }) {
+export function ArticleView({
+  article,
+  shareUrl,
+  related = [],
+}: {
+  article: ArticleViewData
+  /** Absolute URL of the live article. */
+  shareUrl?: string
+  related?: ArticleSummary[]
+}) {
   return (
     <>
       <article className="relative isolate pt-32 sm:pt-40">
@@ -40,7 +57,12 @@ export function ArticleView({ article }: { article: ArticleViewData }) {
           </Link>
 
           <header className="mt-10">
-            <Eyebrow>{article.category}</Eyebrow>
+            <Link
+              href={categoryHref(article.category)}
+              className="transition-opacity hover:opacity-80"
+            >
+              <Eyebrow>{article.category}</Eyebrow>
+            </Link>
             <h1 className="display mt-5 text-4xl sm:text-6xl">
               {article.title}
             </h1>
@@ -76,20 +98,40 @@ export function ArticleView({ article }: { article: ArticleViewData }) {
 
         <Container className="mt-14 max-w-3xl">
           <ArticleContent content={article.content} />
-          {article.tags && article.tags.length > 0 && (
-            <ul className="mt-14 flex flex-wrap gap-2 border-t border-line pt-8">
-              {article.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded-full bg-white/4 px-3 py-1 text-sm text-muted-foreground ring-1 ring-line"
-                >
-                  #{tag}
-                </li>
-              ))}
-            </ul>
+          {((article.tags && article.tags.length > 0) || shareUrl) && (
+            <div className="mt-14 flex flex-col gap-6 border-t border-line pt-8">
+              {article.tags && article.tags.length > 0 && (
+                <ul className="flex flex-wrap gap-2">
+                  {article.tags.map((tag) => (
+                    <li key={tag}>
+                      <Link
+                        href={tagHref(tag)}
+                        className="block rounded-full bg-white/4 px-3 py-1 text-sm text-muted-foreground ring-1 ring-line transition hover:bg-white/8 hover:text-foreground"
+                      >
+                        #{tag}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {shareUrl && (
+                <ShareButtons url={shareUrl} title={article.title} />
+              )}
+            </div>
           )}
         </Container>
       </article>
+
+      {related.length > 0 && (
+        <Container className="mt-24 sm:mt-32">
+          <SectionRule index="→" label="Keep reading" className="mb-10" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((a) => (
+              <ArticleCard key={a._id} article={a} />
+            ))}
+          </div>
+        </Container>
+      )}
 
       <CtaBand
         eyebrow="Editorial"

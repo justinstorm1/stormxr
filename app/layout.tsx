@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import {
   Archivo,
@@ -9,7 +10,7 @@ import {
 import "./globals.css"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { baseOpenGraph } from "@/lib/metadata"
+import { baseOpenGraph, feedAlternates } from "@/lib/metadata"
 import { site } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
@@ -43,6 +44,7 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
+  alternates: feedAlternates,
   openGraph: baseOpenGraph,
   twitter: {
     card: "summary_large_image",
@@ -102,6 +104,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

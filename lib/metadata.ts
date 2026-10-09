@@ -1,6 +1,17 @@
 import type { Metadata } from "next"
 
+import { FEED_PATH } from "@/lib/articles"
 import { site } from "@/lib/site"
+
+/**
+ * Advertises the NextWave XR RSS feed. `alternates` is replaced, not merged,
+ * by any page that sets a canonical URL, so those pages spread this back in.
+ */
+export const feedAlternates = {
+  types: {
+    "application/rss+xml": [{ url: FEED_PATH, title: "NextWave XR" }],
+  },
+} satisfies Metadata["alternates"]
 
 /**
  * Open Graph fields shared by every page. Next merges metadata shallowly, so
@@ -32,7 +43,7 @@ export function pageMetadata({
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
-    alternates: { canonical: path },
+    alternates: { ...feedAlternates, canonical: path },
     openGraph: { ...baseOpenGraph, title, description, url: path },
     twitter: { title, description },
   }

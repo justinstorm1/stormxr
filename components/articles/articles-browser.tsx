@@ -11,7 +11,14 @@ import { cn } from "@/lib/utils"
 const PAGE_SIZE = 18
 
 /** Featured latest article, category filter chips, and a paged grid. */
-export function ArticlesBrowser({ articles }: { articles: ArticleSummary[] }) {
+export function ArticlesBrowser({
+  articles,
+  filters = true,
+}: {
+  articles: ArticleSummary[]
+  /** Show the category filter chips. */
+  filters?: boolean
+}) {
   const [category, setCategory] = React.useState<string | null>(null)
   const [visible, setVisible] = React.useState(PAGE_SIZE)
 
@@ -47,39 +54,41 @@ export function ArticlesBrowser({ articles }: { articles: ArticleSummary[] }) {
 
   return (
     <div>
-      <div
-        role="toolbar"
-        aria-label="Filter by category"
-        className="-mx-4 flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"
-      >
-        <button
-          type="button"
-          aria-pressed={category === null}
-          onClick={() => {
-            setCategory(null)
-            setVisible(PAGE_SIZE)
-          }}
-          className={chip(category === null)}
+      {filters && (
+        <div
+          role="toolbar"
+          aria-label="Filter by category"
+          className="-mx-4 flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"
         >
-          All <span className="opacity-60">{articles.length}</span>
-        </button>
-        {categories.map((c) => (
           <button
-            key={c}
             type="button"
-            aria-pressed={category === c}
+            aria-pressed={category === null}
             onClick={() => {
-              setCategory(c)
+              setCategory(null)
               setVisible(PAGE_SIZE)
             }}
-            className={chip(category === c)}
+            className={chip(category === null)}
           >
-            {c}
+            All <span className="opacity-60">{articles.length}</span>
           </button>
-        ))}
-      </div>
+          {categories.map((c) => (
+            <button
+              key={c}
+              type="button"
+              aria-pressed={category === c}
+              onClick={() => {
+                setCategory(c)
+                setVisible(PAGE_SIZE)
+              }}
+              className={chip(category === c)}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      )}
 
-      <div className="mt-8 grid gap-4">
+      <div className={cn("grid gap-4", filters && "mt-8")}>
         {featured && <ArticleCard article={featured} featured />}
         {shown.length > 0 && (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

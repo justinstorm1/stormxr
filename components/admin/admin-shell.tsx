@@ -1,12 +1,14 @@
 "use client"
 
 import { useAuthActions } from "@convex-dev/auth/react"
-import { useConvexAuth } from "convex/react"
+import { useConvexAuth, useQuery } from "convex/react"
 import {
+  Activity,
   ExternalLink,
   LayoutGrid,
   Loader,
   LogOut,
+  Mail,
   Plus,
   Users,
 } from "lucide-react"
@@ -15,16 +17,31 @@ import { usePathname, useRouter } from "next/navigation"
 import * as React from "react"
 
 import { Container } from "@/components/section"
+import { api } from "@/convex/_generated/api"
 import { cn } from "@/lib/utils"
 
 export const LOGIN_PATH = "/nextwavexr/admin"
 export const DASHBOARD_PATH = "/nextwavexr/admin/dashboard"
+const MESSAGES_PATH = "/nextwavexr/admin/messages"
 
 const links = [
   { href: DASHBOARD_PATH, label: "Dashboard", icon: LayoutGrid },
   { href: "/nextwavexr/admin/create", label: "New article", icon: Plus },
+  { href: MESSAGES_PATH, label: "Messages", icon: Mail },
   { href: "/nextwavexr/admin/accounts", label: "Accounts", icon: Users },
+  { href: "/nextwavexr/admin/activity", label: "Activity", icon: Activity },
 ]
+
+/** Number of unhandled contact messages, shown next to the nav link. */
+function OpenMessagesBadge() {
+  const count = useQuery(api.messages.openCount)
+  if (!count) return null
+  return (
+    <span className="min-w-5 rounded-full bg-primary px-1.5 text-center text-xs leading-5 font-medium text-primary-foreground tabular-nums">
+      {count}
+    </span>
+  )
+}
 
 /** Guards every admin page except login and renders the admin nav. */
 export function AdminShell({ children }: { children: React.ReactNode }) {
@@ -72,6 +89,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
                   >
                     <l.icon className="size-4" />
                     {l.label}
+                    {l.href === MESSAGES_PATH && <OpenMessagesBadge />}
                   </Link>
                 )
               })}

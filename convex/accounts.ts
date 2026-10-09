@@ -11,6 +11,7 @@ import { ConvexError, v } from "convex/values"
 import { api, internal } from "./_generated/api"
 import type { ActionCtx } from "./_generated/server"
 import { action, internalQuery, mutation, query } from "./_generated/server"
+import { logActivity } from "./activity"
 import { MAGIC_LINK_PROVIDER } from "./auth"
 import { requireAuth } from "./authHelpers"
 
@@ -128,7 +129,7 @@ export const createAccount = action({
     name: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    await requireActionAuth(ctx)
+    const me = await requireActionAuth(ctx)
     // Kept as typed: sign-in matches the email exactly.
     const email = args.email.trim()
     const name = args.name?.trim() || undefined
@@ -145,10 +146,16 @@ export const createAccount = action({
       throw new ConvexError("An account with that email already exists.")
     }
 
-    await createAuthAccount(ctx, {
+    const { user } = await createAuthAccount(ctx, {
       provider: PROVIDER,
       account: { id: email, secret: args.password },
       profile: { email, name },
+    })
+    await ctx.runMutation(internal.activity.record, {
+      action: "account.create",
+      actorId: me,
+      targetId: user._id,
+      targetTitle: email,
     })
   },
 })
@@ -191,6 +198,12 @@ export const changeMyPassword = action({
       userId,
       except: sessionId ? [sessionId] : [],
     })
+    await ctx.runMutation(internal.activity.record, {
+      action: "account.changePassword",
+      actorId: userId,
+      targetId: userId,
+      targetTitle: email,
+    })
   },
 })
 
@@ -213,6 +226,12 @@ export const resetPassword = action({
       account: { id: email, secret: newPassword },
     })
     await invalidateSessions(ctx, { userId })
+    await ctx.runMutation(internal.activity.record, {
+      action: "account.resetPassword",
+      actorId: me,
+      targetId: userId,
+      targetTitle: email,
+    })
   },
 })
 
@@ -223,6 +242,7 @@ export const deleteAccount = mutation({
     if (userId === me) {
       throw new ConvexError("You can't delete your own account.")
     }
+    const user = await ctx.db.get(userId)
 
     const sessions = await ctx.db
       .query("authSessions")
@@ -244,5 +264,13 @@ export const deleteAccount = mutation({
     for (const account of accounts) await ctx.db.delete(account._id)
 
     await ctx.db.delete(userId)
+    await logActivity(ctx, {
+      action: "account.delete",
+      actorId: me,
+      targetId: userId,
+      targetTitle:
+        accounts.find((a) => a.provider === PROVIDER)?.providerAccountId ??
+        user?.email,
+    })
   },
 })
