@@ -157,10 +157,13 @@ export const apps: App[] = [
       "Real-time hide-and-seek with friends — track each other down on the map and outlast the seekers.",
     links: [
       {
+        store: "App Store",
+        href: "https://apps.apple.com/us/app/seekbound/id6809067718",
+      },
+      {
         store: "Google Play",
         href: "https://play.google.com/store/apps/details?id=com.justinstorm1.hideandseek",
       },
-      { store: "App Store", note: "In review" },
     ],
   },
   {
