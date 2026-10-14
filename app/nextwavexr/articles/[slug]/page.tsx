@@ -77,7 +77,13 @@ export default async function ArticlePage(
 
   const path = `/nextwavexr/articles/${article.slug ?? article._id}`
   const url = `${site.url}${path}`
-  const related = relatedArticles(article, await getPublishedArticles())
+  const all = await getPublishedArticles()
+  const related = relatedArticles(article, all)
+  // Neighbours among articles written here (newest first, like `all`).
+  const native = all.filter((a) => !isExternal(a))
+  const position = native.findIndex((a) => a._id === article._id)
+  const newer = position > 0 ? native[position - 1] : undefined
+  const older = position >= 0 ? native[position + 1] : undefined
   // Some imports set the SEO description to the title; skip those.
   const description =
     (article.metaDescription !== article.title && article.metaDescription) ||
@@ -137,7 +143,13 @@ export default async function ArticlePage(
           ),
         }}
       />
-      <ArticleView article={article} shareUrl={url} related={related} />
+      <ArticleView
+        article={article}
+        shareUrl={url}
+        related={related}
+        newer={newer}
+        older={older}
+      />
     </>
   )
 }

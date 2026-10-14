@@ -97,7 +97,12 @@ export function slugify(s: string) {
     .slice(0, 80)
 }
 
-type TextNode = { type?: string; text?: string; content?: TextNode[] }
+type TextNode = {
+  type?: string
+  text?: string
+  attrs?: Record<string, unknown>
+  content?: TextNode[]
+}
 
 /** Plain-text opening of a TipTap document, for meta descriptions. */
 export function excerptFromContent(content: unknown, max = 160) {
@@ -112,4 +117,48 @@ export function excerptFromContent(content: unknown, max = 160) {
     .trim()
   if (text.length <= max) return text || undefined
   return `${text.slice(0, max).replace(/\s+\S*$/, "")}…`
+}
+
+const isInline = (n: TextNode) => n.type === "text" || n.type === "hardBreak"
+
+/** All of a node's text; inline runs join directly, blocks with a space. */
+const nodeText = (n: TextNode): string =>
+  n.type === "text"
+    ? (n.text ?? "")
+    : n.type === "hardBreak"
+      ? " "
+      : (n.content ?? [])
+          .map((c) => (isInline(c) ? nodeText(c) : ` ${nodeText(c)} `))
+          .join("")
+
+/** Rounded-up minutes to read a TipTap document at ~230 words a minute. */
+export function readingMinutes(content: unknown) {
+  const words = nodeText((content as TextNode | null) ?? {})
+    .split(/\s+/)
+    .filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 230))
+}
+
+export type ArticleHeading = {
+  /** Position among the document's top-level nodes. */
+  index: number
+  id: string
+  text: string
+  level: number
+}
+
+/** Top-level headings with unique anchor ids, for a table of contents. */
+export function articleHeadings(content: unknown): ArticleHeading[] {
+  const seen = new Map<string, number>()
+  return ((content as TextNode | null)?.content ?? []).flatMap((n, index) => {
+    if (n.type !== "heading") return []
+    const text = nodeText(n).replace(/\s+/g, " ").trim()
+    const base = slugify(text) || "section"
+    const count = seen.get(base) ?? 0
+    seen.set(base, count + 1)
+    const level = Math.min(Math.max(Number(n.attrs?.level) || 2, 2), 4)
+    return text
+      ? [{ index, id: count ? `${base}-${count + 1}` : base, text, level }]
+      : []
+  })
 }

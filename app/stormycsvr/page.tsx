@@ -2,9 +2,12 @@ import { ArrowUpRight } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
 
-import { Container, CtaBand, PageHero } from "@/components/section"
+import { Container, CtaBand, PageHero, SectionRule } from "@/components/section"
+import { YouTubePlayer } from "@/components/youtube-player"
+import { formatArticleDate } from "@/lib/articles"
 import { pageMetadata } from "@/lib/metadata"
 import { stormycsSocials } from "@/lib/site"
+import { getLatestVideos } from "@/lib/youtube"
 
 export const metadata: Metadata = pageMetadata({
   title: "StormyCs VR",
@@ -13,7 +16,13 @@ export const metadata: Metadata = pageMetadata({
   path: "/stormycsvr",
 })
 
-export default function StormyCsVRPage() {
+// Videos come from the YouTube channel feed; refresh hourly.
+export const revalidate = 3600
+
+const youtube = stormycsSocials.find((s) => s.name === "YouTube")!
+
+export default async function StormyCsVRPage() {
+  const videos = await getLatestVideos()
   return (
     <>
       <PageHero
@@ -25,7 +34,53 @@ export default function StormyCsVRPage() {
         }
         description="Gaming, fitness, and personality-driven VR content across every platform. Follow along for hands-on hardware impressions, community highlights, and an unfiltered look at life inside the headset."
       />
+      {videos.length > 0 && (
+        <Container className="mb-24 sm:mb-32">
+          <SectionRule index="01" label="Latest videos" className="mb-10" />
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {videos.map((v) => (
+              <li key={v.id} className="glass reveal flex flex-col p-2">
+                <div className="relative aspect-video overflow-hidden rounded-[1.4rem] bg-card">
+                  <YouTubePlayer
+                    id={v.id}
+                    title={v.title}
+                    thumbnail={v.thumbnail}
+                  />
+                </div>
+                <div className="flex flex-1 flex-col gap-2 p-4">
+                  <p className="label text-muted-foreground">
+                    {v.short ? "Short" : "Video"} ·{" "}
+                    <time dateTime={v.published}>
+                      {formatArticleDate(Date.parse(v.published))}
+                    </time>
+                  </p>
+                  <a
+                    href={v.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="leading-snug font-medium transition-colors hover:text-signal"
+                  >
+                    {v.title}
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <a
+            href={youtube.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-signal"
+          >
+            More on YouTube
+            <ArrowUpRight className="size-4 text-signal" />
+          </a>
+        </Container>
+      )}
       <Container>
+        {videos.length > 0 && (
+          <SectionRule index="02" label="Follow along" className="mb-10" />
+        )}
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {stormycsSocials.map((s) => (
             <li key={s.name} className="reveal flex">

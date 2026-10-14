@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 
-import { isArticleFont } from "@/lib/articles"
+import { articleHeadings, isArticleFont } from "@/lib/articles"
 import { cn } from "@/lib/utils"
 
 /** A ProseMirror/TipTap JSON node, as stored in `articles.content`. */
@@ -101,7 +101,7 @@ function Children({ node }: { node: RichNode }) {
   )
 }
 
-function Node({ node }: { node: RichNode }) {
+function Node({ node, id }: { node: RichNode; id?: string }) {
   const a = node.attrs ?? {}
   switch (node.type) {
     case "text":
@@ -117,7 +117,7 @@ function Node({ node }: { node: RichNode }) {
       const level = Math.min(Math.max(Number(a.level) || 2, 2), 4)
       const Tag = `h${level}` as "h2" | "h3" | "h4"
       return (
-        <Tag className={alignClass(a.textAlign)}>
+        <Tag id={id} className={alignClass(a.textAlign)}>
           <Children node={node} />
         </Tag>
       )
@@ -238,11 +238,13 @@ export function ArticleContent({
 }) {
   const doc = content as RichNode | null
   if (!doc?.content) return null
+  // Anchor ids for the table of contents (see ArticleView).
+  const ids = new Map(articleHeadings(doc).map((h) => [h.index, h.id]))
   return (
     <div className={cn("prose-article", className)}>
       {doc.content.map((node, i) => (
         <Fragment key={i}>
-          <Node node={node} />
+          <Node node={node} id={ids.get(i)} />
         </Fragment>
       ))}
     </div>

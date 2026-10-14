@@ -1,6 +1,7 @@
 import "server-only"
 
 import { press as fallbackPress } from "@/lib/site"
+import { items, tag } from "@/lib/xml"
 
 export type PressRelease = {
   /** `YYYY-MM-DD` in US Eastern time, as PRLog displays it. */
@@ -14,24 +15,6 @@ const FEED_URL = "https://pressroom.prlog.org/StormXR/rss.xml"
 /** Re-scrape PRLog at most every 6 hours (ISR). */
 const REVALIDATE_SECONDS = 6 * 60 * 60
 
-function decode(s: string) {
-  return s
-    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
-    .replace(/&#x([0-9a-f]+);/gi, (_, h) =>
-      String.fromCodePoint(parseInt(h, 16))
-    )
-    .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&amp;/g, "&")
-    .trim()
-}
-
-const tag = (xml: string, name: string) =>
-  decode(xml.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`))?.[1] ?? "")
-
 const easternDate = (pubDate: string) =>
   new Intl.DateTimeFormat("en-CA", {
     timeZone: "America/New_York",
@@ -41,8 +24,8 @@ const easternDate = (pubDate: string) =>
   }).format(new Date(pubDate))
 
 export function parsePressFeed(xml: string): PressRelease[] {
-  return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)]
-    .map(([, item]) => ({
+  return items(xml, "item")
+    .map((item) => ({
       title: tag(item, "title"),
       href: tag(item, "link"),
       summary: tag(item, "description"),

@@ -295,6 +295,8 @@
   line-height: 1.15;
   color: var(--foreground);
   margin-top: 2em;
+  /* Clear the fixed site header when jumped to from the table of contents. */
+  scroll-margin-top: 7rem;
 }
 .prose-article h2 {
   font-size: 1.85rem;

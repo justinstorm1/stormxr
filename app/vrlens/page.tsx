@@ -1,9 +1,16 @@
-import { ArrowUpRight, Glasses, Mic, Sparkles } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Glasses, Mic, Sparkles } from "lucide-react"
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 
-import { Container, CtaBand, PageHero } from "@/components/section"
+import {
+  EpisodeList,
+  EpisodeMeta,
+  EpisodePlayer,
+} from "@/components/episode-list"
+import { Container, CtaBand, PageHero, SectionRule } from "@/components/section"
 import { pageMetadata } from "@/lib/metadata"
+import { episodeHref, getEpisodes } from "@/lib/podcast"
 import { podcastLinks } from "@/lib/site"
 
 export const metadata: Metadata = pageMetadata({
@@ -34,7 +41,11 @@ const themes = [
   { icon: Sparkles, label: "Emerging tech trends" },
 ]
 
-export default function VRLensPage() {
+// Episodes come from the podcast's RSS feed; refresh hourly.
+export const revalidate = 3600
+
+export default async function VRLensPage() {
+  const [latest, ...older] = await getEpisodes()
   return (
     <>
       <PageHero
@@ -58,6 +69,49 @@ export default function VRLensPage() {
           ))}
         </ul>
       </PageHero>
+
+      {latest && (
+        <Container className="mb-6">
+          <SectionRule index="01" label="Latest episode" className="mb-10" />
+          <article className="glass reveal grid gap-8 p-6 sm:p-10 md:grid-cols-[auto_1fr] md:items-center">
+            {latest.image && (
+              <Image
+                src={latest.image}
+                alt="VR Lens cover art"
+                width={192}
+                height={192}
+                className="size-32 rounded-2xl shadow-lg shadow-black/40 sm:size-48"
+              />
+            )}
+            <div className="min-w-0">
+              <EpisodeMeta episode={latest} />
+              <h2 className="display mt-3 text-3xl sm:text-4xl">
+                <Link
+                  href={episodeHref(latest)}
+                  className="transition-colors hover:text-signal"
+                >
+                  {latest.title}
+                </Link>
+              </h2>
+              {latest.notes[0] && (
+                <p className="mt-3 line-clamp-3 leading-relaxed text-muted-foreground">
+                  {latest.notes[0]}
+                </p>
+              )}
+              <div className="mt-6">
+                <EpisodePlayer episode={latest} />
+              </div>
+              <Link
+                href={episodeHref(latest)}
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-signal"
+              >
+                Show notes
+                <ArrowRight className="size-4 text-signal" />
+              </Link>
+            </div>
+          </article>
+        </Container>
+      )}
 
       <Container>
         <div className="grid gap-6 md:grid-cols-2">
@@ -88,6 +142,13 @@ export default function VRLensPage() {
           ))}
         </div>
       </Container>
+
+      {older.length > 0 && (
+        <Container className="mt-24 sm:mt-32">
+          <SectionRule index="02" label="Earlier episodes" />
+          <EpisodeList episodes={older} />
+        </Container>
+      )}
 
       <CtaBand
         eyebrow="Join the conversation"

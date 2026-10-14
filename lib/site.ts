@@ -77,7 +77,11 @@ export const podcastLinks = {
   apple: "https://podcasts.apple.com/us/podcast/vr-lens/id1883565942",
   spotify:
     "https://open.spotify.com/show/4CU5uhMSh4RRUdgMo8YgGT?si=7gS8ebhpRAyTAra9OXPlBw",
+  rss: "https://anchor.fm/s/10fb9bcb0/podcast/rss",
 }
+
+/** The StormyCs VR YouTube channel, whose public feed lists recent uploads. */
+export const youtubeChannelId = "UCkl9ZolV7_wNEOzx9BoNdsg"
 
 export const uploadVrUrl = "https://www.uploadvr.com/writer/craigstorm/"
 

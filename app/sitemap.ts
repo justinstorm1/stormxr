@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next"
 import { getTopics, topicHref } from "@/components/articles/topic-page"
 import { articleHref, isExternal } from "@/lib/articles"
 import { getPublishedArticles } from "@/lib/convex-server"
+import { episodeHref, getEpisodes } from "@/lib/podcast"
 import { privacyPolicies } from "@/lib/privacy-policies"
 import { site } from "@/lib/site"
 
@@ -26,6 +27,7 @@ export const revalidate = 3600
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = (await getPublishedArticles()).filter((a) => !isExternal(a))
+  const episodes = await getEpisodes()
   const topics = [
     ...(await getTopics("category")).values(),
     ...(await getTopics("tag")).values(),
@@ -39,6 +41,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...articles.map((a) => ({
       url: `${site.url}${articleHref(a)}`,
       lastModified: new Date(a.updatedAt ?? a.date),
+      priority: 0.6,
+    })),
+    ...episodes.map((e) => ({
+      url: `${site.url}${episodeHref(e)}`,
+      lastModified: new Date(e.date),
       priority: 0.6,
     })),
     ...topics.map((t) => ({

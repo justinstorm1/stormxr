@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "storage.ghost.io" },
       // Images uploaded to Convex file storage.
       { protocol: "https", hostname: "*.convex.cloud" },
+      // StormyCs VR YouTube thumbnails.
+      { protocol: "https", hostname: "*.ytimg.com" },
+      // VR Lens episode artwork (Spotify for Creators).
+      { protocol: "https", hostname: "d3t3ozftmdmh3i.cloudfront.net" },
     ],
   },
   // The old NextWave XR sub-site pages were folded into /nextwavexr and /contact.
