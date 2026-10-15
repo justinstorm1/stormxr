@@ -150,7 +150,9 @@ export function ArticlesBrowser({
         <div
           role="toolbar"
           aria-label="Filter by category"
-          className="-mx-4 flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"
+          // Scrolling clips overflow on every side, so pad (and pull back with
+          // negative margins) enough room for the chips' rings.
+          className="-mx-4 -mt-1 flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 pt-1 pb-2 sm:-mx-1 sm:flex-wrap sm:px-1"
         >
           <button
             type="button"
