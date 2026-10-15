@@ -56,7 +56,10 @@ export function ArticleView({
     <>
       <article className="relative isolate pt-32 sm:pt-40">
         <ReadingProgress />
-        <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-160">
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 -z-10 h-160 overflow-hidden"
+        >
           <div className="bg-dots absolute inset-0 mask-[radial-gradient(ellipse_at_top,black_10%,transparent_65%)] opacity-60" />
           <div className="absolute -top-40 left-1/2 h-112 w-176 -translate-x-1/2 rounded-full bg-primary/20 blur-[140px]" />
         </div>

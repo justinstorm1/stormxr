@@ -284,6 +284,8 @@
   font-size: 1.125rem;
   line-height: 1.75;
   color: color-mix(in oklch, var(--foreground) 86%, transparent);
+  /* Long URLs and words wrap instead of widening the page on phones. */
+  overflow-wrap: break-word;
 }
 .prose-article > * + * {
   margin-top: 1.4em;

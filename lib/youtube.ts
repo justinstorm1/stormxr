@@ -33,7 +33,15 @@ export function parseYouTubeFeed(xml: string): Video[] {
     .filter((v) => /^[\w-]{11}$/.test(v.id) && v.title)
 }
 
-/** Latest StormyCs VR uploads, newest first. Empty if YouTube is unreachable. */
+/**
+ * Latest StormyCs VR uploads, newest first.
+ *
+ * YouTube's feed regularly fails for hours at a time (404s and 500s). When it
+ * does, this throws on a background revalidation so Next keeps serving the
+ * last page that had videos instead of caching one without them. During a
+ * build or in dev there's no earlier page to fall back on, so it returns an
+ * empty list and the page renders without the videos section.
+ */
 export async function getLatestVideos(limit = 6): Promise<Video[]> {
   try {
     const res = await fetch(FEED_URL, {
@@ -41,8 +49,12 @@ export async function getLatestVideos(limit = 6): Promise<Video[]> {
       signal: AbortSignal.timeout(10_000),
     })
     if (!res.ok) throw new Error(`YouTube feed responded with ${res.status}`)
-    return parseYouTubeFeed(await res.text()).slice(0, limit)
+    const videos = parseYouTubeFeed(await res.text())
+    if (videos.length === 0) throw new Error("YouTube feed had no videos")
+    return videos.slice(0, limit)
   } catch (error) {
+    const building = process.env.NEXT_PHASE === "phase-production-build"
+    if (process.env.NODE_ENV === "production" && !building) throw error
     console.error("Couldn't load StormyCs VR videos", error)
     return []
   }
