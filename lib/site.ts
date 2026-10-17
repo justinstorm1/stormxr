@@ -135,20 +135,16 @@ export type App = {
 
 export const apps: App[] = [
   {
-    name: "Whack-A-PC",
-    slug: "whack-a-pc",
-    icon: "/images/WhackAPCLogo.png",
+    name: "List It, Do It",
+    slug: "list-it-do-it",
+    icon: "/images/ListItDoItLogo.webp",
     platform: "Mobile",
     description:
-      "Whack-A-Mole style arcade game — hit the computers while dodging robots and viruses.",
+      "A minimalist productivity app and daily planner, synced across your Apple devices with iCloud.",
     links: [
       {
         store: "App Store",
-        href: "https://apps.apple.com/us/app/whack-a-pc/id6775351437",
-      },
-      {
-        store: "Google Play",
-        href: "https://play.google.com/store/apps/details?id=com.justinstorm1.whackapcpaid",
+        href: "https://apps.apple.com/us/app/list-it-do-it/id6751865449",
       },
     ],
   },
@@ -170,17 +166,22 @@ export const apps: App[] = [
       },
     ],
   },
+
   {
-    name: "List It, Do It",
-    slug: "list-it-do-it",
-    icon: "/images/ListItDoItLogo.webp",
+    name: "Whack-A-PC",
+    slug: "whack-a-pc",
+    icon: "/images/WhackAPCLogo.png",
     platform: "Mobile",
     description:
-      "A minimalist productivity app and daily planner, synced across your Apple devices with iCloud.",
+      "Whack-A-Mole style arcade game — hit the computers while dodging robots and viruses.",
     links: [
       {
         store: "App Store",
-        href: "https://apps.apple.com/us/app/list-it-do-it/id6751865449",
+        href: "https://apps.apple.com/us/app/whack-a-pc/id6775351437",
+      },
+      {
+        store: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.justinstorm1.whackapcpaid",
       },
     ],
   },
@@ -197,6 +198,14 @@ export const apps: App[] = [
         href: "https://www.meta.com/experiences/punchable-face/1482909477009074/",
       },
     ],
+  },  {
+    name: "Catch With Dad",
+    slug: "catch-with-dad",
+    icon: "/images/catch-with-dad-icon.png",
+    platform: "VR",
+    description:
+      "Play catch with Dad in a sunny backyard. Throw and catch baseballs or footballs at your own pace in a relaxed VR experience.",
+    links: [{ store: "Meta Quest", note: "Coming soon" }],
   },
 ]
 

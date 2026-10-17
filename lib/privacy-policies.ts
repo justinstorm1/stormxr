@@ -113,76 +113,6 @@ export const privacyPolicies: PrivacyPolicy[] = [
     ],
   },
   {
-    slug: "whack-a-pc",
-    name: "Whack-A-PC",
-    effectiveDate: "July 12, 2026",
-    sections: [
-      {
-        heading: "Introduction",
-        blocks: [
-          "StormXR, LLC ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how StormXR, LLC collects, uses, and protects information when you use our application.",
-          "By using StormXR, LLC, you agree to the practices described in this Privacy Policy.",
-        ],
-      },
-      {
-        heading: "Information We Collect",
-        blocks: [
-          "StormXR, LLC is designed to collect as little personal information as possible.",
-          [
-            "We do not collect your name.",
-            "We do not collect your email address.",
-            "We do not collect your phone number.",
-            "We do not collect your date of birth.",
-            "We do not collect your address.",
-            "We do not collect payment information.",
-            "We do not collect device identifiers.",
-            "We do not collect IP addresses.",
-            "We do not collect analytics data.",
-            "We do not collect crash reports.",
-            "We do not collect diagnostic information.",
-            "We do not collect advertising identifiers.",
-            "We do not collect location information.",
-          ],
-        ],
-      },
-      {
-        heading: "International Users",
-        blocks: [
-          "StormXR, LLC is available worldwide.",
-          "By using the app, you understand that your information may be processed in accordance with the laws of the United States.",
-        ],
-      },
-      {
-        heading: "Security",
-        blocks: [
-          "We take reasonable measures to protect information handled by the application. However, no method of electronic storage or transmission is completely secure.",
-        ],
-      },
-      {
-        heading: "Children's Privacy",
-        blocks: [
-          "StormXR, LLC is not specifically directed toward children and does not knowingly collect personal information from children.",
-        ],
-      },
-      {
-        heading: "Changes to This Privacy Policy",
-        blocks: [
-          "We may update this Privacy Policy from time to time.",
-          "Changes become effective when the updated Privacy Policy is published.",
-          "The Effective Date at the top of this policy indicates the latest revision.",
-        ],
-      },
-      {
-        heading: "Contact Us",
-        blocks: [
-          "Company: StormXR, LLC",
-          "Website: https://www.stormxr.tech",
-          "Email: craigstorm@stormxr.tech",
-        ],
-      },
-    ],
-  },
-  {
     slug: "seek-bound",
     name: "SeekBound",
     effectiveDate: "September 16, 2026",
@@ -327,6 +257,77 @@ export const privacyPolicies: PrivacyPolicy[] = [
       },
     ],
   },
+
+  {
+    slug: "whack-a-pc",
+    name: "Whack-A-PC",
+    effectiveDate: "July 12, 2026",
+    sections: [
+      {
+        heading: "Introduction",
+        blocks: [
+          "StormXR, LLC ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how StormXR, LLC collects, uses, and protects information when you use our application.",
+          "By using StormXR, LLC, you agree to the practices described in this Privacy Policy.",
+        ],
+      },
+      {
+        heading: "Information We Collect",
+        blocks: [
+          "StormXR, LLC is designed to collect as little personal information as possible.",
+          [
+            "We do not collect your name.",
+            "We do not collect your email address.",
+            "We do not collect your phone number.",
+            "We do not collect your date of birth.",
+            "We do not collect your address.",
+            "We do not collect payment information.",
+            "We do not collect device identifiers.",
+            "We do not collect IP addresses.",
+            "We do not collect analytics data.",
+            "We do not collect crash reports.",
+            "We do not collect diagnostic information.",
+            "We do not collect advertising identifiers.",
+            "We do not collect location information.",
+          ],
+        ],
+      },
+      {
+        heading: "International Users",
+        blocks: [
+          "StormXR, LLC is available worldwide.",
+          "By using the app, you understand that your information may be processed in accordance with the laws of the United States.",
+        ],
+      },
+      {
+        heading: "Security",
+        blocks: [
+          "We take reasonable measures to protect information handled by the application. However, no method of electronic storage or transmission is completely secure.",
+        ],
+      },
+      {
+        heading: "Children's Privacy",
+        blocks: [
+          "StormXR, LLC is not specifically directed toward children and does not knowingly collect personal information from children.",
+        ],
+      },
+      {
+        heading: "Changes to This Privacy Policy",
+        blocks: [
+          "We may update this Privacy Policy from time to time.",
+          "Changes become effective when the updated Privacy Policy is published.",
+          "The Effective Date at the top of this policy indicates the latest revision.",
+        ],
+      },
+      {
+        heading: "Contact Us",
+        blocks: [
+          "Company: StormXR, LLC",
+          "Website: https://www.stormxr.tech",
+          "Email: craigstorm@stormxr.tech",
+        ],
+      },
+    ],
+  },
   {
     slug: "punchable-face",
     name: "Punchable Face",
@@ -414,6 +415,107 @@ export const privacyPolicies: PrivacyPolicy[] = [
         heading: "Children's Privacy",
         blocks: [
           "The Meta Quest platform requires users to be at least 13 years old to have an account. Punchable Face is not directed to children under 13, and we do not knowingly collect personal information from children.",
+        ],
+      },
+      {
+        heading: "Changes to This Privacy Policy",
+        blocks: [
+          "We may update this Privacy Policy from time to time.",
+          "Changes become effective when the updated Privacy Policy is published.",
+          "The Effective Date at the top of this policy indicates the latest revision.",
+        ],
+      },
+      {
+        heading: "Contact Us",
+        blocks: [
+          "Company: StormXR, LLC",
+          "Website: https://www.stormxr.tech",
+          "Email: craigstorm@stormxr.tech",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "catch-with-dad",
+    name: "Catch With Dad",
+    effectiveDate: "October 17, 2026",
+    sections: [
+      {
+        heading: "Introduction",
+        blocks: [
+          "StormXR, LLC ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how Catch With Dad handles information when you use our virtual reality experience on the Meta Quest platform.",
+          "Catch With Dad is a single-player VR experience. It is designed to run entirely on your device and does not collect, transmit, or store personal information on our servers.",
+          "By using Catch With Dad, you agree to the practices described in this Privacy Policy.",
+        ],
+      },
+      {
+        heading: "Information We Collect",
+        blocks: [
+          "Catch With Dad is designed to collect as little information as possible. We do not operate accounts, servers, or analytics for the app.",
+          [
+            "We do not collect your name.",
+            "We do not collect your email address.",
+            "We do not collect your Meta account information.",
+            "We do not collect your phone number.",
+            "We do not collect your date of birth.",
+            "We do not collect your address.",
+            "We do not collect payment information.",
+            "We do not collect device identifiers.",
+            "We do not collect IP addresses.",
+            "We do not collect analytics or usage data.",
+            "We do not collect crash reports or diagnostic information.",
+            "We do not collect advertising identifiers.",
+            "We do not collect location information.",
+            "We do not collect voice or microphone data.",
+          ],
+        ],
+      },
+      {
+        heading: "Motion and Hardware Data",
+        blocks: [
+          "Catch With Dad uses headset and controller position, orientation, and hand-tracking data provided by the Meta Quest system in order to render the experience and respond to your throws and catches.",
+          "This motion data is processed on your device in real time. It is not recorded, stored, or transmitted to us or any third party.",
+        ],
+      },
+      {
+        heading: "Local Game Data",
+        blocks: [
+          "Catch With Dad saves your game preferences locally on your device. These include your selected sport, play mode, music setting, and skin tone choices.",
+          "We do not receive these settings or store them on our servers. This data stays on your device and is removed if you uninstall the app.",
+        ],
+      },
+      {
+        heading: "Platform Services",
+        blocks: [
+          "Catch With Dad is distributed through the Meta Quest Store. Meta may collect information when you purchase, download, or run the app in accordance with Meta's own policies.",
+          "Your use of the Meta Quest hardware and store is subject to Meta's Privacy Policy and Terms of Service. We do not control and are not responsible for Meta's data practices.",
+        ],
+      },
+      {
+        heading: "Data Sharing",
+        blocks: [
+          "StormXR, LLC does not sell your personal information.",
+          "StormXR, LLC does not share personal information with advertisers or marketing companies.",
+          "Because the app does not collect personal information, we have no personal information to share.",
+        ],
+      },
+      {
+        heading: "International Users",
+        blocks: [
+          "Catch With Dad is available worldwide.",
+          "Because the app does not collect or transmit personal information, no cross-border transfer of your personal information by us takes place.",
+        ],
+      },
+      {
+        heading: "Security",
+        blocks: [
+          "We take reasonable measures to protect information handled by the app. Because the app runs locally and does not transmit personal information, the primary safeguards for your data are those provided by your device and the Meta Quest platform.",
+        ],
+      },
+      {
+        heading: "Children's Privacy",
+        blocks: [
+          "The Meta Quest platform requires users to be at least 13 years old to have an account. Catch With Dad is not directed to children under 13, and we do not knowingly collect personal information from children.",
         ],
       },
       {
