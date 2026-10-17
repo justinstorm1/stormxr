@@ -205,7 +205,12 @@ export const apps: App[] = [
     platform: "VR",
     description:
       "Play catch with Dad in a sunny backyard. Throw and catch baseballs or footballs at your own pace in a relaxed VR experience.",
-    links: [{ store: "Meta Quest", note: "Coming soon" }],
+    links: [
+      {
+        store: "Meta Quest",
+        href: "https://www.meta.com/experiences/catch-with-dad/1507690274530994/",
+      },
+    ],
   },
 ]
 
