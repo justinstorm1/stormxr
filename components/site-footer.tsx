@@ -28,7 +28,9 @@ const columns = [
     links: [
       { href: "/about", label: "About" },
       { href: "/press", label: "Press" },
-      { href: "/privacy-policy", label: "Privacy policies" },
+      { href: "/privacy", label: "Privacy policy" },
+      { href: "/terms", label: "Terms of use" },
+      { href: "/privacy-policy", label: "App privacy policies" },
     ],
   },
 ]

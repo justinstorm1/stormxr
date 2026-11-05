@@ -198,7 +198,8 @@ export const apps: App[] = [
         href: "https://www.meta.com/experiences/punchable-face/1482909477009074/",
       },
     ],
-  },  {
+  },
+  {
     name: "Catch With Dad",
     slug: "catch-with-dad",
     icon: "/images/catch-with-dad-icon.png",
@@ -210,6 +211,18 @@ export const apps: App[] = [
         store: "Meta Quest",
         href: "https://www.meta.com/experiences/catch-with-dad/1507690274530994/",
       },
+    ],
+  },
+  {
+    name: "ForkShuffle",
+    slug: "forkshuffle",
+    icon: "/images/ForkShuffle.png",
+    platform: "Mobile",
+    description:
+      "ForkShuffle saves your favorite restaurants and picks where to eat when you can't decide.",
+    links: [
+      { store: "App Store", note: "Coming soon" },
+      { store: "Google Play", note: "Coming soon" },
     ],
   },
 ]

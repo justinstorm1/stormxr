@@ -18,9 +18,13 @@ const routes = [
   "/about",
   "/press",
   "/contact",
+  "/privacy",
+  "/terms",
   "/privacy-policy",
   ...privacyPolicies.map((p) => `/privacy-policy/${p.slug}`),
 ]
+
+const legalRoutes = ["/privacy", "/terms", "/privacy-policy"]
 
 // Picks up newly published articles without a redeploy.
 export const revalidate = 3600
@@ -36,7 +40,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...routes.map((route) => ({
       url: `${site.url}${route}`,
       priority:
-        route === "" ? 1 : route.startsWith("/privacy-policy") ? 0.3 : 0.7,
+        route === ""
+          ? 1
+          : legalRoutes.some((r) => route.startsWith(r))
+            ? 0.3
+            : 0.7,
     })),
     ...articles.map((a) => ({
       url: `${site.url}${articleHref(a)}`,

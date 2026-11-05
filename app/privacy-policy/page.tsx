@@ -25,7 +25,16 @@ export default function PrivacyIndexPage() {
             Privacy <em>policies</em>
           </>
         }
-        description="Select an app below to view its privacy policy."
+        description={
+          <>
+            Select an app below to view its privacy policy. For this website,
+            see our{" "}
+            <Link href="/privacy" className="text-signal hover:underline">
+              website privacy policy
+            </Link>
+            .
+          </>
+        }
       />
       <Container>
         <ul className="grid gap-3 sm:grid-cols-2">

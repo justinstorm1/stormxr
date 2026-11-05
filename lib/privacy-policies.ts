@@ -536,4 +536,120 @@ export const privacyPolicies: PrivacyPolicy[] = [
       },
     ],
   },
+  {
+    slug: "forkshuffle",
+    name: "ForkShuffle",
+    effectiveDate: "November 5, 2026",
+    sections: [
+      {
+        heading: "Introduction",
+        blocks: [
+          "StormXR, LLC ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how ForkShuffle handles information when you use our application on iOS and Android.",
+          "ForkShuffle saves your favorite restaurants and picks where to eat when you can't decide. The app stores your restaurants on your device and does not collect, transmit, or store personal information on our servers.",
+          "By using ForkShuffle, you agree to the practices described in this Privacy Policy.",
+        ],
+      },
+      {
+        heading: "Information We Collect",
+        blocks: [
+          "ForkShuffle is designed to collect as little information as possible. We do not operate accounts, servers, or analytics for the app.",
+          [
+            "We do not collect your name.",
+            "We do not collect your email address.",
+            "We do not collect your phone number.",
+            "We do not collect your date of birth.",
+            "We do not collect your address.",
+            "We do not collect payment information.",
+            "We do not collect device identifiers.",
+            "We do not collect IP addresses.",
+            "We do not collect analytics or usage data.",
+            "We do not collect crash reports or diagnostic information.",
+            "We do not collect advertising identifiers.",
+            "We do not collect your location history.",
+          ],
+        ],
+      },
+      {
+        heading: "Restaurant Data",
+        blocks: [
+          "The restaurants you save, including their names, addresses or locations, photos, and any other details you enter, are stored locally on your device.",
+          "This data is not sent to us or to any third party. It stays on your device and is removed if you uninstall the app.",
+        ],
+      },
+      {
+        heading: "Location Information",
+        blocks: [
+          "ForkShuffle may request permission to access your device's location.",
+          "Location is used only when you tap the button to use your current location for a restaurant you are saving. Your location is read once at that moment, while the app is open, and saved with that restaurant on your device.",
+          "ForkShuffle does not access your location in the background, does not track your location over time, and does not send your location to us or any third party.",
+          "You can also enter an address manually instead of granting location permission. You can change or revoke location permission at any time in your device settings.",
+        ],
+      },
+      {
+        heading: "Photos and Camera Access",
+        blocks: [
+          "ForkShuffle may request permission to access your camera and photo library.",
+          "These permissions are used only when you choose to take or select a photo within the app. Photos you add are stored locally on your device with your saved restaurants and are not uploaded to us or any third party.",
+          "StormXR, LLC does not access your camera or photo library without your action, and does not scan or catalog your photo library.",
+        ],
+      },
+      {
+        heading: "Maps and Directions",
+        blocks: [
+          "When you choose to get directions to a restaurant, ForkShuffle opens the restaurant's address or location in a maps app on your device, such as Apple Maps or Google Maps.",
+          "Once the maps app is open, your use of it is subject to that provider's privacy policy. We do not control and are not responsible for the data practices of those providers.",
+        ],
+      },
+      {
+        heading: "Platform Services",
+        blocks: [
+          "ForkShuffle is distributed through the Apple App Store and Google Play. Apple and Google may collect information when you download or use the app in accordance with their own policies.",
+          "Your use of these stores and your device is subject to Apple's and Google's respective privacy policies.",
+        ],
+      },
+      {
+        heading: "Data Sharing",
+        blocks: [
+          "StormXR, LLC does not sell your personal information.",
+          "StormXR, LLC does not share personal information with advertisers or marketing companies.",
+          "Because the app does not collect personal information, we have no personal information to share.",
+        ],
+      },
+      {
+        heading: "International Users",
+        blocks: [
+          "ForkShuffle is available worldwide.",
+          "Because the app does not collect or transmit personal information, no cross-border transfer of your personal information by us takes place.",
+        ],
+      },
+      {
+        heading: "Security",
+        blocks: [
+          "We take reasonable measures to protect information handled by the app. Because your data is stored locally and is not transmitted to us, the primary safeguards for your data are those provided by your device and its operating system.",
+        ],
+      },
+      {
+        heading: "Children's Privacy",
+        blocks: [
+          "ForkShuffle is not specifically directed toward children and does not knowingly collect personal information from children.",
+        ],
+      },
+      {
+        heading: "Changes to This Privacy Policy",
+        blocks: [
+          "We may update this Privacy Policy from time to time.",
+          "Changes become effective when the updated Privacy Policy is published.",
+          "The Effective Date at the top of this policy indicates the latest revision.",
+        ],
+      },
+      {
+        heading: "Contact Us",
+        blocks: [
+          "Company: StormXR, LLC",
+          "Website: https://www.stormxr.tech",
+          "Email: craigstorm@stormxr.tech",
+        ],
+      },
+    ],
+  },
 ]
