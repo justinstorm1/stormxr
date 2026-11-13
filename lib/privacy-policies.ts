@@ -652,4 +652,111 @@ export const privacyPolicies: PrivacyPolicy[] = [
       },
     ],
   },
+  {
+    slug: "xr-feed",
+    name: "XR Feed",
+    effectiveDate: "November 13, 2026",
+    sections: [
+      {
+        heading: "Introduction",
+        blocks: [
+          "StormXR, LLC ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how XR Feed handles information when you use our application on iOS and Android.",
+          "XR Feed brings the latest virtual, augmented, and mixed reality news together in one place. The app does not require an account and does not collect, sell, or store personal information on our servers.",
+          "By using XR Feed, you agree to the practices described in this Privacy Policy.",
+        ],
+      },
+      {
+        heading: "Information We Collect",
+        blocks: [
+          "XR Feed is designed to collect as little information as possible. We do not operate user accounts or analytics for the app.",
+          [
+            "We do not collect your name.",
+            "We do not collect your email address.",
+            "We do not collect your phone number.",
+            "We do not collect your date of birth.",
+            "We do not collect your address.",
+            "We do not collect payment information.",
+            "We do not collect device identifiers.",
+            "We do not collect analytics or usage data.",
+            "We do not collect crash reports or diagnostic information.",
+            "We do not collect advertising identifiers.",
+            "We do not collect location information.",
+            "We do not track the articles you read.",
+          ],
+        ],
+      },
+      {
+        heading: "News Content",
+        blocks: [
+          "To show you the latest stories, XR Feed downloads publicly available news feeds and article content over the internet from StormXR and from third-party publishers.",
+          "As with any internet request, the servers that deliver this content may receive standard technical information such as your IP address, device type, and the time of the request. We do not use this information to identify you, and we do not combine it with any other data.",
+          "Articles, images, and videos shown in XR Feed are provided by their respective publishers. StormXR, LLC does not control and is not responsible for third-party content.",
+        ],
+      },
+      {
+        heading: "Local App Data",
+        blocks: [
+          "Your preferences and any articles you save or bookmark are stored locally on your device.",
+          "This data is not sent to us or to any third party. It stays on your device and is removed if you uninstall the app.",
+        ],
+      },
+      {
+        heading: "Third-Party Websites",
+        blocks: [
+          "When you open an article or video, XR Feed may display it in an in-app browser or open it in your device's web browser or another app, such as YouTube.",
+          "Those websites and services may collect information in accordance with their own privacy policies. We do not control and are not responsible for the data practices of third-party websites or services.",
+        ],
+      },
+      {
+        heading: "Platform Services",
+        blocks: [
+          "XR Feed is distributed through the Apple App Store and Google Play. Apple and Google may collect information when you download or use the app in accordance with their own policies.",
+          "Your use of these stores and your device is subject to Apple's and Google's respective privacy policies.",
+        ],
+      },
+      {
+        heading: "Data Sharing",
+        blocks: [
+          "StormXR, LLC does not sell your personal information.",
+          "StormXR, LLC does not share personal information with advertisers or marketing companies.",
+          "Because the app does not collect personal information, we have no personal information to share.",
+        ],
+      },
+      {
+        heading: "International Users",
+        blocks: [
+          "XR Feed is available worldwide.",
+          "Because the app does not collect personal information, no cross-border transfer of your personal information by us takes place.",
+        ],
+      },
+      {
+        heading: "Security",
+        blocks: [
+          "We take reasonable measures to protect information handled by the app. Content is retrieved over secure connections where supported by the publisher, and your saved data is protected by the safeguards provided by your device and its operating system.",
+        ],
+      },
+      {
+        heading: "Children's Privacy",
+        blocks: [
+          "XR Feed is not specifically directed toward children and does not knowingly collect personal information from children.",
+        ],
+      },
+      {
+        heading: "Changes to This Privacy Policy",
+        blocks: [
+          "We may update this Privacy Policy from time to time.",
+          "Changes become effective when the updated Privacy Policy is published.",
+          "The Effective Date at the top of this policy indicates the latest revision.",
+        ],
+      },
+      {
+        heading: "Contact Us",
+        blocks: [
+          "Company: StormXR, LLC",
+          "Website: https://www.stormxr.tech",
+          "Email: craigstorm@stormxr.tech",
+        ],
+      },
+    ],
+  },
 ]

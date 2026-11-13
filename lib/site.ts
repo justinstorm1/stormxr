@@ -225,6 +225,18 @@ export const apps: App[] = [
       { store: "Google Play", note: "Coming soon" },
     ],
   },
+  {
+    name: "XR Feed",
+    slug: "xr-feed",
+    icon: "/images/XRFeed.png",
+    platform: "Mobile",
+    description:
+      "XR Feed brings the latest virtual, augmented, and mixed reality news together in one place.",
+    links: [
+      { store: "App Store", note: "Coming soon" },
+      { store: "Google Play", note: "Coming soon" },
+    ],
+  },
 ]
 
 /**
