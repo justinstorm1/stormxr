@@ -218,7 +218,7 @@ export default async function Home() {
                 </span>
                 <ArrowUpRight className="size-5 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
               </div>
-              <div className="mt-8 grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
+              <div className="mt-8 flex flex-col gap-6">
                 <div>
                   <h3 className="display text-4xl">Development</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -226,7 +226,8 @@ export default async function Home() {
                     fast modern web platforms — designed and shipped in-house.
                   </p>
                 </div>
-                <div className="flex -space-x-3">
+                {/* Icons shrink to fit so the row never overflows the card as apps are added. */}
+                <div className="flex min-w-0 -space-x-3">
                   {apps.map((app, i) => (
                     <Image
                       key={app.slug}
@@ -235,7 +236,7 @@ export default async function Home() {
                       width={56}
                       height={56}
                       style={{ transitionDelay: `${i * 40}ms` }}
-                      className="size-14 rounded-2xl object-cover shadow-lg ring-2 shadow-black/40 ring-background transition-transform duration-300 group-hover:-translate-y-1.5"
+                      className="aspect-square h-auto w-14 min-w-0 shrink rounded-2xl object-cover shadow-lg ring-2 shadow-black/40 ring-background transition-transform duration-300 group-hover:-translate-y-1.5"
                     />
                   ))}
                 </div>
