@@ -159,12 +159,13 @@ export const sitePrivacyPolicy: LegalDocument = {
 
 export const termsOfUse: LegalDocument = {
   name: "Terms of Use",
-  effectiveDate: "November 5, 2026",
+  effectiveDate: "November 15, 2026",
   sections: [
     {
       heading: "Agreement to These Terms",
       blocks: [
         "These Terms of Use ('Terms') govern your access to and use of www.stormxr.tech (the 'Site'), operated by StormXR, LLC ('we', 'our', or 'us').",
+        "These Terms also cover any and all applications developed by StormXR, LLC (our 'Apps'), on any platform. References to the Site in these Terms include our Apps unless the context requires otherwise.",
         "By accessing or using the Site, you agree to be bound by these Terms and by our Privacy Policy. If you do not agree, please do not use the Site.",
       ],
     },
@@ -212,7 +213,8 @@ export const termsOfUse: LegalDocument = {
     {
       heading: "Our Apps",
       blocks: [
-        "The Site describes and links to apps published by StormXR, LLC. Your download and use of those apps are governed by the terms of the store you obtain them from, such as the Apple App Store, Google Play, or the Meta Quest Store, and by each app's privacy policy.",
+        "These Terms apply to your use of any and all applications developed by StormXR, LLC. Your download and use of our Apps are also subject to the terms of the store you obtain them from, such as the Apple App Store, Google Play, or the Meta Quest Store, and to each app's privacy policy.",
+        "If these Terms conflict with the terms of the store you obtained an App from, the store's terms govern to the extent of the conflict.",
       ],
     },
     {
