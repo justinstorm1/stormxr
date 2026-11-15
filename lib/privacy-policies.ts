@@ -655,7 +655,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
   {
     slug: "xr-feed",
     name: "XR Feed",
-    effectiveDate: "November 13, 2026",
+    effectiveDate: "November 15, 2026",
     sections: [
       {
         heading: "Introduction",
@@ -686,9 +686,16 @@ export const privacyPolicies: PrivacyPolicy[] = [
         ],
       },
       {
+        heading: "About XR Feed Content",
+        blocks: [
+          "XR Feed aggregates news from independent publications covering virtual reality, augmented reality, and mixed reality. All articles link directly to their original publishers, who retain ownership of their content.",
+          "XR Feed is an independent news aggregation service and is not affiliated with or endorsed by the publications featured.",
+        ],
+      },
+      {
         heading: "News Content",
         blocks: [
-          "To show you the latest stories, XR Feed downloads publicly available news feeds and article content over the internet from StormXR and from third-party publishers.",
+          "To show you the latest stories, XR Feed downloads publicly available news feeds and article content over the internet from third-party publishers.",
           "As with any internet request, the servers that deliver this content may receive standard technical information such as your IP address, device type, and the time of the request. We do not use this information to identify you, and we do not combine it with any other data.",
           "Articles, images, and videos shown in XR Feed are provided by their respective publishers. StormXR, LLC does not control and is not responsible for third-party content.",
         ],
