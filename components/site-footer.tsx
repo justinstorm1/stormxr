@@ -107,7 +107,7 @@ export function SiteFooter() {
           <p>
             Designed and developed by{" "}
             <a
-              href="https://www.linkedin.com/in/justin-storm-0208783b7/"
+              href="https://www.linkedin.com/in/justinstorm1"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/80 hover:text-signal"

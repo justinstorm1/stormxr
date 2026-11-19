@@ -766,4 +766,153 @@ export const privacyPolicies: PrivacyPolicy[] = [
       },
     ],
   },
+  {
+    slug: "turbocharged",
+    name: "TurboCharged",
+    effectiveDate: "November 19, 2026",
+    sections: [
+      {
+        heading: "Introduction",
+        blocks: [
+          "StormXR, LLC ('we', 'our', or 'us') respects your privacy. This Privacy Policy explains how TurboCharged collects, uses, and protects information when you use our application on iOS and Android.",
+          "TurboCharged helps you keep track of your vehicles, their mileage, and their service history, and lets you share a garage with family and friends through groups.",
+          "By using TurboCharged, you agree to the practices described in this Privacy Policy.",
+        ],
+      },
+      {
+        heading: "Information We Collect",
+        blocks: [
+          "To provide the app's features, TurboCharged collects the following information when you create an account and use the app:",
+          [
+            "Account information: your email address and password (passwords are stored in hashed form by our authentication provider), or the identifier and email address provided by Sign in with Apple or Google Sign-In.",
+            "Profile information: the display name you choose and your preferred currency.",
+            "Vehicle information: vehicle type, year, make, model, trim, color, nickname, mileage, photos, and a VIN or other identification number if you choose to add one.",
+            "Service records: service type, title, date, cost, mileage, notes, and receipt photos you choose to add.",
+            "Group information: group names, group photos, members, and their roles.",
+          ],
+          "We do not collect your location, contacts, advertising identifiers, or browsing history, and we do not use third-party analytics or advertising in the app.",
+        ],
+      },
+      {
+        heading: "How We Use Information",
+        blocks: [
+          "We use the information we collect only to operate and improve TurboCharged, including to:",
+          [
+            "Create and secure your account and sign you in.",
+            "Store and sync your vehicles, mileage, and service history across your devices.",
+            "Share vehicles and service records with the members of groups you create or join.",
+            "Verify your email address and help you reset your password.",
+            "Provide and restore premium features you purchase.",
+            "Respond to support requests.",
+          ],
+        ],
+      },
+      {
+        heading: "Groups and Sharing",
+        blocks: [
+          "When you create or join a group, other members of that group can see your display name and the vehicles, photos, mileage, and service records stored in that group. Only share an invite link or QR code with people you trust.",
+          "Group owners can manage vehicles and members in their group. If you leave a group, content you added to it may remain with that group.",
+        ],
+      },
+      {
+        heading: "Camera and Photos",
+        blocks: [
+          "With your permission, TurboCharged uses your camera to scan group invite QR codes, scan vehicle VIN barcodes, and take photos of your vehicles and receipts.",
+          "With your permission, TurboCharged accesses your photo library only to let you choose group, vehicle, and receipt pictures. Only the photos you select are uploaded.",
+          "You can change these permissions at any time in your device settings.",
+        ],
+      },
+      {
+        heading: "VIN Lookup",
+        blocks: [
+          "When you choose to look up a vehicle by its VIN, the app sends only the VIN to the U.S. National Highway Traffic Safety Administration's public vPIC service to retrieve the vehicle's year, make, model, and trim. No other information about you is sent.",
+        ],
+      },
+      {
+        heading: "Service Providers",
+        blocks: [
+          "We rely on a small number of trusted service providers to operate TurboCharged. They process information on our behalf and only as needed to provide their services:",
+          [
+            "Supabase: authentication, database, and file storage for your account, vehicles, service records, and photos.",
+            "Apple and Google: Sign in with Apple and Google Sign-In, if you choose to use them.",
+            "RevenueCat: processing and restoring in-app purchases. RevenueCat receives your account identifier, your email address, and your purchase history. Payments are handled by the App Store or Google Play; we never receive your payment card details.",
+            "NHTSA vPIC: decoding a VIN you choose to look up, as described above.",
+          ],
+        ],
+      },
+      {
+        heading: "In-App Purchases",
+        blocks: [
+          "TurboCharged may offer optional premium features through in-app purchases or subscriptions. Purchases are processed by Apple or Google under their own terms and privacy policies.",
+          "You can manage or cancel subscriptions in your App Store or Google Play account settings.",
+        ],
+      },
+      {
+        heading: "Local App Data",
+        blocks: [
+          "TurboCharged stores some data on your device, such as your sign-in session and cached copies of your garage, so the app loads quickly. This data is removed when you sign out or uninstall the app.",
+        ],
+      },
+      {
+        heading: "Platform Services",
+        blocks: [
+          "TurboCharged is distributed through the Apple App Store and Google Play. Apple and Google may collect information when you download or use the app in accordance with their own policies.",
+          "Your use of these stores and your device is subject to Apple's and Google's respective privacy policies.",
+        ],
+      },
+      {
+        heading: "Data Sharing",
+        blocks: [
+          "StormXR, LLC does not sell your personal information.",
+          "StormXR, LLC does not share personal information with advertisers or marketing companies.",
+          "We share information only with the members of groups you choose to join, with the service providers listed above, or when required by law.",
+        ],
+      },
+      {
+        heading: "Data Retention and Account Deletion",
+        blocks: [
+          "We keep your information for as long as your account is active.",
+          "You can delete your account at any time from the Settings screen in the app. Deleting your account permanently removes your profile, your sign-in information, every group you own (including its vehicles, service records, invites, and photos), and your memberships in other groups.",
+          "Vehicles and service records you added to groups owned by other people stay with those groups, but are no longer linked to your account.",
+          "You can also request deletion by contacting us at the email address below.",
+        ],
+      },
+      {
+        heading: "International Users",
+        blocks: [
+          "TurboCharged is available worldwide.",
+          "Your information may be stored and processed in the United States or other countries where our service providers operate. By using the app, you consent to this transfer.",
+        ],
+      },
+      {
+        heading: "Security",
+        blocks: [
+          "We take reasonable measures to protect your information. Data is transmitted over encrypted connections, access to your groups and photos is restricted to you and the members of your groups, and photos are kept in private storage.",
+          "No method of transmission or storage is completely secure, and we cannot guarantee absolute security.",
+        ],
+      },
+      {
+        heading: "Children's Privacy",
+        blocks: [
+          "TurboCharged is not directed toward children under 13 and we do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will delete it.",
+        ],
+      },
+      {
+        heading: "Changes to This Privacy Policy",
+        blocks: [
+          "We may update this Privacy Policy from time to time.",
+          "Changes become effective when the updated Privacy Policy is published.",
+          "The Effective Date at the top of this policy indicates the latest revision.",
+        ],
+      },
+      {
+        heading: "Contact Us",
+        blocks: [
+          "Company: StormXR, LLC",
+          "Website: https://www.stormxr.tech",
+          "Email: craigstorm@stormxr.tech",
+        ],
+      },
+    ],
+  },
 ]

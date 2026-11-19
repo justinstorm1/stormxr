@@ -237,6 +237,18 @@ export const apps: App[] = [
       { store: "Google Play", note: "Coming soon" },
     ],
   },
+  {
+    name: "TurboCharged",
+    slug: "turbocharged",
+    icon: "/images/TurboChargedLogo.png",
+    platform: "Mobile",
+    description:
+      "TurboCharged tracks your vehicles, mileage, and service history, and shares your garage with family and friends.",
+    links: [
+      { store: "App Store", note: "Coming soon" },
+      { store: "Google Play", note: "Coming soon" },
+    ],
+  },
 ]
 
 /**
