@@ -784,7 +784,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
         blocks: [
           "To provide the app's features, TurboCharged collects the following information when you create an account and use the app:",
           [
-            "Account information: your email address and password (passwords are stored in hashed form by our authentication provider), or the identifier and email address provided by Sign in with Apple or Google Sign-In.",
+            "Account information: the account identifier, name, and email address provided by Sign in with Apple or Google Sign-In. If you use Apple's Hide My Email option, we receive a private relay address instead of your email address. We do not receive or store your Apple or Google password.",
             "Profile information: the display name you choose and your preferred currency.",
             "Vehicle information: vehicle type, year, make, model, trim, color, nickname, mileage, photos, and a VIN or other identification number if you choose to add one.",
             "Service records: service type, title, date, cost, mileage, notes, and receipt photos you choose to add.",
@@ -801,7 +801,6 @@ export const privacyPolicies: PrivacyPolicy[] = [
             "Create and secure your account and sign you in.",
             "Store and sync your vehicles, mileage, and service history across your devices.",
             "Share vehicles and service records with the members of groups you create or join.",
-            "Verify your email address and help you reset your password.",
             "Provide and restore premium features you purchase.",
             "Respond to support requests.",
           ],
@@ -834,7 +833,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
           "We rely on a small number of trusted service providers to operate TurboCharged. They process information on our behalf and only as needed to provide their services:",
           [
             "Supabase: authentication, database, and file storage for your account, vehicles, service records, and photos.",
-            "Apple and Google: Sign in with Apple and Google Sign-In, if you choose to use them.",
+            "Apple and Google: Sign in with Apple and Google Sign-In, which are used to create your account and sign you in.",
             "RevenueCat: processing and restoring in-app purchases. RevenueCat receives your account identifier, your email address, and your purchase history. Payments are handled by the App Store or Google Play; we never receive your payment card details.",
             "NHTSA vPIC: decoding a VIN you choose to look up, as described above.",
           ],
@@ -874,7 +873,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
           "We keep your information for as long as your account is active.",
           "You can delete your account at any time from the Settings screen in the app. Deleting your account permanently removes your profile, your sign-in information, every group you own (including its vehicles, service records, invites, and photos), and your memberships in other groups.",
           "Vehicles and service records you added to groups owned by other people stay with those groups, but are no longer linked to your account.",
-          "You can also request deletion by contacting us at the email address below.",
+          "You can also request deletion by contacting us at the email address below. Step-by-step instructions are at https://www.stormxr.tech/delete-account/turbocharged",
         ],
       },
       {

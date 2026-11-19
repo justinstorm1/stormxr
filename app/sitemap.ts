@@ -4,6 +4,7 @@ import { getTopics, topicHref } from "@/components/articles/topic-page"
 import { articleHref, isExternal } from "@/lib/articles"
 import { getPublishedArticles } from "@/lib/convex-server"
 import { episodeHref, getEpisodes } from "@/lib/podcast"
+import { accountDeletionPages } from "@/lib/account-deletion"
 import { privacyPolicies } from "@/lib/privacy-policies"
 import { site } from "@/lib/site"
 
@@ -22,9 +23,10 @@ const routes = [
   "/terms",
   "/privacy-policy",
   ...privacyPolicies.map((p) => `/privacy-policy/${p.slug}`),
+  ...accountDeletionPages.map((p) => `/delete-account/${p.slug}`),
 ]
 
-const legalRoutes = ["/privacy", "/terms", "/privacy-policy"]
+const legalRoutes = ["/privacy", "/terms", "/privacy-policy", "/delete-account"]
 
 // Picks up newly published articles without a redeploy.
 export const revalidate = 3600
