@@ -51,6 +51,33 @@ async function loadFont({ family, axes }: FontSpec, text: string) {
   }
 }
 
+const MAX_BACKGROUND_BYTES = 4 * 1024 * 1024
+const RASTER_TYPES = ["image/png", "image/jpeg", "image/gif", "image/webp"]
+
+/**
+ * Downloads a background image and returns it as a data URI, or null if it
+ * can't be used. Oversized or SVG/XML images crash the OG renderer (and with
+ * it the whole build), so only reasonably sized raster images are allowed.
+ */
+async function backgroundDataUri(url: string) {
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(10_000) })
+    if (!res.ok) return null
+    const type = (res.headers.get("content-type") ?? "").split(";")[0].trim()
+    if (!RASTER_TYPES.includes(type)) return null
+    const declared = Number(res.headers.get("content-length") ?? 0)
+    if (declared > MAX_BACKGROUND_BYTES) return null
+    const buf = Buffer.from(await res.arrayBuffer())
+    if (buf.length === 0 || buf.length > MAX_BACKGROUND_BYTES) return null
+    // Reject markup served under an image content type.
+    const head = buf.subarray(0, 64).toString("utf8").trimStart()
+    if (head.startsWith("<")) return null
+    return `data:${type};base64,${buf.toString("base64")}`
+  } catch {
+    return null
+  }
+}
+
 async function logoDataUri() {
   const png = await readFile(join(process.cwd(), "public/images/og-mark.png"))
   return `data:image/png;base64,${png.toString("base64")}`
@@ -130,13 +157,16 @@ export async function renderOgImage({
   eyebrow,
   title,
   subtitle,
-  background,
+  background: backgroundUrl,
 }: {
   eyebrow: string
   title: string
   subtitle?: string
   background?: string
 }) {
+  const background = backgroundUrl
+    ? await backgroundDataUri(backgroundUrl)
+    : null
   const label = eyebrow.toUpperCase()
   const footer = subtitle ?? site.url.replace(/^https?:\/\/(www\.)?/, "")
   const loaded = await Promise.all(
