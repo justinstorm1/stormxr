@@ -221,8 +221,14 @@ export const apps: App[] = [
     description:
       "ForkShuffle saves your favorite restaurants and picks where to eat when you can't decide.",
     links: [
-      { store: "App Store", note: "Coming soon" },
-      { store: "Google Play", note: "Coming soon" },
+      {
+        store: "App Store",
+        href: "https://apps.apple.com/us/app/forkshuffle-restaurant-picker/id6831024051",
+      },
+      {
+        store: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=com.stormxr.forkshuffle",
+      },
     ],
   },
   {

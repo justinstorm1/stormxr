@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import {
   Archivo,
@@ -104,7 +103,6 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
-        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
