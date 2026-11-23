@@ -6,9 +6,41 @@ export type ArticleSummary = FunctionReturnType<
   typeof api.articles.listPublishedArticles
 >[number]
 
-/** UploadVR imports link out; articles written in-house live on this site. */
+/** Imported (UploadVR / Substack) articles link out; written ones live here. */
 export function isExternal(article: Pick<ArticleSummary, "source" | "link">) {
   return article.source !== "native" && !!article.link
+}
+
+/**
+ * Which importer handles a link. Substack posts on custom domains are matched
+ * by their `/p/<slug>` path; the API route then confirms the page is Substack.
+ */
+export function importSourceOf(url: URL): "uploadvr" | "substack" | undefined {
+  const host = url.hostname.toLowerCase()
+  if (host === "uploadvr.com" || host.endsWith(".uploadvr.com")) {
+    return url.pathname.length > 1 ? "uploadvr" : undefined
+  }
+  if (!/^\/p\/[^/]+/.test(url.pathname)) return undefined
+  if (host.endsWith(".substack.com")) return "substack"
+  // Custom domain: require a real public-looking hostname, not an IP/localhost.
+  const isIp = /^[\d.]+$/.test(host) || host.includes(":")
+  if (!isIp && host.includes(".") && !host.endsWith(".local")) {
+    return "substack"
+  }
+}
+
+/** Short name of where an imported article lives, for "Read on …" labels. */
+export function externalSourceName(link: string | undefined) {
+  try {
+    const host = new URL(link ?? "").hostname.replace(/^www\./, "")
+    if (host === "uploadvr.com" || host.endsWith(".uploadvr.com")) {
+      return "UploadVR"
+    }
+    if (host.endsWith("substack.com")) return "Substack"
+    return host
+  } catch {
+    return "the web"
+  }
 }
 
 export function articleHref(

@@ -10,6 +10,7 @@ import {
   LogOut,
   Mail,
   Plus,
+  Tags,
   Users,
 } from "lucide-react"
 import Link from "next/link"
@@ -37,6 +38,12 @@ const links = [
     label: "New article",
     short: "New",
     icon: Plus,
+  },
+  {
+    href: "/nextwavexr/admin/categories",
+    label: "Categories",
+    short: "Topics",
+    icon: Tags,
   },
   { href: MESSAGES_PATH, label: "Messages", short: "Inbox", icon: Mail },
   {
@@ -99,7 +106,7 @@ export function AdminNavBar({
       */}
       <nav
         aria-label="Admin"
-        className="order-3 grid w-full grid-cols-5 gap-1 sm:flex sm:[scrollbar-width:none] sm:overflow-x-auto lg:order-2 lg:w-auto lg:flex-1"
+        className="order-3 grid w-full grid-cols-6 gap-1 sm:flex sm:[scrollbar-width:none] sm:overflow-x-auto lg:order-2 lg:w-auto lg:flex-1"
       >
         {links.map((l) => {
           const active = pathname.startsWith(l.href)

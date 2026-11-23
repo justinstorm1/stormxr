@@ -38,6 +38,11 @@ export default defineSchema({
     .index("by_slug", ["slug"])
     .index("by_status", ["status"])
     .index("by_category", ["category"]),
+  // Categories admins have set up ahead of time. Articles still store the
+  // category name as text, so categories in use don't need a row here.
+  categories: defineTable({
+    name: v.string(),
+  }),
   media: defineTable({
     storageId: v.id("_storage"),
     kind: v.union(v.literal("image"), v.literal("video")),

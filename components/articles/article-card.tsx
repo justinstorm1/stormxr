@@ -4,6 +4,7 @@ import Link from "next/link"
 
 import {
   articleHref,
+  externalSourceName,
   formatArticleDate,
   isExternal,
   type ArticleSummary,
@@ -20,6 +21,7 @@ export function ArticleCard({
   className?: string
 }) {
   const external = isExternal(article)
+  const sourceName = external ? externalSourceName(article.link) : undefined
   const href = articleHref(article)
   const body = (
     <>
@@ -46,7 +48,7 @@ export function ArticleCard({
         )}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-black/50 to-transparent" />
         <span className="label absolute top-3 left-3 rounded-full bg-background/70 px-2.5 py-1 text-[0.6rem] text-foreground ring-1 ring-white/10 backdrop-blur">
-          {external ? "UploadVR" : "NextWave XR"}
+          {sourceName ?? "NextWave XR"}
         </span>
       </div>
       <div
@@ -74,7 +76,7 @@ export function ArticleCard({
           <p className="mt-4 text-muted-foreground">{article.excerpt}</p>
         )}
         <span className="mt-auto flex items-center gap-1.5 pt-5 text-sm font-medium text-signal">
-          {external ? "Read on UploadVR" : "Read article"}
+          {sourceName ? `Read on ${sourceName}` : "Read article"}
           <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </span>
       </div>

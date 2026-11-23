@@ -19,7 +19,11 @@ import { Input, Notice, Select, StatusBadge } from "@/components/admin/fields"
 import { buttonVariants } from "@/components/ui/button"
 import { api } from "@/convex/_generated/api"
 import type { Doc, Id } from "@/convex/_generated/dataModel"
-import { articleHref, formatArticleDate } from "@/lib/articles"
+import {
+  articleHref,
+  externalSourceName,
+  formatArticleDate,
+} from "@/lib/articles"
 import { cn } from "@/lib/utils"
 
 type Row = Omit<Doc<"articles">, "content">
@@ -53,7 +57,7 @@ export default function DashboardPage() {
       value: articles.filter(isWritten).length,
     },
     {
-      label: "From UploadVR",
+      label: "Imported",
       value: articles.filter((a) => !isWritten(a)).length,
     },
   ]
@@ -114,7 +118,7 @@ export default function DashboardPage() {
         >
           <option value="all">All sources</option>
           <option value="native">Written here</option>
-          <option value="link">UploadVR</option>
+          <option value="link">Imported</option>
         </Select>
         <Select
           aria-label="Filter by status"
@@ -200,7 +204,7 @@ function ArticleRow({
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge status={status} />
           <span className="label rounded-full bg-white/5 px-2.5 py-1 text-[0.6rem] text-muted-foreground ring-1 ring-line">
-            {written ? "Written" : "UploadVR"}
+            {written ? "Written" : externalSourceName(article.link)}
           </span>
         </div>
         <p className="mt-2 line-clamp-2 font-medium">{article.title}</p>

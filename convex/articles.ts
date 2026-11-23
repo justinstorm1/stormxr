@@ -92,7 +92,7 @@ export const addArticle = mutation({
       actorId: userId,
       targetId: newArticle,
       targetTitle: title,
-      detail: "UploadVR link",
+      detail: "Imported link",
     })
     return newArticle
   },
@@ -134,7 +134,7 @@ export const editArticle = mutation({
       actorId: userId,
       targetId: articleId,
       targetTitle: title,
-      detail: "UploadVR link",
+      detail: "Imported link",
     })
     return { success: true }
   },

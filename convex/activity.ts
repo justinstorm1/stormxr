@@ -19,6 +19,9 @@ export const activityActions = [
   "account.resetPassword",
   "account.changePassword",
   "message.delete",
+  "category.create",
+  "category.rename",
+  "category.delete",
 ] as const
 
 export type ActivityAction = (typeof activityActions)[number]

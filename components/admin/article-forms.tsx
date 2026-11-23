@@ -11,6 +11,7 @@ import {
   Sparkles,
   X,
 } from "lucide-react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import * as React from "react"
 
@@ -28,7 +29,7 @@ import { useUpload } from "@/components/admin/use-upload"
 import { Button } from "@/components/ui/button"
 import { api } from "@/convex/_generated/api"
 import type { Doc } from "@/convex/_generated/dataModel"
-import { reservedSlugs, slugify } from "@/lib/articles"
+import { importSourceOf, reservedSlugs, slugify } from "@/lib/articles"
 import { cn } from "@/lib/utils"
 
 const DEFAULT_AUTHOR = "Craig Storm"
@@ -51,12 +52,19 @@ const errorMessage = (e: unknown, fallback: string) =>
       (e.message.match(/Uncaught Error: (.*?)(?:\n|$)/)?.[1] ?? fallback)
     : fallback
 
+const manageCategories = (
+  <Link
+    href="/nextwavexr/admin/categories"
+    className="text-signal hover:underline"
+  >
+    Manage
+  </Link>
+)
+
+/** Names from the Categories page plus any already used on articles. */
 function useCategories() {
-  const articles = useQuery(api.articles.listAllArticles)
-  return React.useMemo(
-    () => [...new Set(articles?.map((a) => a.category))].sort(),
-    [articles]
-  )
+  const categories = useQuery(api.categories.list)
+  return React.useMemo(() => categories?.map((c) => c.name) ?? [], [categories])
 }
 
 /** Warns before leaving the page with unsaved changes. */
@@ -387,7 +395,7 @@ export function WriteArticleForm({ article }: { article?: Doc<"articles"> }) {
             /nextwavexr/articles/{effectiveSlug || "…"}
           </p>
         </Field>
-        <Field label="Category" htmlFor="category">
+        <Field label="Category" htmlFor="category" hint={manageCategories}>
           <Input
             id="category"
             list="category-options"
@@ -452,7 +460,7 @@ export function WriteArticleForm({ article }: { article?: Doc<"articles"> }) {
 }
 
 // ---------------------------------------------------------------------------
-// Import from UploadVR
+// Import from UploadVR / Substack
 // ---------------------------------------------------------------------------
 
 type Meta = {
@@ -495,7 +503,7 @@ export function ImportArticleForm({ article }: { article?: Doc<"articles"> }) {
     setError(null)
     try {
       const res = await fetch(
-        `/api/uploadvr-meta?url=${encodeURIComponent(url)}`
+        `/api/article-meta?url=${encodeURIComponent(url)}`
       )
       const data = (await res.json()) as Meta
       if (!res.ok) throw new Error(data.error ?? "Couldn't read that article")
@@ -513,7 +521,7 @@ export function ImportArticleForm({ article }: { article?: Doc<"articles"> }) {
     }
   }, [])
 
-  // Auto-fill as soon as a full UploadVR link is pasted (new imports only).
+  // Auto-fill as soon as a full UploadVR/Substack link is pasted (new imports only).
   React.useEffect(() => {
     if (article) return
     let url: URL
@@ -522,9 +530,7 @@ export function ImportArticleForm({ article }: { article?: Doc<"articles"> }) {
     } catch {
       return
     }
-    if (!url.hostname.endsWith("uploadvr.com") || url.pathname.length < 2) {
-      return
-    }
+    if (!importSourceOf(url)) return
     const timeout = setTimeout(() => fetchMeta(link), 500)
     return () => clearTimeout(timeout)
     // Only refetch when the link itself changes.
@@ -576,7 +582,7 @@ export function ImportArticleForm({ article }: { article?: Doc<"articles"> }) {
     <div className="mx-auto max-w-2xl space-y-5">
       <div className="glass space-y-5 p-6 sm:p-8">
         <Field
-          label="UploadVR link"
+          label="Article link"
           htmlFor="link"
           hint={
             fetching ? (
@@ -592,7 +598,7 @@ export function ImportArticleForm({ article }: { article?: Doc<"articles"> }) {
             <Input
               id="link"
               type="url"
-              placeholder="https://www.uploadvr.com/…"
+              placeholder="https://www.uploadvr.com/… or https://…substack.com/p/…"
               value={link}
               onChange={(e) => touch(setLink)(e.target.value)}
             />
@@ -656,7 +662,7 @@ export function ImportArticleForm({ article }: { article?: Doc<"articles"> }) {
               />
             </Field>
           </div>
-          <Field label="Category" htmlFor="category">
+          <Field label="Category" htmlFor="category" hint={manageCategories}>
             <Input
               id="category"
               list="import-category-options"

@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils"
 
 const modes = [
-  { value: "import", label: "Import from UploadVR", icon: Link2 },
+  { value: "import", label: "Import a link", icon: Link2 },
   { value: "write", label: "Write an article", icon: PenLine },
 ] as const
 

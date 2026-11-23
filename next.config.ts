@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       // UploadVR (Ghost) article header images.
       { protocol: "https", hostname: "storage.ghost.io" },
+      // Substack article header images.
+      { protocol: "https", hostname: "substackcdn.com" },
       // Images uploaded to Convex file storage.
       { protocol: "https", hostname: "*.convex.cloud" },
       // StormyCs VR YouTube thumbnails.

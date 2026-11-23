@@ -10,6 +10,7 @@ import {
   Loader,
   Pencil,
   Plus,
+  Tag,
   Trash2,
   UserMinus,
   UserPlus,
@@ -58,6 +59,13 @@ const actions: Record<
   "account.changePassword": {
     verb: "changed their password",
     icon: KeyRound,
+  },
+  "category.create": { verb: "added the category", icon: Tag },
+  "category.rename": { verb: "renamed a category to", icon: Tag },
+  "category.delete": {
+    verb: "deleted the category",
+    icon: Trash2,
+    tone: "bad",
   },
 }
 
@@ -121,7 +129,7 @@ export default function ActivityPage() {
 
       {results.length === 0 ? (
         <p className="glass p-10 text-center text-muted-foreground">
-          Nothing yet — changes to articles and accounts will show up here.
+          Nothing yet — changes to articles, categories, and accounts will show up here.
         </p>
       ) : (
         days.map((day) => (
