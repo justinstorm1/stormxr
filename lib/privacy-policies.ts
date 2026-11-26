@@ -769,7 +769,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
   {
     slug: "turbocharged",
     name: "TurboCharged",
-    effectiveDate: "November 19, 2026",
+    effectiveDate: "November 25, 2026",
     sections: [
       {
         heading: "Introduction",
@@ -790,6 +790,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
             "Service records: service type, title, date, cost, mileage, notes, and receipt photos you choose to add.",
             "Group information: group names, group photos, members, and their roles.",
           ],
+          "Vehicle registration and insurance photos are not collected by us. They are stored only on your device, as described in the Registration and Insurance Documents section below.",
           "We do not collect your location, contacts, advertising identifiers, or browsing history, and we do not use third-party analytics or advertising in the app.",
         ],
       },
@@ -814,10 +815,24 @@ export const privacyPolicies: PrivacyPolicy[] = [
         ],
       },
       {
+        heading: "Registration and Insurance Documents",
+        blocks: [
+          "TurboCharged lets you save photos of your vehicle registration and insurance documents. These photos are stored only on your device, at all times.",
+          [
+            "They are never uploaded to our servers or to any of our service providers.",
+            "They are never shared with your groups or visible to other group members, even when the vehicle is shared with a group.",
+            "They are not synced between your devices and are not available to us, so we cannot view, recover, or restore them.",
+          ],
+          "Because these photos exist only on your device, they may be permanently lost if you delete them, uninstall the app, or lose, reset, or replace your device. You are responsible for keeping your own copies of these documents. StormXR, LLC is not responsible for the loss of, or for any inability to access, documents stored locally on your device.",
+          "Your device's operating system may include app data in device backups, such as iCloud or Google backups, depending on your device settings. Those backups are controlled by you and by Apple or Google under their own privacy policies, not by StormXR, LLC.",
+          "You are responsible for securing your device, for example with a passcode, and for deciding who has physical access to it. TurboCharged is a convenience tool and is not a replacement for carrying official documents required by law.",
+        ],
+      },
+      {
         heading: "Camera and Photos",
         blocks: [
-          "With your permission, TurboCharged uses your camera to scan group invite QR codes, scan vehicle VIN barcodes, and take photos of your vehicles and receipts.",
-          "With your permission, TurboCharged accesses your photo library only to let you choose group, vehicle, and receipt pictures. Only the photos you select are uploaded.",
+          "With your permission, TurboCharged uses your camera to scan group invite QR codes, scan vehicle VIN barcodes, and take photos of your vehicles, receipts, and registration and insurance documents.",
+          "With your permission, TurboCharged accesses your photo library only to let you choose group, vehicle, receipt, registration, and insurance pictures. Only the group, vehicle, and receipt photos you select are uploaded. Registration and insurance photos stay on your device.",
           "You can change these permissions at any time in your device settings.",
         ],
       },
@@ -832,7 +847,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
         blocks: [
           "We rely on a small number of trusted service providers to operate TurboCharged. They process information on our behalf and only as needed to provide their services:",
           [
-            "Supabase: authentication, database, and file storage for your account, vehicles, service records, and photos.",
+            "Supabase: authentication, database, and file storage for your account, vehicles, service records, and group, vehicle, and receipt photos. Registration and insurance photos are never sent to Supabase.",
             "Apple and Google: Sign in with Apple and Google Sign-In, which are used to create your account and sign you in.",
             "RevenueCat: processing and restoring in-app purchases. RevenueCat receives your account identifier, your email address, and your purchase history. Payments are handled by the App Store or Google Play; we never receive your payment card details.",
             "NHTSA vPIC: decoding a VIN you choose to look up, as described above.",
@@ -844,12 +859,15 @@ export const privacyPolicies: PrivacyPolicy[] = [
         blocks: [
           "TurboCharged may offer optional premium features through in-app purchases or subscriptions. Purchases are processed by Apple or Google under their own terms and privacy policies.",
           "You can manage or cancel subscriptions in your App Store or Google Play account settings.",
+          "A \"Lifetime\" purchase gives you access to the included premium features for the lifetime of the TurboCharged app, meaning for as long as StormXR, LLC continues to offer, operate, and support TurboCharged. It does not refer to the lifetime of the purchaser. If TurboCharged is discontinued, Lifetime access ends with it, and no refund is owed except where required by law or by Apple's or Google's refund policies.",
+          "Premium features included in a purchase may change over time as the app is updated.",
         ],
       },
       {
         heading: "Local App Data",
         blocks: [
           "TurboCharged stores some data on your device, such as your sign-in session and cached copies of your garage, so the app loads quickly. This data is removed when you sign out or uninstall the app.",
+          "Registration and insurance photos are also stored only on your device. Uninstalling the app permanently deletes them.",
         ],
       },
       {
@@ -865,6 +883,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
           "StormXR, LLC does not sell your personal information.",
           "StormXR, LLC does not share personal information with advertisers or marketing companies.",
           "We share information only with the members of groups you choose to join, with the service providers listed above, or when required by law.",
+          "Registration and insurance photos are never shared with anyone, including your groups, because they never leave your device.",
         ],
       },
       {
@@ -873,6 +892,7 @@ export const privacyPolicies: PrivacyPolicy[] = [
           "We keep your information for as long as your account is active.",
           "You can delete your account at any time from the Settings screen in the app. Deleting your account permanently removes your profile, your sign-in information, every group you own (including its vehicles, service records, invites, and photos), and your memberships in other groups.",
           "Vehicles and service records you added to groups owned by other people stay with those groups, but are no longer linked to your account.",
+          "Because registration and insurance photos are stored only on your device, we cannot delete them for you. Delete them in the app or uninstall the app to remove them.",
           "You can also request deletion by contacting us at the email address below. Step-by-step instructions are at https://www.stormxr.tech/delete-account/turbocharged",
         ],
       },
