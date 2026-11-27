@@ -40,7 +40,7 @@ export function PolicyDocument({
 
       <div className="grid gap-12 py-12 lg:grid-cols-[14rem_1fr] lg:gap-16">
         <nav aria-label="On this page" className="hidden lg:block">
-          <ul className="glass sticky top-28 space-y-2.5 p-5 text-sm">
+          <ul className="glass sticky top-28 max-h-[calc(100vh-8rem)] space-y-2.5 overflow-y-auto p-5 text-sm">
             {policy.sections.map((s) => (
               <li key={s.heading}>
                 <a
@@ -82,7 +82,7 @@ export function PolicyDocument({
   )
 }
 
-/** Turns the email and website lines in "Contact Us" into links. */
+/** Turns the email and website lines in "Contact Us", and other URLs, into links. */
 function renderLinks(text: string) {
   const email = text.match(/^Email: (\S+@\S+)$/)
   if (email) {
@@ -106,5 +106,16 @@ function renderLinks(text: string) {
       </>
     )
   }
-  return text
+  // Any other URL in running text, e.g. a link to an app's privacy policy.
+  const parts = text.split(/(https?:\/\/[^\s]*[^\s.,;:)])/)
+  if (parts.length === 1) return text
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <a key={i} href={part} className="text-signal hover:underline">
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  )
 }
