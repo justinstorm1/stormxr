@@ -1,5 +1,7 @@
 import { v } from "convex/values"
+import { internal } from "./_generated/api"
 import { internalMutation, mutation, query } from "./_generated/server"
+import type { MutationCtx } from "./_generated/server"
 import type { Doc } from "./_generated/dataModel"
 import { logActivity } from "./activity"
 import { requireAuth } from "./authHelpers"
@@ -234,6 +236,7 @@ export const createArticle = mutation({
       targetTitle: args.title,
       detail: args.status === "draft" ? undefined : `Created as ${args.status}`,
     })
+    await schedulePublish(ctx, args.status, args.scheduledFor)
     return articleId
   },
 })
@@ -280,6 +283,7 @@ export const updateArticle = mutation({
       targetTitle: args.title,
       scheduledFor: args.status === "scheduled" ? args.scheduledFor : undefined,
     })
+    await schedulePublish(ctx, args.status, args.scheduledFor)
     return { success: true }
   },
 })
@@ -341,7 +345,25 @@ export const unpublishArticle = mutation({
   },
 })
 
-// Called on a cron (see convex/crons.ts) to flip due scheduled articles live.
+/**
+ * Runs publishScheduledArticles once, at the article's publish time, instead
+ * of polling on a cron. Rescheduling or unscheduling leaves the old job in
+ * place, but it is harmless: it only publishes articles that are still
+ * scheduled and due when it runs.
+ */
+async function schedulePublish(
+  ctx: MutationCtx,
+  status: "draft" | "scheduled" | "published",
+  scheduledFor: number | undefined
+) {
+  if (status !== "scheduled" || scheduledFor === undefined) return
+  await ctx.scheduler.runAt(
+    Math.max(scheduledFor, Date.now()),
+    internal.articles.publishScheduledArticles
+  )
+}
+
+// Scheduled by schedulePublish to flip due scheduled articles live.
 export const publishScheduledArticles = internalMutation({
   args: {},
   handler: async (ctx) => {

@@ -5,7 +5,10 @@ import { ogContentType, ogSize, renderOgImage } from "@/lib/og"
 export const alt = "NextWave XR article"
 export const size = ogSize
 export const contentType = ogContentType
-export const revalidate = 60
+// Each render downloads the article's header image (often several MB) from
+// Convex storage, and bots request OG images constantly, so rebuild at most
+// daily. Title or header changes reach link previews within a day.
+export const revalidate = 86400
 
 export async function generateStaticParams() {
   const articles = await getPublishedArticles()

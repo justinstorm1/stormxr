@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Fragment } from "react"
 
 import { articleHeadings, isArticleFont } from "@/lib/articles"
@@ -16,6 +17,15 @@ const safeHref = (href: unknown) =>
   typeof href === "string" && /^(https?:|mailto:|\/|#)/i.test(href)
     ? href
     : undefined
+
+// Images uploaded to Convex file storage (allowed in next.config.ts).
+const isConvexFile = (src: string) => {
+  try {
+    return new URL(src).hostname.endsWith(".convex.cloud")
+  } catch {
+    return false
+  }
+}
 
 // Only embed video from known players; anything else is dropped.
 const embedHosts = [
@@ -171,14 +181,29 @@ function Node({ node, id }: { node: RichNode; id?: string }) {
           )}
           style={{ maxWidth: `${Math.min(width, 100)}%` }}
         >
-          {/* Inline article images come from arbitrary sources with unknown
-              dimensions, so a plain <img> is used instead of next/image. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={a.src}
-            alt={typeof a.alt === "string" ? a.alt : ""}
-            loading="lazy"
-          />
+          {isConvexFile(a.src) ? (
+            // Our own uploads go through the image optimizer, so readers get a
+            // resized, cached copy instead of the full original from Convex.
+            // Real dimensions are unknown; width/height only pick the srcset,
+            // and height: auto keeps the image's own aspect ratio.
+            <Image
+              src={a.src}
+              alt={typeof a.alt === "string" ? a.alt : ""}
+              width={1600}
+              height={900}
+              sizes="(min-width: 768px) 768px, 100vw"
+              style={{ width: "100%", height: "auto" }}
+            />
+          ) : (
+            // Images from other sites have unknown hosts, so they can't go
+            // through next/image.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={a.src}
+              alt={typeof a.alt === "string" ? a.alt : ""}
+              loading="lazy"
+            />
+          )}
           {typeof a.caption === "string" && a.caption && (
             <figcaption>{a.caption}</figcaption>
           )}
@@ -216,6 +241,8 @@ function Node({ node, id }: { node: RichNode; id?: string }) {
             poster={safeHref(a.poster)}
             controls
             playsInline
+            // Videos can be large: don't download any of it until played.
+            preload="none"
             className="w-full rounded-2xl"
           />
           {caption && <figcaption>{caption}</figcaption>}
